@@ -46,7 +46,7 @@ public class config extends HttpServlet {
         Statement st=null;
         
           Class.forName("com.mysql.jdbc.Driver");
-          con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/project_login","root","");
+          con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/PUSL2024-Project","root","");
           st=con.createStatement();
             
           PreparedStatement ps=con.prepareStatement("SELECT username FROM details WHERE username=? AND password=?");
