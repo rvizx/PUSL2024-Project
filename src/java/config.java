@@ -107,9 +107,6 @@ public class config extends HttpServlet {
     }
 
     
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
+    
 
 }
