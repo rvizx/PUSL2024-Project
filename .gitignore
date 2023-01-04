@@ -1,2 +1,8 @@
-/build/
-/web/WEB-INF/
+nbproject/
+*.class
+*.log
+*.tmp
+web.xml
+.idea/
+.vscode/
+build/
