@@ -10,4 +10,4 @@ UI design : https://www.figma.com/file/SMZDF8reG5YenwjwOCnSQO/Uni-project?node-i
 4. push to the branch `git push origin feature`
 5. open a pull request
 
-read more at [`git guides`](https://github.com/git-guides/)
+read more at [git guides](https://github.com/git-guides/)
