@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
 import javax.servlet.RequestDispatcher;  
 import java.security.MessageDigest; 
+import java.util.Random;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
@@ -77,7 +78,23 @@ public class config extends HttpServlet {
                     session.setAttribute("c_mail", email);
                     session.setMaxInactiveInterval(10*60); // 10 minutes
                     
-                    Cookie loginCookie = new Cookie("c_mail", email);
+                    // generate random hash
+                    Random random = new Random();
+                    MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+                    byte[] bytes2 = new byte[32];
+                    random.nextBytes(bytes2);
+                    messageDigest.update(bytes2);
+                    byte[] hash = messageDigest.digest();
+                    StringBuilder sb = new StringBuilder();
+                    //bytes to hex
+                    for (byte b : hash) {                       
+                        sb.append(String.format("%02x", b)); 
+                    }                    
+                    
+                    String hashString = sb.toString();            
+                    
+                    
+                    Cookie loginCookie = new Cookie("c_mail", hashString);
                     loginCookie.setPath("/");
                     response.addCookie(loginCookie);
     

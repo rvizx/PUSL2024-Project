@@ -40,9 +40,9 @@ public class bookseats extends HttpServlet {
             
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/PUSL2024-Project/seats","root","");
+                con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
                 st=con.createStatement();
-                String sql = "SELECT seatname FROM seats WHERE booked = 1";
+                String sql = "SELECT seat_no FROM seats WHERE seat_status = 1";
                 ResultSet rs = st.executeQuery(sql);
                 bookedSeats = new String[rs.getFetchSize()];
                 
@@ -89,6 +89,14 @@ public class bookseats extends HttpServlet {
   }
     
     // add booked seats to the database
+    /*
+    
+    show_id
+    seat_no
+    adult_ticket_amount
+    child_ticket_amount 
+    
+    */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -108,7 +116,7 @@ public class bookseats extends HttpServlet {
             
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/PUSL2024-Project/seats","root","");
+                con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cienma","root","");
                 st=con.createStatement();
                 
                 String sql = "UPDATE seats SET booked = 1 WHERE seat_name IN (?";
