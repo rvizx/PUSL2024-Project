@@ -74,7 +74,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         
         
           Class.forName("com.mysql.jdbc.Driver");
-          con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/PUSL2024-Project/customer","root","");
+          con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
           st=con.createStatement();            
           
           PreparedStatement ps= con.prepareStatement("SELECT * FROM customers WHERE email = ?");

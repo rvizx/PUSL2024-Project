@@ -16,12 +16,16 @@
                 <tr>
                     <p>${message1}</p>
                     <td>Username</td>
-                    <td><input type="text" name="username"></td>
+                    <td><input type="email" name="l_email"></td>
                 </tr>
                 
                 <tr>
                     <td>Password</td>
-                    <td><input type="password" name="password"></td>
+                    <td><input type="password" name="l_password"></td>
+                </tr>
+                
+                <tr>
+                    <td><a href="ForgotPw.jsp">Forgot Password</a></td>
                 </tr>
                 
                 <tr>

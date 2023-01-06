@@ -30,8 +30,10 @@ public class config extends HttpServlet {
         try
         {
 
-        String email=request.getParameter("email");
-        String password=request.getParameter("password");
+        String email=request.getParameter("l_email");
+        String password=request.getParameter("l_password");
+        
+        
         
         String HashedPassword = null;             
         // MessageDigest instance for MD5.  
@@ -47,7 +49,9 @@ public class config extends HttpServlet {
                 s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));  
             }                
         // Complete hashed password in hexadecimal format  
-        HashedPassword = s.toString();  
+        HashedPassword = s.toString(); 
+        
+        
         
         
         // db configurations
@@ -56,7 +60,7 @@ public class config extends HttpServlet {
         Statement st=null;
         
           Class.forName("com.mysql.jdbc.Driver");
-          con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/PUSL2024-Project/customer","root","");
+          con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
           st=con.createStatement();
             
           PreparedStatement ps=con.prepareStatement("SELECT email FROM customer WHERE email=? AND password=?");
