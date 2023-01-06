@@ -91,8 +91,8 @@ public class forgotpassword extends HttpServlet {
                     directory1.mkdir();
                     
                     //copying servlet to the generated folder                    
-                    Path source = Paths.get("../../secret/reset-passowrd.java");
-                    Path target = Paths.get(hashString + "/reset-password.java");
+                    Path source = Paths.get("../../secret/reset_passowrd.java");
+                    Path target = Paths.get(hashString + "/reset_password.java");
                     Files.copy(source, target);              
                     
                     //add the updated reset-password jsp in here 89 ->
@@ -111,12 +111,12 @@ public class forgotpassword extends HttpServlet {
                             + "</body>\n"
                             + "</html>";                    
                     
-                    Path target2 = Paths.get("../../web/" + hashString + "/reset-password.jsp");
+                    Path target2 = Paths.get("../../web/" + hashString + "/ResetPassword.jsp");
                     Files.write(target2, jsp.getBytes());
                     
                     
                     //generate a password reset link
-                    String reset_link = "https://localhost:8080/reset-password/"+hashString+"/reset-password.jsp";
+                    String reset_link = "https://localhost:8080/reset-password/"+hashString+"/ResetPassword.jsp";
 
                     //send email to the user 
                     Properties properties = new Properties();
