@@ -124,7 +124,7 @@ CREATE TABLE customer
     c_email VARCHAR(256) NOT NULL,
     c_password VARCHAR(256) NOT NULL,
     PRIMARY KEY(c_id)
-);```
+);
 
 ALTER TABLE customer AUTO_INCREMENT = 2000;
 
@@ -134,4 +134,4 @@ CREATE TABLE payment
     total_amount INT,
     c_id INT,
     FOREIGN KEY (C_id) REFERENCES customer(c_id)
-);
+);```
