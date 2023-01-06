@@ -134,4 +134,5 @@ CREATE TABLE payment
     total_amount INT,
     c_id INT,
     FOREIGN KEY (C_id) REFERENCES customer(c_id)
-);```
+);
+```
