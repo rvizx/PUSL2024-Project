@@ -63,7 +63,7 @@ public class config extends HttpServlet {
           con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
           st=con.createStatement();
             
-          PreparedStatement ps=con.prepareStatement("SELECT email FROM customer WHERE email=? AND password=?");
+          PreparedStatement ps=con.prepareStatement("SELECT email FROM customer WHERE c_mail=? AND c_password=?");
           ps.setString(1, email);
           ps.setString(2, HashedPassword);
             
@@ -74,10 +74,10 @@ public class config extends HttpServlet {
                 {                
                     // If the email and password are valid, log the user in
                     HttpSession session = request.getSession();
-                    session.setAttribute("email", email);
+                    session.setAttribute("c_mail", email);
                     session.setMaxInactiveInterval(10*60); // 10 minutes
                     
-                    Cookie loginCookie = new Cookie("email", email);
+                    Cookie loginCookie = new Cookie("c_mail", email);
                     loginCookie.setPath("/");
                     response.addCookie(loginCookie);
     
@@ -92,14 +92,7 @@ public class config extends HttpServlet {
                     String message = "Invalid email or password!";
                     request.setAttribute("message", message);
                     request.getRequestDispatcher("/index.jsp").forward(request, response);
-                }
-            
-            
- 
-            
-            
-            
-           
+                } 
         }
         
         catch(Exception e)

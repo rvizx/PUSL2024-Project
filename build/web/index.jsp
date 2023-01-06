@@ -12,10 +12,13 @@
         
        <form method="post" action="config">
             <table>
+                <tr>
+                    <td><p>${message1}</p>
+                    <a href="register.jsp">Register Now</a></td>
+                </tr>
                 
                 <tr>
-                    <p>${message1}</p>
-                    <td>Username</td>
+                    <td>Email</td>
                     <td><input type="email" name="l_email"></td>
                 </tr>
                 

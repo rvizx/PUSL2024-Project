@@ -39,12 +39,11 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         
    try
       {
-        String fname=request.getParameter("firstname");
-        String lname=request.getParameter("lastname");
-        String email=request.getParameter("email");
-        String address=request.getParameter("address");
-        String phone=request.getParameter("phone");        
-        String password=request.getParameter("password");
+        String fname=request.getParameter("r_fname");
+        String lname=request.getParameter("r_lname");
+        String email=request.getParameter("r_email");
+        String phone=request.getParameter("r_mobile");        
+        String password=request.getParameter("r_password");
                                
         String HashedPassword = null;             
         // MessageDigest instance for MD5.  
@@ -73,7 +72,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
           con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
           st=con.createStatement();            
           
-          PreparedStatement ps= con.prepareStatement("SELECT * FROM customers WHERE email = ?");
+          PreparedStatement ps= con.prepareStatement("SELECT * FROM customer WHERE email = ?");
           ps.setString(1, email);
           ResultSet rs = ps.executeQuery();
           
@@ -85,13 +84,12 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
           } else {
               
                 // Insert the new user into the database
-                PreparedStatement ps1=con.prepareStatement("INSERT INTO customer(fname,lname,email,address,phone,password) VALUES(?,?,?,?,?,?)");
+                PreparedStatement ps1=con.prepareStatement("INSERT INTO customer(c_fname,c_lname,c_mobile,c_mail,c_password) VALUES(?,?,?,?,?)");
                 ps1.setString(1, fname);
                 ps1.setString(2, lname);
-                ps1.setString(3, email);
-                ps1.setString(4, address);
-                ps1.setString(5, phone);
-                ps1.setString(6, HashedPassword);
+                ps1.setString(3, phone);
+                ps1.setString(4, email);
+                ps1.setString(5, HashedPassword);
                 ps1.executeUpdate();
                 
                 String message = "Registration complete!. You'll be redirected to the home page in 5 seconds";
