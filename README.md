@@ -13,6 +13,76 @@ UI design : https://www.figma.com/file/SMZDF8reG5YenwjwOCnSQO/Uni-project?node-i
 read more at [git guides](https://github.com/git-guides/)
 
 
+## File structure
+
+```
+.
+├── build
+│   ├── empty
+│   ├── generated-sources
+│   │   └── ap-source-output
+│   └── web
+│       ├── forgot.jsp
+│       ├── gfv4ee7.dpf
+│       ├── index.jsp
+│       ├── META-INF
+│       │   └── MANIFEST.MF
+│       ├── movies.jsp
+│       ├── ResetPw.jsp
+│       ├── seats.jsp
+│       └── WEB-INF
+│           ├── classes
+│           │   ├── bookseats.class
+│           │   ├── config.class
+│           │   ├── forget_password$1.class
+│           │   ├── forgotpassword$1.class
+│           │   ├── ForgotPassword$1.class
+│           │   ├── forgotpassword.class
+│           │   ├── register.class
+│           │   └── ResetPw.class
+│           ├── glassfish-web.xml
+│           └── lib
+│               └── mysql-connector-java-5.1.38-bin.jar
+├── build.xml
+├── lib
+│   ├── CopyLibs
+│   │   └── org-netbeans-modules-java-j2seproject-copylibstask.jar
+│   ├── mysql-connector-java-5.1.38-bin.jar
+│   └── nblibraries.properties
+├── nbproject
+│   ├── ant-deploy.xml
+│   ├── build-impl.xml
+│   ├── build-impl.xml~
+│   ├── genfiles.properties
+│   ├── private
+│   │   ├── private.properties
+│   │   └── private.xml
+│   ├── project.properties
+│   └── project.xml
+├── README.md
+├── src
+│   ├── conf
+│   │   └── MANIFEST.MF
+│   └── java
+│       ├── bookseats.java
+│       ├── config.java
+│       ├── forgotpassword.java
+│       ├── register.java
+│       └── ResetPw.java
+├── test
+└── web
+    ├── forgot.jsp
+    ├── index.jsp
+    ├── movies.jsp
+    ├── register.jsp
+    ├── ResetPw.jsp
+    ├── seats.jsp
+    └── WEB-INF
+        └── glassfish-web.xml
+```
+
+## Database Structure
+
 ```sql
 CREATE DATABASE abc_cinema;
 
