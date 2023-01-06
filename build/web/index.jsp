@@ -28,7 +28,7 @@
                 </tr>
                 
                 <tr>
-                    <td><a href="ForgotPw.jsp">Forgot Password</a></td>
+                    <td><a href="forgot.jsp">Forgot Password</a></td>
                 </tr>
                 
                 <tr>
