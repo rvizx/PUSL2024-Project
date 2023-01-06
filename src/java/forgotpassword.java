@@ -147,10 +147,10 @@ public class forgotpassword extends HttpServlet {
                                     message.setText(""
                                             + "Dear customer, <br> We've noticed that you've requested a password reset for you account that created from"+email+". "
                                                     + "Indorder to complete this process visit the following link and create a new password. "
-                                                    + "Note: This link will be diabled in 5 mintues. <br> "
+                                                    + "Note: This link will be disabled in 5 mintues. <br> "
                                             +reset_link
                                             +"<br> Thank you, ABC Cinema. <br> "
-                                                    + "<i>please note that this is an automatically generated email and do not reply.<i>");      
+                                                    + "<i>please note that this is an automatically generated email and do not reply to this email.<i>");      
                                     Transport.send(message);
                                     System.out.println("Email sent successfully");      
       
