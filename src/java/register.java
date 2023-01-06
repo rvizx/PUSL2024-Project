@@ -100,11 +100,10 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
                 //out.print(message);
                 String message = "Registration complete!.You'll be redirected to the home page in 5 seconds";
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("/register.jsp").forward(request, response);
-                //Thread.sleep(5000);
-                // Redirect to login page
-                response.sendRedirect("/index.jsp");                              
+                request.getRequestDispatcher("/register.jsp").forward(request, response);                           
          }
+          Thread.sleep(5000);
+          response.sendRedirect("/index.jsp");   
            
        }
         
