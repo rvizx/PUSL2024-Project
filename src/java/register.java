@@ -25,11 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 
 @WebServlet(urlPatterns = {"/register"})
-public class register extends HttpServlet {
-
-    
-    
-    
+public class register extends HttpServlet {    
     
 @Override
 protected void doGet(HttpServletRequest request, HttpServletResponse response)
