@@ -72,19 +72,22 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
           con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
           st=con.createStatement();            
           
-          PreparedStatement ps= con.prepareStatement("SELECT * FROM customer WHERE email = ?");
+          PreparedStatement ps= con.prepareStatement("SELECT * FROM customer WHERE c_email = ?");
           ps.setString(1, email);
           ResultSet rs = ps.executeQuery();
           
           if (rs.next()) {
               // A user with this email already exists
-              String message = "Error! A user with this email address already registered, try login.";
-              out.print(message);
+              //String message = "Error! A user with this email address already registered, try login.";
+              //out.print(message);
+              String message = "Registration complete!.You'll be redirected to the home page in 5 seconds";
+              request.setAttribute("message", message);
+              request.getRequestDispatcher("/register.jsp").forward(request, response);
               
           } else {
               
                 // Insert the new user into the database
-                PreparedStatement ps1=con.prepareStatement("INSERT INTO customer(c_fname,c_lname,c_mobile,c_mail,c_password) VALUES(?,?,?,?,?)");
+                PreparedStatement ps1=con.prepareStatement("INSERT INTO customer(c_fname,c_lname,c_mobile,c_email,c_password) VALUES(?,?,?,?,?)");
                 ps1.setString(1, fname);
                 ps1.setString(2, lname);
                 ps1.setString(3, phone);
@@ -92,11 +95,14 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
                 ps1.setString(5, HashedPassword);
                 ps1.executeUpdate();
                 
-                String message = "Registration complete!. You'll be redirected to the home page in 5 seconds";
-                out.print(message);
+                //String message = "Registration complete!. You'll be redirected to the home page in 5 seconds";
+                //out.print(message);
+                String message = "Registration complete!.You'll be redirected to the home page in 5 seconds";
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("/register.jsp").forward(request, response);
                 Thread.sleep(5000);
                 // Redirect to login page
-                response.sendRedirect("login.jsp");                              
+                response.sendRedirect("/index.jsp");                              
          }
            
        }

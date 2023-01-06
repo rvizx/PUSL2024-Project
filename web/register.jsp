@@ -6,9 +6,9 @@
         <title>Register</title>
     </head>
     <body>
-        <form method="post" action="config">
+        <form method="post" action="register">
             <table>
-                <p>${message1}</p>
+                <p>${message}</p>
                 
                 <tr>
                     <td>First Name</td>
