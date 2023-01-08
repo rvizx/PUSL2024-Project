@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -32,6 +33,9 @@ public class movies extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+              
+
+        
   
     }
 
@@ -39,27 +43,30 @@ public class movies extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out=response.getWriter();
+        
+            PrintWriter out=response.getWriter();
         
         try{
-
-            String movie=request.getParameter("movie");
             
             //HTTP Session
-            String sessionmail=null;
             HttpSession session = request.getSession();        
-            sessionmail = (String) session.getAttribute("email");
+            String emailsession = (String) session.getAttribute("email");
+            out.println(emailsession);
             
-            Cookie[] loginCookie = request.getCookies();
+           
+            
+            // Cookie[] loginCookie = request.getCookies();
             //String Cname = loginCookie[0].getName();
             
-            if (session.getAttribute("email")==null && loginCookie.length == 0 && loginCookie==null){
+            //prevoius if condition{sessionemail.getAttribute("email")==null && loginCookie.length == 0 && loginCookie==null}
+            
+            if (emailsession==null){
                 
-                String message = "Login to continue";
+                String message = "Please login to continue";
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                request.getRequestDispatcher("/movies.jsp").forward(request, response);
                 
-                // Redirect the user to the login page
+                //Redirect the user to the login page
                 response.sendRedirect("/index.jsp");
             }
             
@@ -72,8 +79,15 @@ public class movies extends HttpServlet {
                 con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
                 st=con.createStatement();
                 
+                String someName = (String)request.getAttribute("Name");
+                out.println(someName);
+                
+                ServletContext servletcontext = getServletContext();
+                String ReferMail = (String)session.getAttribute("Email");
+                out.println(ReferMail);
+                
                 // Redirect the user to the login page
-                response.sendRedirect("/datetime.jsp");
+                //response.sendRedirect("/datetime.jsp");
                 //PreparedStatement ps=con.prepareStatement("INSERT INTO //Should figure it out//");
                 //ps.setString(1, movie);
                 
@@ -101,7 +115,7 @@ public class movies extends HttpServlet {
                 
                 
                 
-            }      
+            }   
         }
         
         catch(Exception e){

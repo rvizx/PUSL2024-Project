@@ -14,6 +14,7 @@
         
     </head>
     <body>
+        <p>${message}</p>
         <h1>Welcome</h1>
         <h2>Here are some movies for you!</h2>
         <h3>Select the movie you wanna watch</h3>
