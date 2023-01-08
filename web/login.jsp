@@ -30,7 +30,7 @@
             <div class="flex justify-between item-center">
                 <span class="cursor-pointer">
                     <a href="index.html">
-                        <img class="h-10 inline" src="/assets/images/ABC Cinema LOGO.png" alt="">
+                        <img class="h-10 inline" src="images/ABC Cinema LOGO.png" alt="">
                     </a>
                 </span>
                 <span class="text-3xl cursor-pointer mx-2 md:hidden block">
@@ -79,7 +79,7 @@
                   class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
                 >
                   <img
-                    src="/assets/images/cinemahall image.png"
+                    src="images/cinemahall image.png"
                     class="w-full"
                     alt="Sample image"
                   />
@@ -162,7 +162,7 @@
         <footer class="p-4 bg-black  shadow md:px-6 md:py-8 ">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <a href="/src/index.html" class="flex items-center mb-4 sm:mb-0">
-                    <img src="/assets/images/ABC Cinema LOGO.png" class="h-8 mr-3" alt="Flowbite Logo" />
+                    <img src="images/ABC Cinema LOGO.png" class="h-8 mr-3" alt="Flowbite Logo" />
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
                 </a>
                 <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
