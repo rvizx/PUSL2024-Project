@@ -75,10 +75,10 @@ public class config extends HttpServlet {
                 {                
                     // If the email and password are valid, log the user in
                     HttpSession session = request.getSession();
-                    session.setAttribute("c_mail", email);
+                    session.setAttribute("c_email", email);
                     session.setMaxInactiveInterval(10*60); // 10 minutes
                     
-                    // generate random hash
+                    /* // generate random hash
                     Random random = new Random();
                     MessageDigest messageDigest = MessageDigest.getInstance("MD5");
                     byte[] bytes2 = new byte[32];
@@ -91,14 +91,34 @@ public class config extends HttpServlet {
                         sb.append(String.format("%02x", b)); 
                     }                    
                     
-                    String hashString = sb.toString();            
+                    String hashString = sb.toString();  
+                    
+                    String Hashedemail = null;             
+                     // MessageDigest instance for MD5.  
+                    MessageDigest m1 = MessageDigest.getInstance("MD5");                
+                    // Add plain-text password bytes to digest using MD5 update() method. 
+                    m1.update(email.getBytes());      
+                    // Convert the hash value into bytes
+                    byte[] ebytes = m1.digest();  
+                    // The bytes array has bytes in decimal form. Converting it into hexadecimal format.  
+                    StringBuilder s1 = new StringBuilder();  
+                        for(int i=0; i< ebytes.length ;i++)  
+                        {  
+                            s1.append(Integer.toString((ebytes[i] & 0xff) + 0x100, 16).substring(1));  
+                        }                
+                    // Complete hashed password in hexadecimal format  
+                    Hashedemail = s.toString(); 
                     
                     
-                    Cookie loginCookie = new Cookie("c_mail", hashString);
-                    loginCookie.setPath("/");
-                    response.addCookie(loginCookie);
+                    //Cookie loginCookie = new Cookie("c_email", Hashedemail);
+                   // loginCookie.setPath("/");
+                    //loginCookie.setMaxAge(365*24*60*60);
+                   // response.addCookie(loginCookie);
+                   // RequestDispatcher rq=request.getRequestDispatcher("movies");
+                    //rq.forward(request,response); 
+                    
     
-                    // Redirect the user to the homepage
+                    // Redirect the user to the homepage */
                     response.sendRedirect("movies.jsp");                    
                 
                }

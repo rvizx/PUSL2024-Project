@@ -16,5 +16,17 @@
     <body>
         <h1>Welcome</h1>
         <h2>Here are some movies for you!</h2>
+        <h3>Select the movie you wanna watch</h3>
+        <form method="post" action="movies" >
+            <select name="movie" id="mov">
+                <option value="Select">Pick a movie</option>
+                <option value="uncharted">Uncharted</option>
+                <option value="MIB">MIB</option>
+                <option value="Pathan">Pathan</option>
+                <option value="Brahmasthra">Brahmasthra</option>
+            </select>
+            <input type="submit">
+        </form>
+        
     </body>
 </html>

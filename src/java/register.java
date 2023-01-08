@@ -79,8 +79,6 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
           
           if (rs.next()) {
               // A user with this email already exists
-              //String message = "Error! A user with this email address already registered, try login.";
-              //out.print(message);
               String message = "Registration complete!.You'll be redirected to the home page in 5 seconds";
               request.setAttribute("message", message);
               request.getRequestDispatcher("/register.jsp").forward(request, response);
