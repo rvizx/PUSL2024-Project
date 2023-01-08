@@ -47,11 +47,11 @@ public class datetime extends HttpServlet {
             //HTTP Session
             String sessionmail=null;
             HttpSession session = request.getSession();        
-            sessionmail = (String) session.getAttribute("c_email");
+            sessionmail = (String) session.getAttribute("email");
             
             Cookie[] loginCookie = request.getCookies();
             
-            if (null == session.getAttribute("c_email") && loginCookie.length == 0 && null == loginCookie){
+            if (null == session.getAttribute("email") && loginCookie.length == 0 && null == loginCookie){
                 
                 String message = "Login to continue";
                 request.setAttribute("message", message);

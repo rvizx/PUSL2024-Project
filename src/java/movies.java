@@ -48,12 +48,12 @@ public class movies extends HttpServlet {
             //HTTP Session
             String sessionmail=null;
             HttpSession session = request.getSession();        
-            sessionmail = (String) session.getAttribute("c_email");
+            sessionmail = (String) session.getAttribute("email");
             
             Cookie[] loginCookie = request.getCookies();
             //String Cname = loginCookie[0].getName();
             
-            if (session.getAttribute("c_email")==null && loginCookie.length == 0 && loginCookie==null){
+            if (session.getAttribute("email")==null && loginCookie.length == 0 && loginCookie==null){
                 
                 String message = "Login to continue";
                 request.setAttribute("message", message);

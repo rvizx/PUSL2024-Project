@@ -64,7 +64,7 @@ public class config extends HttpServlet {
           con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
           st=con.createStatement();
             
-          PreparedStatement ps=con.prepareStatement("SELECT c_email FROM customer WHERE c_email=? AND c_password=?");
+          PreparedStatement ps=con.prepareStatement("SELECT email FROM customer WHERE email=? AND password=?");
           ps.setString(1, email);
           ps.setString(2, HashedPassword);
             
@@ -75,7 +75,7 @@ public class config extends HttpServlet {
                 {                
                     // If the email and password are valid, log the user in
                     HttpSession session = request.getSession();
-                    session.setAttribute("c_email", email);
+                    session.setAttribute("email", email);
                     session.setMaxInactiveInterval(10*60); // 10 minutes
                     
                     /* // generate random hash
@@ -110,7 +110,7 @@ public class config extends HttpServlet {
                     Hashedemail = s.toString(); 
                     
                     
-                    //Cookie loginCookie = new Cookie("c_email", Hashedemail);
+                    //Cookie loginCookie = new Cookie("email", Hashedemail);
                    // loginCookie.setPath("/");
                     //loginCookie.setMaxAge(365*24*60*60);
                    // response.addCookie(loginCookie);

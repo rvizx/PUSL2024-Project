@@ -73,7 +73,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
           con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
           st=con.createStatement();            
           
-          PreparedStatement ps= con.prepareStatement("SELECT * FROM customer WHERE c_email = ?");
+          PreparedStatement ps= con.prepareStatement("SELECT * FROM customer WHERE email = ?");
           ps.setString(1, email);
           ResultSet rs = ps.executeQuery();
           
@@ -86,7 +86,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
           } else {
               
                 // Insert the new user into the database
-                PreparedStatement ps1=con.prepareStatement("INSERT INTO customer(c_fname,c_lname,c_mobile,c_email,c_password) VALUES(?,?,?,?,?)");
+                PreparedStatement ps1=con.prepareStatement("INSERT INTO customer(fname,lname,mobile,email,password) VALUES(?,?,?,?,?)");
                 ps1.setString(1, fname);
                 ps1.setString(2, lname);
                 ps1.setString(3, phone);
