@@ -72,8 +72,10 @@ public class movies extends HttpServlet {
                 con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
                 st=con.createStatement();
                 
-                PreparedStatement ps=con.prepareStatement("INSERT INTO //Should figure it out//");
-                ps.setString(1, movie);
+                // Redirect the user to the login page
+                response.sendRedirect("/datetime.jsp");
+                //PreparedStatement ps=con.prepareStatement("INSERT INTO //Should figure it out//");
+                //ps.setString(1, movie);
                 
                 
                 
@@ -94,8 +96,7 @@ public class movies extends HttpServlet {
                 
                 
                 
-                
-                
+ 
                 
                 
                 

@@ -83,6 +83,7 @@ public class datetime extends HttpServlet {
                     ResultSet rs1=ps1.executeQuery();
 
                     while (rs1.next()) {
+                        
                         int bookedSeatcount =rs1.getInt(1);
 
                         if(bookedSeatcount>=maxseatcount)
