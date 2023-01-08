@@ -188,11 +188,11 @@ CREATE TABLE child_tickets
 CREATE TABLE customer
 (
     c_id INT AUTO_INCREMENT,
-    c_fname VARCHAR(256) NOT NULL,
-    c_lname VARCHAR(256) NOT NULL,
-    c_mobile VARCHAR(10) NOT NULL,
-    c_email VARCHAR(256) NOT NULL,
-    c_password VARCHAR(256) NOT NULL,
+    fname VARCHAR(256) NOT NULL,
+    lname VARCHAR(256) NOT NULL,
+    mobile VARCHAR(10) NOT NULL,
+    email VARCHAR(256) NOT NULL,
+    password VARCHAR(256) NOT NULL,
     PRIMARY KEY(c_id)
 );
 

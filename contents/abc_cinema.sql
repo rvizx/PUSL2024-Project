@@ -51,18 +51,18 @@ CREATE TABLE `child_tickets` (
 
 CREATE TABLE `customer` (
   `c_id` int(11) NOT NULL,
-  `c_fname` varchar(256) NOT NULL,
-  `c_lname` varchar(256) NOT NULL,
-  `c_mobile` varchar(10) NOT NULL,
-  `c_email` varchar(256) NOT NULL,
-  `c_password` varchar(256) NOT NULL
+  `fname` varchar(256) NOT NULL,
+  `lname` varchar(256) NOT NULL,
+  `mobile` varchar(10) NOT NULL,
+  `email` varchar(256) NOT NULL,
+  `password` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`c_id`, `c_fname`, `c_lname`, `c_mobile`, `c_email`, `c_password`) VALUES
+INSERT INTO `customer` (`c_id`, `fname`, `lname`, `mobile`, `email`, `password`) VALUES
 (2001, 'Jagath', 'Perera', '0700987654', 'jagathperera@gmail.com', '1e35e5408e33e27464b3f6c3bff66a76'),
 (2004, 'Saman', 'Pieris', '0750472729', 'samanpeiris@gmail.com', '7eb681a31a3c08ee6a429a81fc97e677'),
 (2005, 'Sujeewa', 'Sampath', '0717683945', 'sujeewasampath@gmail.com', 'af4054d5bdcd30334fc94444a8888dcd'),

@@ -59,7 +59,7 @@ public class forgotpassword extends HttpServlet {
           con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
           st=con.createStatement();
             
-          PreparedStatement ps=con.prepareStatement("SELECT c_email FROM customer WHERE c_email=?");
+          PreparedStatement ps=con.prepareStatement("SELECT email FROM customer WHERE email=?");
           ps.setString(1, email);
                       
           ResultSet rs=ps.executeQuery();

@@ -68,7 +68,7 @@ public class ResetPw extends HttpServlet {
             st=con.createStatement();
             
             
-            PreparedStatement ps=con.prepareStatement("UPDATE customer SET c_password=? where c_mail=?");
+            PreparedStatement ps=con.prepareStatement("UPDATE customer SET password=? where c_mail=?");
             ps.setString(1, mail);
             ps.setString(2, HashedPassword);
             
