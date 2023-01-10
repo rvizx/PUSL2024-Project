@@ -39,7 +39,7 @@ ion-icon {
     
 }
 .search span:hover{
-    colour: #000;
+    color: #000;
 }
 
 .search span::after{
@@ -58,5 +58,105 @@ ion-icon {
 }
 
 
+/*seat booking page css*/
+
+.seat{
+    background-color: white;
+    height: 40px;
+    width: 60px;
+    margin: 3px;
+    border-top-left-radius: 10px ;
+    border-top-right-radius:10px ;
+}
 
 
+.movie-container{
+    margin: 20px 0;
+}
+
+.movie-container select{
+   background-color: blue;
+   border: 0;
+   border-radius: 5px;
+   font-size: 14px;
+   margin-left: 10px;
+   padding: 5px 15px 5px 15px;
+   -moz-appearance: none;
+   -webkit-appearance:none;
+   appearance: none;
+}
+
+.seat.selected{
+   background-color: red;
+}
+.seat.reserved{
+    background-color: #DAA520;
+}
+
+
+.seat:nth-of-type(6){
+    margin-right: 18px;
+}
+
+.seat:nth-last-of-type(6){
+    margin-left: 18px;
+}
+
+.seat:not(.reserved):hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.showcase.seat:not(reserved):hover{
+    cursor: default;
+    transform: scale(1);
+
+}
+
+.showcase{
+    background-color: rgba(0,0,0,0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #777;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.showcase li {
+    display: flex;
+    align-items: center;
+    justify-content: 10px;
+    margin: 0 10px;
+}
+
+.row{
+    display: flex;
+}
+
+.showcase li small{
+    margin-left: 10px;
+}
+
+.screen{
+    background-color: #fff;
+    height: 70px;
+    width: 100%;
+    margin: 15px 0;
+    transform: rotateX(-60deg);
+    box-shadow : 0 5px 20px rgba(255, 255, 255, 0.75);
+
+}
+
+.container{
+    perspective: 1000px;
+    margin-bottom: 30px;
+}
+
+p.text{
+    margin: 5px 0;
+}
+
+p.text span{
+    color: aqua;
+} 
