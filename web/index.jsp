@@ -29,8 +29,8 @@
         <nav class="p-5 bg-black shadow md:flex md:items-center md:justify-between">
             <div class="flex justify-between item-center">
                 <span class="cursor-pointer">
-                    <a href="index.html">
-                        <img class="h-10 inline" src="images/ABC Cinema LOGO.png" alt="">
+                    <a href="index.jsp">
+                        <img class="h-10 inline" src="/assets/images/ABC Cinema LOGO.png" alt="">
                     </a>
                 </span>
                 <span class="text-3xl cursor-pointer mx-2 md:hidden block">
@@ -41,16 +41,16 @@
             <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-black w-full left-0 md:w-auto md:py-0 py-6 md:pl-0 pl-7
             md:opacity-100 opacity-100 top-[-400px] transition-all ease-in duration-500">
                 <li class="mx-6 my-6 md:my-0">
-                    <a href="/Index.html"
+                    <a href="/index.jsp"
                         class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">HOME</a>
                 </li>
                 <li class="mx-6 my-6 md:my-0">
-                    <a href="/movies.html"
+                    <a href="/movies.jsp"
                         class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">MOVIES</a>
                 </li>
                 <li class="mx-6 my-6 md:my-0">
-                    <a href="/contactus.html"
-                        class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">CONTACT US</a>
+                    <a href="/feedback.jsp"
+                        class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">FEEDBACK</a>
                 </li>
 
                 <li class="mx-6 my-6 md:my-0">
@@ -61,9 +61,6 @@
                         </span>
                     </div>
                 </li>
-                <a href="/login.html"><button class="bg-white text-black font-[Inter] duration-500 px-6 py-2 mx-4 hover:bg-[#DAA520] ">
-                    LOGIN
-                </button></a>
                 
             </ul>
 
@@ -85,16 +82,16 @@
             </div>
             <div class="carousel-inner relative w-full h-[865px] overflow-hidden ">
                 <div class="carousel-item active float-left w-full">
-                    <img src="images/slide 1.png" class="block w-full" alt="Wild Landscape" />
+                    <img src="/assets/images/slide 1.png" class="block w-full" alt="Wild Landscape" />
                 </div>
                 <div class="carousel-item float-left w-full">
-                    <img src="images/slide 2.png" class="block w-full" alt="Camera" />
+                    <img src="/assets/images/slide 2.png" class="block w-full" alt="Camera" />
                 </div>
                 <div class="carousel-item float-left w-full">
-                    <img src="images/slide 3.png" class="block w-full" alt="Exotic Fruits" />
+                    <img src="/assets/images/slide 3.png" class="block w-full" alt="Exotic Fruits" />
                 </div>
                 <div class="carousel-item float-left w-full">
-                    <img src="images/slide 4.png" class="block w-full" alt="Exotic Fruits" />
+                    <img src="/assets/images/slide 4.png" class="block w-full" alt="Exotic Fruits" />
                 </div>
             </div>
             <button
@@ -199,7 +196,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="images/card 1.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card 1.png" alt="" />
                         </a>
                         <div class="p-6">
                             <h5 class="mb-2 text-xl font-medium text-gray-900">BLACK PANTHER: WAKANDA FOREVER
@@ -218,14 +215,14 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="images/card 2.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card 2.png" alt="" />
                         </a>
                         <div class="p-6">
                             <h5 class="mb-2 text-xl font-medium text-gray-900">BLACK ADAM</h5><br>
                             <p class="mb-4 text-base text-gray-700">
                                 English | Action | Adventure
                             </p>
-                            <a href="/bookingpg1.html">
+                            <a href="/bookingpg1.jsp">
                                 <button type="button"
                                 class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
                                 Tickets</button>
@@ -242,7 +239,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="images/card 3.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card 3.png" alt="" />
                         </a>
                         <div class="p-6">
                             <h5 class="mb-2 text-xl font-medium text-gray-900">TOP GUN : MAVERICK
@@ -261,7 +258,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="images/card 4.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card 4.png" alt="" />
                         </a>
                         <div class="p-6">
                             <h5 class="mb-2 text-xl font-medium text-gray-900">JURASSIC WORLD : DOMINION
@@ -280,7 +277,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="images/card 5.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card 5.png" alt="" />
                         </a>
                         <div class="p-6">
                             <h5 class="mb-2 text-xl font-medium text-gray-900">K.G.F: CHAPTER 2
@@ -298,7 +295,7 @@
                 </div>
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-blck rounded-lg shadow-lg pt-56">
-                        <a href="/movies.html">
+                        <a href="/movies.jsp">
                             <button type="button"
                             class=" inline-block px-6 py-2.5  bg-white text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">VIEW
                             ALL</button>
@@ -328,7 +325,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="images/card 6.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card 6.png" alt="" />
                         </a>
                         <div class="p-6">
                             <h5 class="mb-2 text-xl font-medium text-gray-900">AVATAR : THE WAY OF WATER
@@ -345,7 +342,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="images/card 7.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card 7.png" alt="" />
                         </a>
                         <div class="p-6">
                             <h5 class="mb-2 text-xl font-medium text-gray-900">DEVOTION</h5>
@@ -360,7 +357,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="images/card 8.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card 8.png" alt="" />
                         </a>
                         <div class="p-6">
                             <h5 class="mb-2 text-xl font-medium text-gray-900">PUSS IN BOOTS: THE LAST
@@ -376,7 +373,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="images/card 9.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card 9.png" alt="" />
                         </a>
                         <div class="p-6">
                             <h5 class="mb-2 text-xl font-medium text-gray-900">SHOTGUN WEDDING</h5>
@@ -403,8 +400,8 @@
 
         <footer class="p-4 bg-black  shadow md:px-6 md:py-8 ">
             <div class="sm:flex sm:items-center sm:justify-between">
-                <a href="/src/index.html" class="flex items-center mb-4 sm:mb-0">
-                    <img src="images/ABC Cinema LOGO.png" class="h-8 mr-3" alt="Flowbite Logo" />
+                <a href="index.jsp" class="flex items-center mb-4 sm:mb-0">
+                    <img src="/assets/images/ABC Cinema LOGO.png" class="h-8 mr-3" alt="Flowbite Logo" />
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
                 </a>
                 <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
