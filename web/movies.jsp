@@ -29,7 +29,7 @@
         <nav class="p-5 bg-black shadow md:flex md:items-center md:justify-between">
             <div class="flex justify-between item-center">
                 <span class="cursor-pointer">
-                    <a href="index.html">
+                    <a href="index.jsp">
                         <img class="h-10 inline" src="/assets/images/ABC Cinema LOGO.png" alt="">
                     </a>
                 </span>
@@ -41,13 +41,13 @@
             <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-black w-full left-0 md:w-auto md:py-0 py-6 md:pl-0 pl-7
     md:opacity-100 opacity-100 top-[-400px] transition-all ease-in duration-500">
                 <li class="mx-6 my-6 md:my-0">
-                    <a href="/Index.html" class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">HOME</a>
+                    <a href="/index.jsp" class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">HOME</a>
                 </li>
                 <li class="mx-6 my-6 md:my-0">
-                    <a href="/movies.html" class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">MOVIES</a>
+                    <a href="/movies.jsp" class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">MOVIES</a>
                 </li>
                 <li class="mx-6 my-6 md:my-0">
-                    <a href="/contactus.html" class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">FEEDBACK</a>
+                    <a href="/feedback.jsp" class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">FEEDBACK</a>
                 </li>
 
                 <li class="mx-6 my-6 md:my-0">
@@ -408,7 +408,7 @@
 
         <footer class="p-4 bg-black  shadow md:px-6 md:py-8 ">
             <div class="sm:flex sm:items-center sm:justify-between">
-                <a href="/src/index.html" class="flex items-center mb-4 sm:mb-0">
+                <a href="index.jsp" class="flex items-center mb-4 sm:mb-0">
                     <img src="/assets/images/ABC Cinema LOGO.png" class="h-8 mr-3" alt="Flowbite Logo" />
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
                 </a>

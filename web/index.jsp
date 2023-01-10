@@ -222,7 +222,7 @@
                             <p class="mb-4 text-base text-gray-700">
                                 English | Action | Adventure
                             </p>
-                            <a href="/bookingpg1.jsp">
+                            <a href="/date_time.jsp">
                                 <button type="button"
                                 class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
                                 Tickets</button>
