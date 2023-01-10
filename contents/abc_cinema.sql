@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 10, 2023 at 02:55 PM
+-- Generation Time: Jan 10, 2023 at 07:24 PM
 -- Server version: 10.6.11-MariaDB-1
 -- PHP Version: 8.1.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adult_tickets`
+-- Table structure for table `adult_ticket`
 --
 
-CREATE TABLE `adult_tickets` (
+CREATE TABLE `adult_ticket` (
   `t_id` int(11) NOT NULL,
   `a_price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -35,10 +35,21 @@ CREATE TABLE `adult_tickets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `child_tickets`
+-- Table structure for table `booking`
 --
 
-CREATE TABLE `child_tickets` (
+CREATE TABLE `booking` (
+  `booking_id` varchar(30) NOT NULL,
+  `t_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `child_ticket`
+--
+
+CREATE TABLE `child_ticket` (
   `t_id` int(11) NOT NULL,
   `c_price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -117,10 +128,10 @@ CREATE TABLE `payment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seats`
+-- Table structure for table `seat`
 --
 
-CREATE TABLE `seats` (
+CREATE TABLE `seat` (
   `seat_no` varchar(3) NOT NULL,
   `seat_status` tinyint(1) NOT NULL,
   `date_time` datetime NOT NULL
@@ -151,10 +162,10 @@ CREATE TABLE `staff` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tickets`
+-- Table structure for table `ticket`
 --
 
-CREATE TABLE `tickets` (
+CREATE TABLE `ticket` (
   `t_id` int(11) NOT NULL,
   `seat_no` varchar(3) DEFAULT NULL,
   `date_time` datetime DEFAULT NULL,
@@ -164,10 +175,10 @@ CREATE TABLE `tickets` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trailers`
+-- Table structure for table `trailer`
 --
 
-CREATE TABLE `trailers` (
+CREATE TABLE `trailer` (
   `trailer_id` int(10) NOT NULL,
   `link` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -177,15 +188,22 @@ CREATE TABLE `trailers` (
 --
 
 --
--- Indexes for table `adult_tickets`
+-- Indexes for table `adult_ticket`
 --
-ALTER TABLE `adult_tickets`
+ALTER TABLE `adult_ticket`
   ADD PRIMARY KEY (`t_id`);
 
 --
--- Indexes for table `child_tickets`
+-- Indexes for table `booking`
 --
-ALTER TABLE `child_tickets`
+ALTER TABLE `booking`
+  ADD PRIMARY KEY (`booking_id`),
+  ADD KEY `booking_ibfk_1` (`t_id`);
+
+--
+-- Indexes for table `child_ticket`
+--
+ALTER TABLE `child_ticket`
   ADD PRIMARY KEY (`t_id`);
 
 --
@@ -220,9 +238,9 @@ ALTER TABLE `payment`
   ADD KEY `c_id` (`c_id`);
 
 --
--- Indexes for table `seats`
+-- Indexes for table `seat`
 --
-ALTER TABLE `seats`
+ALTER TABLE `seat`
   ADD PRIMARY KEY (`seat_no`),
   ADD KEY `date_time` (`date_time`);
 
@@ -241,9 +259,9 @@ ALTER TABLE `staff`
   ADD PRIMARY KEY (`emp_id`);
 
 --
--- Indexes for table `tickets`
+-- Indexes for table `ticket`
 --
-ALTER TABLE `tickets`
+ALTER TABLE `ticket`
   ADD PRIMARY KEY (`t_id`),
   ADD KEY `seat_no` (`seat_no`),
   ADD KEY `date_time` (`date_time`),
@@ -276,16 +294,22 @@ ALTER TABLE `movie`
 --
 
 --
--- Constraints for table `adult_tickets`
+-- Constraints for table `adult_ticket`
 --
-ALTER TABLE `adult_tickets`
-  ADD CONSTRAINT `adult_tickets_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `tickets` (`t_id`);
+ALTER TABLE `adult_ticket`
+  ADD CONSTRAINT `adult_ticket_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `ticket` (`t_id`);
 
 --
--- Constraints for table `child_tickets`
+-- Constraints for table `booking`
 --
-ALTER TABLE `child_tickets`
-  ADD CONSTRAINT `child_tickets_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `tickets` (`t_id`);
+ALTER TABLE `booking`
+  ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `ticket` (`t_id`);
+
+--
+-- Constraints for table `child_ticket`
+--
+ALTER TABLE `child_ticket`
+  ADD CONSTRAINT `child_ticket_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `ticket` (`t_id`);
 
 --
 -- Constraints for table `manager`
@@ -300,10 +324,10 @@ ALTER TABLE `payment`
   ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customer` (`c_id`);
 
 --
--- Constraints for table `seats`
+-- Constraints for table `seat`
 --
-ALTER TABLE `seats`
-  ADD CONSTRAINT `seats_ibfk_1` FOREIGN KEY (`date_time`) REFERENCES `shows` (`date_time`);
+ALTER TABLE `seat`
+  ADD CONSTRAINT `seat_ibfk_1` FOREIGN KEY (`date_time`) REFERENCES `shows` (`date_time`);
 
 --
 -- Constraints for table `shows`
@@ -319,12 +343,12 @@ ALTER TABLE `staff`
   ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`);
 
 --
--- Constraints for table `tickets`
+-- Constraints for table `ticket`
 --
-ALTER TABLE `tickets`
-  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`seat_no`) REFERENCES `seats` (`seat_no`),
-  ADD CONSTRAINT `tickets_ibfk_2` FOREIGN KEY (`date_time`) REFERENCES `shows` (`date_time`),
-  ADD CONSTRAINT `tickets_ibfk_3` FOREIGN KEY (`c_id`) REFERENCES `customer` (`c_id`);
+ALTER TABLE `ticket`
+  ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`seat_no`) REFERENCES `seat` (`seat_no`),
+  ADD CONSTRAINT `ticket_ibfk_2` FOREIGN KEY (`date_time`) REFERENCES `shows` (`date_time`),
+  ADD CONSTRAINT `ticket_ibfk_3` FOREIGN KEY (`c_id`) REFERENCES `customer` (`c_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
