@@ -38,7 +38,7 @@ read more at [git guides](https://github.com/git-guides/)
 │           │   ├── forgotpassword$1.class
 │           │   ├── ForgotPassword$1.class
 │           │   ├── forgotpassword.class
-│           │   ├── register.class
+│           │   ├── details.class
 │           │   └── ResetPw.class
 │           ├── glassfish-web.xml
 │           └── lib
@@ -67,14 +67,14 @@ read more at [git guides](https://github.com/git-guides/)
 │       ├── bookseats.java
 │       ├── config.java
 │       ├── forgotpassword.java
-│       ├── register.java
+│       ├── details.java
 │       └── ResetPw.java
 ├── test
 └── web
     ├── forgot.jsp
     ├── index.jsp
     ├── movies.jsp
-    ├── register.jsp
+    ├── details.jsp
     ├── ResetPw.jsp
     ├── seats.jsp
     └── WEB-INF

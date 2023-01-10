@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import java.util.Map;
 /**
  *
  * @author sanid
@@ -31,12 +31,7 @@ public class movies extends HttpServlet {
  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-              
-
-        
-  
+            throws ServletException, IOException {                              
     }
 
     
@@ -47,90 +42,32 @@ public class movies extends HttpServlet {
             PrintWriter out=response.getWriter();
         
         try{
+            //http session
+            HttpSession session = request.getSession();
+            String m_id = (String) session.getAttribute("m_id");
+            out.println(m_id);            
             
-            //HTTP Session
-            HttpSession session = request.getSession();        
-            String emailsession = (String) session.getAttribute("email");
-            out.println(emailsession);
+            Map<String, Object> info = (Map<String, Object>) session.getAttribute("info");
             
-           
-            
-            // Cookie[] loginCookie = request.getCookies();
-            //String Cname = loginCookie[0].getName();
-            
-            //prevoius if condition{sessionemail.getAttribute("email")==null && loginCookie.length == 0 && loginCookie==null}
-            
-            if (emailsession==null){
+            if (m_id==null){
                 
-                String message = "Please login to continue";
+                String message = "please select a movie";
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("/movies.jsp").forward(request, response);
-                
-                //Redirect the user to the login page
+                request.getRequestDispatcher("/movies.jsp").forward(request, response);                
                 response.sendRedirect("/index.jsp");
             }
-            
-            
+                        
             else{
-                Connection con=null;        
-                Statement st=null;
-        
-                Class.forName("com.mysql.jdbc.Driver");
-                con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
-                st=con.createStatement();
                 
-                String someName = (String)request.getAttribute("Name");
-                out.println(someName);
-                
-                ServletContext servletcontext = getServletContext();
-                String ReferMail = (String)session.getAttribute("Email");
-                out.println(ReferMail);
-                
-                // Redirect the user to the login page
-                //response.sendRedirect("/datetime.jsp");
-                //PreparedStatement ps=con.prepareStatement("INSERT INTO //Should figure it out//");
-                //ps.setString(1, movie);
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
- 
-                
-                
-                
-                
+                info.put("m_id", m_id);
+                session.setAttribute("info", info);                
+                response.sendRedirect("/date_time.jsp");
             }   
         }
         
-        catch(Exception e){
-            
-            
+        catch(Exception e){                        
             out.print(e);
         }
-    }
-
-    
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-    
+    }  
 
 }

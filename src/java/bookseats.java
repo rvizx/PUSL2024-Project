@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+
 
 
 /**
@@ -37,53 +40,55 @@ public class bookseats extends HttpServlet {
             PrintWriter out=response.getWriter();        
             Connection con=null;        
             Statement st=null;
+                        
+                 try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
+                    st=con.createStatement();
+                    String sql = "SELECT seat_no FROM seats WHERE seat_status = 1";
+                    ResultSet rs = st.executeQuery(sql);
+                    bookedSeats = new String[rs.getFetchSize()];
+                    
+                    // append seat names to the array 
+                    int i = 0;
+                    while (rs.next()) {
+                        bookedSeats[i] = rs.getString("seatname");
+                        i++;
+                    }
+                    
+                 } catch (ClassNotFoundException | SQLException e) {
+                        e.printStackTrace();
+                         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred!");
+                 } finally {
+                        // closing the database resources
+                          if (st != null) {
+                                try {
+                                    st.close();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
+                          }
+                           if (con != null) {
+                                try {
+                                    con.close();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
+                        }
+                    }
             
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
-                st=con.createStatement();
-                String sql = "SELECT seat_no FROM seats WHERE seat_status = 1";
-                ResultSet rs = st.executeQuery(sql);
-                bookedSeats = new String[rs.getFetchSize()];
-                
-                // append seat names to the array 
-                int i = 0;
-                while (rs.next()) {
-                    bookedSeats[i] = rs.getString("seatname");
-                    i++;
+                    request.setAttribute("bookedSeats", bookedSeats);
+                request.getRequestDispatcher("/seats.jsp").forward(request, response);                                    
+
+           
+            }        
+         
+           catch(Exception e)
+                {
+                    PrintWriter out=response.getWriter();
+                    out.print(e);
                 }
 
-               } catch (ClassNotFoundException | SQLException e) {
-                    e.printStackTrace();
-                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred!");
-               } finally {
-                    // closing the database resources
-                      if (st != null) {
-                            try {
-                                st.close();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                      }
-                       if (con != null) {
-                            try {
-                                con.close();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                    }
-            }
-            
-             request.setAttribute("bookedSeats", bookedSeats);
-             request.getRequestDispatcher("/frontend.jsp").forward(request, response);                                    
-        }        
-        catch(Exception e)
-            {
-                PrintWriter out=response.getWriter();
-                out.print(e);
-            }
-
-   
    
    
   }
@@ -103,8 +108,14 @@ public class bookseats extends HttpServlet {
         
         try{
             String[] seatNames = request.getParameterValues("selectedSeats"); //getting the seat names from the front-end and put it into an array
+            String[] tickets = request.getParameterValues("tickets"); //getting the seat names from the front-end and put it into an array
             
-            // if no seats we're selected -> (better to handle this from front-end)
+            
+            HttpSession session = request.getSession();
+            Map<String, Object> info = (Map<String, Object>) session.getAttribute("info");
+            info.put("seats", seatNames);
+            info.put("tickets", tickets);
+            // if no seats we're selected 
             if (seatNames == null || seatNames.length == 0) { 
                   response.sendError(HttpServletResponse.SC_BAD_REQUEST, "No seats were selected");
                   return;
@@ -160,6 +171,9 @@ public class bookseats extends HttpServlet {
                     }
             }
             
+            
+            session.setAttribute("info", info);
+            response.sendRedirect("details.jsp");   
 
         }        
         catch(Exception e)

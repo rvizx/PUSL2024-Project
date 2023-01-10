@@ -136,7 +136,7 @@
                         <a
                           href="/registration.html"
                           class="text-[#DAA520] hover:text-[#DAA520] focus:text-[#DAA520] transition duration-200 ease-in-out"
-                          >REGISTER</a
+                          >details</a
                         >
                       </p>
                     </div>

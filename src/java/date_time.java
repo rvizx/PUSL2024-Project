@@ -12,21 +12,20 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 /**
  *
  * @author sanid
  */
-@WebServlet(urlPatterns = {"/datetime"})
-public class datetime extends HttpServlet {
+@WebServlet(urlPatterns = {"/date_time"})
+public class date_time extends HttpServlet {
 
     
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+            throws ServletException, IOException {        
     }
-
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -34,22 +33,18 @@ public class datetime extends HttpServlet {
           PrintWriter out=response.getWriter();
 
             String moviedate=request.getParameter("s_date");
-
-            String time=request.getParameter("time");
-            
-            
-            String datetime=moviedate+" "+time;
+            String time=request.getParameter("time");                        
+            String date_time=moviedate+" "+time;
             
             
 
      try
         {
+
             //HTTP Session
-            String sessionmail=null;
-            HttpSession session = request.getSession();        
-            sessionmail = (String) session.getAttribute("email");
-            
-            Cookie[] loginCookie = request.getCookies();
+            HttpSession session = request.getSession();                    
+            Cookie[] loginCookie = request.getCookies();            
+            Map<String, Object> info = (Map<String, Object>) session.getAttribute("info");
             
             if (null == session.getAttribute("email") && loginCookie.length == 0 && null == loginCookie){
                 
@@ -71,9 +66,13 @@ public class datetime extends HttpServlet {
                 st=con.createStatement();
 
                 PreparedStatement ps=con.prepareStatement("SELECT COUNT(seat_no) FROM seats WHERE seat_status=1 AND date_time=?;");
-                ps.setString(1,datetime);
+                ps.setString(1,date_time);
                 ResultSet rs=ps.executeQuery();
-
+                           
+                info.put("date_time", date_time);
+                session.setAttribute("info", info);
+                
+                
                 while(rs.next()){
 
                     int availableseats=rs.getInt(1);
@@ -119,10 +118,5 @@ public class datetime extends HttpServlet {
         }       
     }
 
-    
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }
