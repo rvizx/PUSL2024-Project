@@ -3,19 +3,16 @@
 
 <head>
   
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
   <title>ABC Cinema</title>
   
-  <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
   
   <link rel="stylesheet" href="css/style.css">
   <link href="table.css" rel="stylesheet">
   
   <link rel="shortcut icon" href="images/film.png" />
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  
   <style>
     table.table th:nth-child(1) {
       width: 100px;
@@ -27,9 +24,7 @@
       width: 120px;
   }
   </style>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  
   <script>
   $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
@@ -155,7 +150,7 @@ function confirm(data) {
             #confirm {
                 display: none;
                 background-color: white;
-                border: 1px solid #106eea;
+                border: 1px solid rgb(189, 143, 28);
                 position:fixed;
                 width: 200px;
                 height: 100px;
@@ -166,7 +161,7 @@ function confirm(data) {
                 text-align: center;
             }
         #confirm button {
-            background-color: #106eea;
+            background-color: rgb(189, 143, 28);
             display: inline-block;
             border-radius: 5px;
             border: 1px solid white;
@@ -182,30 +177,29 @@ function confirm(data) {
         </style>
 </head>
 <body>
-  <div class="container-scroller d-flex">
-    <!-- sidebar -->
-    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <div class=" divide">
+    
+    <nav class="sidebar sid "  >
       <ul class="nav">
-        <li class="nav-item sidebar-category">
+        
+          
           <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
-          <span></span>
+          
         </li><br>
-        <li class="nav-item">
+        <li class="nav-item " >
           <a class="nav-link" href="index.html">
-            <i class="mdi mdi-view-quilt menu-icon"></i>
-            <span class="menu-title">Dashboard</span>
+            Dashboard
             
           </a>
         </li>
        
         <li class="nav-item">
           <a class="nav-link"   >
-            <i class="mdi mdi-movie menu-icon"></i>
-            <span class="menu-title">Movies</span>
+            Movies 
             
           </a>
-          <div  id="ui-basic">
-            <ul class="nav flex-column sub-menu">
+          <div  >
+            <ul class="nav  sub-menu">
               <li class="nav-item"> <a class="nav-link" href="movie.html">Manage Movies</a></li>
               <li class="nav-item"> <a class="nav-link" href="movie details.html">Movie Details</a></li>
             </ul>
@@ -213,8 +207,8 @@ function confirm(data) {
         </li>
         <li class="nav-item">
           <a class="nav-link" href="user.html">
-            <i class="mdi mdi mdi-account-plus menu-icon"></i>
-            <span class="menu-title"> Customer Details</span>
+            
+             Customer Details
           </a>
         </li>
         
@@ -222,99 +216,88 @@ function confirm(data) {
         
        <li class="nav-item">
           <a class="nav-link" href="Payment details.html">
-            <i class="mdi mdi-cards-outline menu-icon"></i>
-            <span class="menu-title"> Payment Details</span>
+            
+             Payment Details
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link"   >
-            <i class="mdi mdi mdi-account-plus menu-icon"></i>
-            <span class="menu-title"> Employees</span>
+           
+             Employees
             
           </a>
-          <div  id="ui-basic">
-            <ul class="nav flex-column sub-menu">
-              <li class="nav-item "> <a class="nav-link" href="stff.html">Manage Employee</a></li>
+          <div  >
+            <ul class="nav  sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="stff.html">Manage Employee</a></li>
               <li class="nav-item"> <a class="nav-link" href="stff details.html">Employee Details</a></li>
             </ul>
           </div>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="show.html">
+            
+            Manage Shows
+          </a>
+        </li>
         <li class="nav-item ">
-            <a class="nav-link" href="show.html">
-              <i class="mdi mdi-movie menu-icon"></i>
-              <span class="menu-title">Manage Shows</span>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="booking.html">
-              <i class="mdi mdi-cards-outline menu-icon"></i>
-              <span class="menu-title">Booking Details</span>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="review.html">
-              <i class="mdi mdi-cards-outline menu-icon"></i>
-              <span class="menu-title">Approve Feedback</span>
-            </a>
-          </li>
+          <a class="nav-link" href="booking.html">
+           
+            Booking Details
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="review.html">
+            
+            Approve Feedback
+          </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="log.html">
-            <i class="mdi mdi-account-remove menu-icon"></i>
-            <span class="menu-title">Logout</span>
+           
+            Logout
           </a>
         </li>
         
       </ul>
     </nav>
-    
-    <div class="container-fluid page-body-wrapper">
-      <!-- navbar -->
-      <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
-        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-menu"></span>
-          </button>
-          <div class="navbar-brand-wrapper">
-            <a class="navbar-brand brand-logo" href="index.html"><img src="images/abc logo.png" alt="logo"/></a>
-            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
-          </div>
-          <h4 class="font-weight-bold mb-0 d-none d-md-block mt-1"></h4>
-          <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item">
-              <h4 class="mb-0 font-weight-bold d-none d-xl-block"></h4>
-            </li>
-            
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-              <span class="mdi mdi-menu"></span>
-            </button>
-                  
-          
-        </div>
+
+ <div class="container-fluid page-body-wrapper ">
+ 
+  <nav class="navbar   ">
+    <div class="navbar-menu-wrapper  ">
+      
+      <div class="navbar-brand-wrapper ">
+        <a class="navbar-brand brand-logo" href="index.html"><img src="images/abc logo.png" alt="logo"/></a>
         
-          
-          
+      </div>
+      
             
-      </nav>
+      
+    </div>
+    
+      
+      
+        
+  </nav>
       <div id="confirm">
         <div class="message"></div>
         <button class="yes">Yes</button>
         <button class="no">No</button>
     </div>
-      <div class="main-panel">        
-        <div class="content-wrapper">
-          <div class="row">
-            
-            
-            </div>
-            <div class="col-12 grid-margin stretch-card">
+    <div class="main-panel">        
+      <div class="content-wrapper">
+        <div class="row">
+          
+          
+          </div>
+         
+          
+          <div class="container-lg">
+            <div class="table table-responsive">
               
-            </div>
-            
-            <div class="container-lg">
-              <div class="table-responsive">
-                  <div class="table-wrapper">
-                      <div class="table-title">
-                          <div class="row">
+                <div class="table-wrapper">
+                    <div class="table-title">
+                        <div class="row">
                               <div class="col-sm-8"><h2>Customer <b> Feedback</b></h2></div>
                              
                           </div>
@@ -386,13 +369,7 @@ function confirm(data) {
     </div>
   </div>
   
-  <script src="../../vendors/js/vendor.bundle.base.js"></script>
- 
-  <script src="../../js/off-canvas.js"></script>
-  <script src="../../js/hoverable-collapse.js"></script>
-  <script src="../../js/template.js"></script>
- 
-  <script src="../../js/file-upload.js"></script>
+  
 </body>
 
 </html>

@@ -1,29 +1,4 @@
-const inputs = document.querySelectorAll(".input");
 
-function addClass() {
-  let parent = this.parentNode.parentNode;
-  parent.classList.add("focus");
-}
-
-function removeClass() {
-  let parent = this.parentNode.parentNode;
-  if (this.value == "") {
-    parent.classList.remove("focus");
-  }
-}
-
-inputs.forEach((input) => {
-  input.addEventListener("focus", addClass);
-  input.addEventListener("blur", removeClass);
-});
-
-
-
-
-
-function validate(){
-$('#contact_name').on('input', function() {
-});
 // Name can't be blank
 $('#contact_name').on('input', function() {
 	var input=$(this);
@@ -39,23 +14,7 @@ $('#contact_email').on('input', function() {
 	if(is_email){input.removeClass("invalid").addClass("valid");}
 	else{input.removeClass("valid").addClass("invalid");}
 });
-// Website must be a website
-$('#contact_website').on('input', function() {
-	var input=$(this);
-	if (input.val().substring(0,4)=='www.'){input.val('http://www.'+input.val().substring(4));}
-	var re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
-	var is_url=re.test(input.val());
-	if(is_url){input.removeClass("invalid").addClass("valid");}
-	else{input.removeClass("valid").addClass("invalid");}
-});
-// Message can't be blank
-$('#contact_message').keyup(function(event) {
-	var input=$(this);
-	var message=$(this).val();
-	console.log(message);
-	if(message){input.removeClass("invalid").addClass("valid");}
-	else{input.removeClass("valid").addClass("invalid");}	
-});
+
 
 $("#contact_submit button").click(function(event){
 }); 
