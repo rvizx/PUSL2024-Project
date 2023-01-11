@@ -52,34 +52,34 @@
 
   </head>
   <body>
-    <img class="wave" width="550" height="400" src="images/film.png" />
+    <img class="imgdes" width="550" height="400" src="images/film.png" />
     <div class="container">
       <div class="img"></div>
       <div class="login-content">
-        <form id="contact" method="post" action="index.html">
+        <form  method="post" action="index.html">
           <br><br><br>
           
-          <h2 class="title">Forgot Password</h2>
+          <h1 class="title">Forgot Password</h1>
 
           
     
-<div class="input-div one">
-  <div class="i">
+<div class="inputvalue">
+  <div class="icon">
     <i class="fas fa-user"></i>
   </div>
   <div class="div">
   
-  <input type="int"  class="input" id="contact_name" name="mobile" placeholder="Mobile" required></input>
+  <input type="int"  class="input"  name="mobile" placeholder="Mobile" required></input>
   
 </div>
 </div>
-<div class="input-div one">
-  <div class="i">
+<div class="inputvalue">
+  <div class="icon">
     <i class="fas fa-user"></i>
   </div>
   <div class="div">
   
-  <input type="email" class="input" id="contact_email" name="email" placeholder="Email" required></input>
+  <input type="email" class="input"  name="email" placeholder="Email" required></input>
   
 </div>
 </div>
@@ -97,8 +97,8 @@
 
 <div class="my-3">
   
-<div id="contact_submit">				
-  <a href="index.html"> <input  class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" value="Send Mail" type="submit" onclick="validate()"></button></a>
+<div >				
+  <a href="index.html"> <input  class="btn  btn-primary " value="Send Mail" type="submit" onclick="validate()"></button></a>
 </div>
 
 </div>

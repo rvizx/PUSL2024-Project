@@ -53,25 +53,25 @@
 
   </head>
 <body>
-    <img class="wave" src="images/film.png" />
+    <img class="imgdes" src="images/film.png" />
     <div class="container">
       <div class="img"></div>
       <div class="login-content">
-    <form id="contact" method="post" action="index.html">
+    <form  method="post" action="index.html">
         
-        <h2 class="title">Admin Login </h2>
-        <div class="input-div one">
-            <div class="i">
+        <h1 class="title">Admin Login </h1>
+        <div class="inputvalue ">
+            <div class="icon">
               <i class="fas fa-user"></i>
             </div>
             <div class="div">
             
-            <input type="email"  class="input" id="contact_name" name="name" placeholder="Email" required></input>
+            <input type="email"  class="input"  name="name" placeholder="Email" required></input>
             
         </div>
     </div>
-        <div class="input-div pass">
-            <div class="i">
+        <div class="inputvalue">
+            <div class="icon">
               <i class="fas fa-lock"></i>
             </div>
             <div class="div">
@@ -82,11 +82,10 @@
     </div>					
         
         <a href="forgot pass.html">Forgot Password</a>
-        	
-        <div class="my-3">
+      
             
-        <div id="contact_submit">				
-            <a href="index.html"> <input  class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"  type="submit" onclick="validate()"></button></a>
+        <div >				
+            <a href="index.html"> <input  class="btn btn-primary"  type="submit" onclick="validate()"></button></a>
         </div>
        
         </div>
