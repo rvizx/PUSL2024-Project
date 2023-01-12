@@ -2,24 +2,22 @@
 <html lang="en">
 
 <head>
-  
  
   <title>ABC Cinema</title>
- 
- 
-
+  <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  
   <link rel="stylesheet" href="css/style.css">
   <link href="table.css" rel="stylesheet">
-  
   <link rel="shortcut icon" href="images/film.png" />
-  <Style>
-    table.table th:last-child {
+
+  <style>
+    table.table th:nth-child(4) {
       width: 150px;
-    }
-    </Style>
   
-  <script>
- 
+  }
+  </style>
+  
 </script>
 </head>
 <body>
@@ -51,7 +49,7 @@
             </ul>
           </div>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link" href="user.html">
             
              Customer Details
@@ -66,26 +64,14 @@
              Payment Details
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link"   >
-           
-             Employees
-            
-          </a>
-          <div  >
-            <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="stff.html">Manage Employee</a></li>
-              <li class="nav-item"> <a class="nav-link" href="stff details.html">Employee Details</a></li>
-            </ul>
-          </div>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="show.html">
             
             Manage Shows
           </a>
         </li>
-        <li class="nav-item ">
+        <li class="nav-item active ">
           <a class="nav-link" href="booking.html">
            
             Booking Details
@@ -125,25 +111,21 @@
       
         
   </nav>
-      <!-- partial -->
       <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
             
             
             </div>
-            <div class="col-12 grid-margin stretch-card">
-              <div class="card">
-                
-              </div>
-            </div>
+           
             
             <div class="container-lg">
-              <div class="table-responsive">
+              <div class="table table-responsive">
+                
                   <div class="table-wrapper">
                       <div class="table-title">
                           <div class="row">
-                              <div class="col-sm-8"><h2>Customer <b>Details</b></h2></div>
+                              <div class="col-sm-8"><h2>Movie <b>Details</b></h2></div>
                               <div class="col-sm-4">
                                   
                               </div>
@@ -151,25 +133,31 @@
                       </div>
                       <table class="table table-bordered">
                           <thead>
-                            <th>Customer ID</th>
-                                  <th>Customer Frist Name</th>
-                                  <th>Customer Last Name</th>
-                                  <th>Customer Mobile</th>
-                                  <th>Customer Email</th>
-                               
+                              <tr>
+                                  <th>Customer ID</th>
+                                  <th>Customer Name</th>
+                                  <th>Date</th>
+                                  <th>TIme</th>
+
                                   
-                                  
+                                  <th>Seat No</th>
+                                  <th>Movie Name</th>
+                                 
+                                 
                               </tr>
                           </thead>
                           <tbody>
                               <tr>
-                                  <td>100</td>
-                                  <td>Jhon </td>
-                                  <td>Smith</td>
-                                  <td>(171) 555-2222</td>
-                                  <td>Jon@gmail.com</td>
+                                  <td>09</td>
+                                  <td>jhon</td>
+                                  <td>2022-01-09</td>
+                                  <td>9.00</td>
+                                  <td>3 </td>
+                                  <td>Lusifer</td>
+                                  
                                   
                               </tr>
+                              
                                     
                           </tbody>
                       </table>
@@ -182,13 +170,13 @@
         </div>
         
         
-        
       </div>
-    
-   
+    </div>
   </div>
-
   
+
+
+ 
 </body>
 
 </html>

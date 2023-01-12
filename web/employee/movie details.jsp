@@ -126,19 +126,7 @@ table.table th:nth-child(7) {
              Payment Details
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link"   >
-           
-             Employees
-            
-          </a>
-          <div  >
-            <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="stff.html">Manage Employee</a></li>
-              <li class="nav-item"> <a class="nav-link" href="stff details.html">Employee Details</a></li>
-            </ul>
-          </div>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="show.html">
             
@@ -236,7 +224,6 @@ table.table th:nth-child(7) {
                                   <td>
                                       <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                                       <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                      <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                                   </td>
                               </tr>
                               

@@ -66,19 +66,7 @@
              Payment Details
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link"   >
-           
-             Employees
-            
-          </a>
-          <div  >
-            <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="stff.html">Manage Employee</a></li>
-              <li class="nav-item"> <a class="nav-link" href="stff details.html">Employee Details</a></li>
-            </ul>
-          </div>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="show.html">
             

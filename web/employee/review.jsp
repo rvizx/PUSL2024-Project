@@ -220,19 +220,7 @@ function confirm(data) {
              Payment Details
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link"   >
-           
-             Employees
-            
-          </a>
-          <div  >
-            <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="stff.html">Manage Employee</a></li>
-              <li class="nav-item"> <a class="nav-link" href="stff details.html">Employee Details</a></li>
-            </ul>
-          </div>
-        </li>
+       
         <li class="nav-item">
           <a class="nav-link" href="show.html">
             
@@ -310,9 +298,9 @@ function confirm(data) {
                                   
                                   
                                   <th>Feedback</th>
-                                  <th>Add Comment</th>
+                                  <th>Admin Comment</th>
                                   
-                                  <th>Approve</th>
+                                  <th>Complete</th>
                                   
                                  
                               </tr>
@@ -323,21 +311,17 @@ function confirm(data) {
                                   
                                  
                                   <td>sadfghjksdfret wertyu wertyu wertyu werty awerty</td>
-                                  <td><input type="text" class="form-control"  name="comment" placeholder="Enter Comment" required>
+                                  <td>
                                   </td>
                                   <td>
-                                    <input type="button" value = "✔" onclick='functionConfirm("Approve Customer Feedback?", function yes() {
+                                    <input type="button" value = "✔" onclick='functionConfirm("Done?", function yes() {
                                     
                                     },
                                     function no() {
                                     
                                     });'></button>
-                                    <input type="button" value = "❌" onclick='functionConfirm("Approve Customer FeedBack?", function yes() {
                                     
-                                    },
-                                    function no() {
-                                    
-                                    });'>
+                                  
                                   </td>
                                  
                                  
