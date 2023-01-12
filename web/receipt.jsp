@@ -18,7 +18,7 @@
     <table>
         <tr>
             <td><b>Merchant:</b></td>
-            <td>Company ABC Ltd.</td>
+            <td>ABC Cinema</td>
         </tr>
         <tr>
             <td><b>Payer:</b></td>
@@ -45,6 +45,7 @@
             <td>${transaction.amount.total} USD</td>
         </tr>                    
     </table>
+        
 </div>
 </body>
 </html>

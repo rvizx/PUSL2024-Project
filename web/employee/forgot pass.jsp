@@ -56,7 +56,7 @@
     <div class="container">
       <div class="img"></div>
       <div class="login-content">
-        <form  method="post" action="index.html">
+        <form  method="post" action="sfindex.jsp">
           <br><br><br>
           
           <h1 class="title">Forgot Password</h1>
@@ -98,7 +98,7 @@
 <div class="my-3">
   
 <div >				
-  <a href="index.html"> <input  class="btn  btn-primary " value="Send Mail" type="submit" onclick="validate()"></button></a>
+  <a href="sfindex.jsp"> <input  class="btn  btn-primary " value="Send Mail" type="submit" onclick="validate()"></button></a>
 </div>
 
 </div>
