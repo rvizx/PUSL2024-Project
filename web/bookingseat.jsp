@@ -1,21 +1,9 @@
-<!doctype html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE html>
 
 
-
-<%!
-     String A1="reserved";
-    //String[] bookedSeats = (String[]) request.getAttribute("bookedSeats"); ///change to a map
-    //public String getSeats(String SeatID) {
-    //String[] selectedSeats;    
-    //selectedSeats.add(seatID);
-    //return selectedSeats[];
-    
-    //int[] bookedSeats = {0,1,1};
-    //if( bookedSeats[1]==1 ){
-    //    String A2 = "reserved";
-   // }
-    //}
-%>
 
 <html>
 
@@ -35,6 +23,37 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.css" />
     <link href="/assets/css/style.css" rel="stylesheet">
+    <script>
+    function getSeats(seat) {
+    let seatIndex = selectedSeats.indexOf(seat);
+    if(seatIndex !== -1) {
+        selectedSeats.splice(seatIndex, 1);
+    } else {
+        selectedSeats.push(seat);
+    }
+        console.log(selectedSeats);  //remove this later
+    }
+
+    
+    function sendSelectedSeats() {
+    let halfTicketAmount = document.getElementById("half-tickets").value;
+    let fullTicketAmount = document.getElementById("full-tickets").value;
+    fetch('/bookseats', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({selectedSeats: selectedSeats, halfTicketAmount: halfTicketAmount, fullTicketAmount: fullTicketAmount})
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
+</script>
 </head>
 
 <body class=" bg-black">
@@ -129,7 +148,7 @@
                     <div class="flex justify-center">
 
                         <div class="mb-3 xl:w-96">
-                            <select class="form-select appearance-none
+                            <select id="full-tickets" class="form-select appearance-none
                     block
                     w-56
                     px-3
@@ -171,23 +190,7 @@
                     <div class="flex justify-center">
 
                         <div class="mb-3 xl:w-96">
-                            <select class="form-select appearance-none
-                    block
-                    w-56
-                    px-3
-                    py-1.5
-                    rounded
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding bg-no-repeat
-                    border border-solid border-gray-300
-                    
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                aria-label="Default select example">
+                            <select id="half-tickets" class="form-select appearance-none block w-56 px-3 py-1.5 rounded text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
 
                                 <option selected>1</option>
                                 <option value="1">2</option>
@@ -269,141 +272,142 @@
 
                     <div class="container">
                         <div class="screen"></div>
+                        <c:forEach var="status" items="${bookedSeats}" varStatus="status"></c:forEach>
                         <div class="row px-20 m-5">
-                            <div class="seat <%=A1%> text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A1')">A1</div>
-                            <div class="seat text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A2')">A2</div>
-                            <div class="seat reserved text-black font-bold text-2xl px-4 pt-1" onClick="getSeats('A3')">A3</div>
-                            <div class="seat text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A4')">A4</div>
-                            <div class="seat text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A5')">A5</div>
-                            <div class="seat text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A6')">A6</div>
-                            <div class="seat text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A7')">A7</div>
-                            <div class="seat text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A8')">A8</div>
+                            <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A1')">A1</div>
+                            <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A2')">A2</div>
+                            <div class="seat ${status} reserved text-black font-bold text-2xl px-4 pt-1" onClick="getSeats('A3')">A3</div>
+                            <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A4')">A4</div>
+                            <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A5')">A5</div>
+                            <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A6')">A6</div>
+                            <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A7')">A7</div>
+                            <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A8')">A8</div>
                         </div>
                         <div class="row">
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('B1')">B1</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('B2')">B2</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('B3')">B3</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('B4')">B4</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('B5')">B5</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('B6')">B6</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('B7')">B7</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('B8')">B8</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('B9')">B9</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('B10')">B10</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('B11')">B11</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('B12')">B12</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('B1')">B1</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('B2')">B2</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('B3')">B3</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('B4')">B4</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('B5')">B5</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('B6')">B6</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('B7')">B7</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('B8')">B8</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('B9')">B9</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('B10')">B10</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('B11')">B11</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('B12')">B12</div>
                         </div>
                         <div class="row">
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('C1')">C1</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('C2')">C2</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('C3')">C3</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('C4')">C4</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('C5')">C5</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('C6')">C6</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('C7')">C7</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('C8')">C8</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('C9')">C9</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('C10')">C10</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('C11')">C11</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('C12')">C12</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('C1')">C1</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('C2')">C2</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('C3')">C3</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('C4')">C4</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('C5')">C5</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('C6')">C6</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('C7')">C7</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('C8')">C8</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('C9')">C9</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('C10')">C10</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('C11')">C11</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('C12')">C12</div>
                         </div>
                         <div class="row">
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('D1')">D1</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('D2')">D2</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('D3')">D3</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('D4')">D4</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('D5')">D5</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('D6')">D6</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('D7')">D7</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('D8')">D8</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('D9')">D9</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('D10')">D10</div>
-                            <div class="seat reserved text-black text-l font-bold px-3 pt-2" onClick="getSeats('D11')">D11</div>
-                            <div class="seat reserved text-black text-l font-bold px-3 pt-2" onClick="getSeats('D12')">D12</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('D1')">D1</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('D2')">D2</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('D3')">D3</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('D4')">D4</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('D5')">D5</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('D6')">D6</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('D7')">D7</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('D8')">D8</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('D9')">D9</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('D10')">D10</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('D11')">D11</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('D12')">D12</div>
                         </div>
                         <div class="row">
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('E1')">E1</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('E2')">E2</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('E3')">E3</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('E4')">E4</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('E5')">E5</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('E6')">E6</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('E7')">E7</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('E8')">E8</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('E9')">E9</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('E10')">E10</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('E11')">E11</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('E12')">E12</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('E1')">E1</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('E2')">E2</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('E3')">E3</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('E4')">E4</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('E5')">E5</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('E6')">E6</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('E7')">E7</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('E8')">E8</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('E9')">E9</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('E10')">E10</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('E11')">E11</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('E12')">E12</div>
                         </div>
                         <div class="row">
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('F1')">F1</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('F2')">F2</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('F3')">F3</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('F4')">F4</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('F5')">F5</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('F6')">F6</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('F7')">F7</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('F8')">F8</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('F9')">F9</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('F10')">F10</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('F11')">F11</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('F12')">F12</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('F1')">F1</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('F2')">F2</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('F3')">F3</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('F4')">F4</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('F5')">F5</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('F6')">F6</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('F7')">F7</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('F8')">F8</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('F9')">F9</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('F10')">F10</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('F11')">F11</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('F12')">F12</div>
                         </div>
                         <div class="row">
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('G1')">G1</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('G2')">G2</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('G3')">G3</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('G4')">G4</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('G5')">G5</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('G6')">G6</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('G7')">G7</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('G8')">G8</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('G9')">G9</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('G10')">G10</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('G11')">G11</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('G12')">G12</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('G1')">G1</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('G2')">G2</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('G3')">G3</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('G4')">G4</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('G5')">G5</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('G6')">G6</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('G7')">G7</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('G8')">G8</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('G9')">G9</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('G10')">G10</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('G11')">G11</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('G12')">G12</div>
                         </div>
                         <div class="row">
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('H1')">H1</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('H2')">H2</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('H3')">H3</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('H4')">H4</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('H5')">H5</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('H6')">H6</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('H7')">H7</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('H8')">H8</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('H9')">H9</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('H10')">H10</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('H11')">H11</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('H12')">H12</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('H1')">H1</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('H2')">H2</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('H3')">H3</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('H4')">H4</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('H5')">H5</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('H6')">H6</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('H7')">H7</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('H8')">H8</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('H9')">H9</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('H10')">H10</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('H11')">H11</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('H12')">H12</div>
                         </div>
                         <div class="row">
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('I1')">I1</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('I2')">I2</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('I3')">I3</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('I4')">I4</div>
-                            <div class="seat ${var} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I5')">I5</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('I6')">I6</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('I7')">I7</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('I8')">I8</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('I9')">I9</div>
-                            <div class="seat reserved text-black text-l font-bold px-3 pt-2" onClick="getSeats('I10')">I10</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('I11')">I11</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('I12')">I12</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I1')">I1</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I2')">I2</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I3')">I3</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I4')">I4</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I5')">I5</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I6')">I6</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I7')">I7</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I8')">I8</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I9')">I9</div>
+                            <div class="seat ${status} reserved text-black text-l font-bold px-3 pt-2" onClick="getSeats('I10')">I10</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('I11')">I11</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('I12')">I12</div>
                         </div>
                         <div class="row">
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('J1')">J1</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('J2')">J2</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('J3')">J3</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('J4')">J4</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('J5')">J5</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('J6')">J6</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('J7')">J7</div>
-                            <div class="seat text-black text-l font-bold px-4 pt-2" onClick="getSeats('J8')">J8</div>
-                            <div class="seat reserved text-black text-l font-bold px-4 pt-2" onClick="getSeats('J9')">J9</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('J10')">J10</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('J11')">J11</div>
-                            <div class="seat text-black text-l font-bold px-3 pt-2" onClick="getSeats('J12')">J12</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('J1')">J1</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('J2')">J2</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('J3')">J3</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('J4')">J4</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('J5')">J5</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('J6')">J6</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('J7')">J7</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('J8')">J8</div>
+                            <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('J9')">J9</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('J10')">J10</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('J11')">J11</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('J12')">J12</div>
                         </div>
 
                     </div>
@@ -490,7 +494,7 @@
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="#"
-                    class="hover:underline"></a>COPYRIGHT © 2022 ABC CINEMA.ALL RIGHTS RESERVED.
+                    class="hover:underline"></a>COPYRIGHT Â© 2022 ABC CINEMA.ALL RIGHTS RESERVED.
             </span>
         </footer>
 

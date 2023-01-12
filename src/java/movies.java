@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
+import java.util.HashMap;
 /**
  *
  * @author sanid
@@ -47,7 +47,7 @@ public class movies extends HttpServlet {
             String m_id = (String) session.getAttribute("m_id");
             out.println(m_id);       //remove this     
             
-            Map<String, Object> info = (Map<String, Object>) session.getAttribute("info");
+            HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
             
             if (m_id==null){
                 
