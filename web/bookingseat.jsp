@@ -437,7 +437,7 @@
                                         class="px-10 py-3 m-4 text-base font-medium text-center text-white bg-[#545454] rounded-lg hover:bg-[#747474] dark:bg-[#545454] dark:hover:bg-[#747474] ">BACK</button>
                                 </a>
                                 <a href="/bookingpayment.jsp">
-                                    <button type="button"
+                                    <button type="button" onclick="sendSelectedSeats()"
                                         class="px-10 py-3 text-base font-medium text-center text-white bg-[#DAA520] rounded-lg hover:bg-[#F6C74E]  dark:bg-[#DAA520] dark:hover:bg-[#F6C74E] ">CONTINUE</button>
                                 </a>
 
