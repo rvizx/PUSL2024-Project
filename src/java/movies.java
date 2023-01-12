@@ -45,7 +45,7 @@ public class movies extends HttpServlet {
             //http session
             HttpSession session = request.getSession();
             String m_id = (String) session.getAttribute("m_id");
-            out.println(m_id);            
+            out.println(m_id);       //remove this     
             
             Map<String, Object> info = (Map<String, Object>) session.getAttribute("info");
             
