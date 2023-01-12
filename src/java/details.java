@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.lang.Thread;
-import java.util.Map;
+import java.util.HashMap;
 
 
 /**
@@ -43,7 +43,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         HttpSession session = request.getSession();  
         
         //map
-        Map<String, Object> info = (Map<String, Object>) session.getAttribute("info");
+        HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
         info.put("name", name);
         info.put("email", email);
         info.put("phone", phone);
@@ -113,6 +113,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
 
                   ps1.setString(1, name);
                   ps1.executeUpdate();
+          
+        
 */
 
 

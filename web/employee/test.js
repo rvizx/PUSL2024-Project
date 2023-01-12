@@ -37,5 +37,3 @@ $("#contact_submit button").click(function(event){
 	}
 });
 
-
-}
