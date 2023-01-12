@@ -36,6 +36,3 @@ $("#contact_submit button").click(function(event){
 		alert('No errors: Form will be submitted');
 	}
 });
-
-
-}
