@@ -13,7 +13,7 @@
     </head>
 <body>
   <h1>Forgot Password</h1>
-  <form action="/forogotpassword" method="post">
+  <form action="/../forogotpassword" method="post">
     <label for="email">Email:</label><br>
     <input type="email" id="email" name="email"><br>
     <input type="submit" value="Send reset link">
