@@ -1,149 +1,158 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  
-  
-  <title>ABC Cinema</title>
-  
-  
-  <link rel="stylesheet" href="css/style.css">
-  <link href="table.css" rel="stylesheet">
-  
-  <link rel="shortcut icon" href="images/film.png" />
+    <head>
 
-  
-  <style>
-    table.table th:nth-child(1) {
-      width: 100px;
-  }
-  table.table th:nth-child(2) {
-      width: 280px;
-  }
-  table.table th:nth-child(4) {
-      width: 120px;
-  }
-  </style>
-  
-  <script>
-  $(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-	var actions = $("table td:last-child").jsp();
-    $(".add-new").click(function(){
-		$(this).attr("disabled", "disabled");
-		var index = $("table tbody tr:last-child").index();
-        var row = '<tr>' +
-            '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-            '<td><input type="text" class="form-control" name="department" id="department"></td>' +
-            '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
-			'<td>' + actions + '</td>' +
-        '</tr>';
-    	$("table").append(row);		
-		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-	// Add row on add button click
-	$(document).on("click", ".add", function(){
-		var empty = false;
-		var input = $(this).parents("tr").find('input[type="text"]');
-        input.each(function(){
-			if(!$(this).val()){
-				$(this).addClass("error");
-				empty = true;
-			} else{
-                $(this).removeClass("error");
+
+        <title>ABC Cinema</title>
+
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href="table.css" rel="stylesheet">
+
+        <link rel="shortcut icon" href="images/film.png" />
+
+
+        <style>
+            table.table th:nth-child(1) {
+                width: 100px;
             }
-		});
-		$(this).parents("tr").find(".error").first().focus();
-		if(!empty){
-			input.each(function(){
-				$(this).parent("td").jsp($(this).val());
-			});			
-			$(this).parents("tr").find(".add, .edit").toggle();
-			$(".add-new").removeAttr("disabled");
-		}		
-    });
-	// Edit row on edit button click
-	$(document).on("click", ".edit", function(){		
-        $(this).parents("tr").find("td:not(:last-child)").each(function(){
-			$(this).jsp('<input type="text" class="form-control" value="' + $(this).text() + '">');
-		});		
-		$(this).parents("tr").find(".add, .edit").toggle();
-		$(".add-new").attr("disabled", "disabled");
-    });
-	// Delete row on delete button click
-	$(document).on("click", ".delete", function(){
-        $(this).parents("tr").remove();
-		$(".add-new").removeAttr("disabled");
-    });
-});
-var ALERT_TITLE = "Alert";
-var ALERT_BUTTON_TEXT = "Ok";
+            table.table th:nth-child(2) {
+                width: 280px;
+            }
+            table.table th:nth-child(4) {
+                width: 120px;
+            }
+        </style>
 
-if(document.getElementById) {
-    window.alert = function(txt) {
-        createCustomAlert(txt);
-    }
-}
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+                var actions = $("table td:last-child").jsp();
+                $(".add-new").click(function () {
+                    $(this).attr("disabled", "disabled");
+                    var index = $("table tbody tr:last-child").index();
+                    var row = '<tr>' +
+                            '<td><input type="text" class="form-control" name="name" id="name"></td>' +
+                            '<td><input type="text" class="form-control" name="department" id="department"></td>' +
+                            '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
+                            '<td>' + actions + '</td>' +
+                            '</tr>';
+                    $("table").append(row);
+                    $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+                // Add row on add button click
+                $(document).on("click", ".add", function () {
+                    var empty = false;
+                    var input = $(this).parents("tr").find('input[type="text"]');
+                    input.each(function () {
+                        if (!$(this).val()) {
+                            $(this).addClass("error");
+                            empty = true;
+                        } else {
+                            $(this).removeClass("error");
+                        }
+                    });
+                    $(this).parents("tr").find(".error").first().focus();
+                    if (!empty) {
+                        input.each(function () {
+                            $(this).parent("td").jsp($(this).val());
+                        });
+                        $(this).parents("tr").find(".add, .edit").toggle();
+                        $(".add-new").removeAttr("disabled");
+                    }
+                });
+                // Edit row on edit button click
+                $(document).on("click", ".edit", function () {
+                    $(this).parents("tr").find("td:not(:last-child)").each(function () {
+                        $(this).jsp('<input type="text" class="form-control" value="' + $(this).text() + '">');
+                    });
+                    $(this).parents("tr").find(".add, .edit").toggle();
+                    $(".add-new").attr("disabled", "disabled");
+                });
+                // Delete row on delete button click
+                $(document).on("click", ".delete", function () {
+                    $(this).parents("tr").remove();
+                    $(".add-new").removeAttr("disabled");
+                });
+            });
+            var ALERT_TITLE = "Alert";
+            var ALERT_BUTTON_TEXT = "Ok";
 
-function createCustomAlert(txt) {
-    d = document;
+            if (document.getElementById) {
+                window.alert = function (txt) {
+                    createCustomAlert(txt);
+                }
+            }
 
-    if(d.getElementById("modalContainer")) return;
+            function createCustomAlert(txt) {
+                d = document;
 
-    mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
-    mObj.id = "modalContainer";
-    mObj.style.height = d.documentElement.scrollHeight + "px";
+                if (d.getElementById("modalContainer"))
+                    return;
 
-    alertObj = mObj.appendChild(d.createElement("div"));
-    alertObj.id = "alertBox";
-    if(d.all && !window.opera) alertObj.style.top = document.documentElement.scrollTop + "px";
-    alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth)/2 + "px";
-    alertObj.style.visiblity="visible";
+                mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
+                mObj.id = "modalContainer";
+                mObj.style.height = d.documentElement.scrollHeight + "px";
 
-    h1 = alertObj.appendChild(d.createElement("h1"));
-    h1.appendChild(d.createTextNode(ALERT_TITLE));
+                alertObj = mObj.appendChild(d.createElement("div"));
+                alertObj.id = "alertBox";
+                if (d.all && !window.opera)
+                    alertObj.style.top = document.documentElement.scrollTop + "px";
+                alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth) / 2 + "px";
+                alertObj.style.visiblity = "visible";
 
-    msg = alertObj.appendChild(d.createElement("p"));
-    msg.innerHTML = txt;
+                h1 = alertObj.appendChild(d.createElement("h1"));
+                h1.appendChild(d.createTextNode(ALERT_TITLE));
 
-    btn = alertObj.appendChild(d.createElement("a"));
-    btn.id = "closeBtn";
-    btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
-    btn.href = "#";
-    btn.focus();
-    btn.onclick = function() { removeCustomAlert();return false; }
+                msg = alertObj.appendChild(d.createElement("p"));
+                msg.innerHTML = txt;
 
-    alertObj.style.display = "block";
+                btn = alertObj.appendChild(d.createElement("a"));
+                btn.id = "closeBtn";
+                btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
+                btn.href = "#";
+                btn.focus();
+                btn.onclick = function () {
+                    removeCustomAlert();
+                    return false;
+                }
 
-}
+                alertObj.style.display = "block";
 
-function removeCustomAlert() {
-    document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
-}
-function showConfirmBox() {
-  document.getElementById("confirm-box").hidden = false;
-}
+            }
 
-function confirm(data) {
-  if (data === "yes") {
-    console.log(" user clicked yes");
-  } else {
-    console.log("user clicked No");
-  }
-}
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            function removeCustomAlert() {
+                document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+            }
+            function showConfirmBox() {
+                document.getElementById("confirm-box").hidden = false;
+            }
+
+            function confirm(data) {
+                if (data === "yes") {
+                    console.log(" user clicked yes");
+                } else {
+                    console.log("user clicked No");
+                }
+            }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
             function functionConfirm(msg, myYes, myNo) {
                 var confirmBox = $("#confirm");
                 confirmBox.find(".message").text(msg);
-                confirmBox.find(".yes,.no").unbind().click(function() {
-                        confirmBox.hide();
-                            });
-                        confirmBox.find(".yes").click(myYes);
-                        confirmBox.find(".no").click(myNo);
-                        confirmBox.show();
+                confirmBox.find(".yes,.no").unbind().click(function () {
+                    confirmBox.hide();
+                });
+                confirmBox.find(".yes").click(myYes);
+                confirmBox.find(".no").click(myNo);
+                confirmBox.show();
             }
         </script>
         <style>
@@ -160,216 +169,237 @@ function confirm(data) {
                 box-sizing: border-box;
                 text-align: center;
             }
-        #confirm button {
-            background-color: rgb(189, 143, 28);
-            display: inline-block;
-            border-radius: 5px;
-            border: 1px solid white;
-            padding: 5px;
-            text-align: center;
-            width: 80px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        #confirm .message {
-            text-align: center;
-        }
+            #confirm button {
+                background-color: rgb(189, 143, 28);
+                display: inline-block;
+                border-radius: 5px;
+                border: 1px solid white;
+                padding: 5px;
+                text-align: center;
+                width: 80px;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+            #confirm .message {
+                text-align: center;
+            }
         </style>
-</head>
-<body>
-  <div class=" divide">
-    
-    <nav class="sidebar sid "  >
-      <ul class="nav">
-        
-          
-          <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
-          
-        </li><br>
-        <li class="nav-item " >
-          <a class="nav-link" href="adindex.jsp">
-            Dashboard
-            
-          </a>
-        </li>
-       
-        <li class="nav-item">
-          <a class="nav-link"   >
-            Movies 
-            
-          </a>
-          <div  >
-            <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="user.jsp">
-            
-             Customer Details
-          </a>
-        </li>
-        
-        
-        
-       <li class="nav-item">
-          <a class="nav-link" href="paymentdetails.jsp">
-            
-             Payment Details
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"   >
-           
-             Employees
-            
-          </a>
-          <div  >
-            <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="stff.jsp">Manage Employee</a></li>
-              <li class="nav-item"> <a class="nav-link" href="stff details.jsp">Employee Details</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="show.jsp">
-            
-            Manage Shows
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="booking.jsp">
-           
-            Booking Details
-          </a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="review.jsp">
-            
-            Approve Feedback
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/emplogin.jsp">
-           
-            Logout
-          </a>
-        </li>
-        
-      </ul>
-    </nav>
+    </head>
+    <body>
+        <div class=" divide">
 
- <div class="container-fluid page-body-wrapper ">
- 
-  <nav class="navbar   ">
-    <div class="navbar-menu-wrapper  ">
-      
-      <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
-        
-      </div>
-      
-            
-      
-    </div>
-    
-      
-      
-        
-  </nav>
-      <div id="confirm">
-        <div class="message"></div>
-        <button class="yes">Yes</button>
-        <button class="no">No</button>
-    </div>
-    <div class="main-panel">        
-      <div class="content-wrapper">
-        <div class="row">
-          
-          
-          </div>
-         
-          
-          <div class="container-lg">
-            <div class="table table-responsive">
-              
-                <div class="table-wrapper">
-                    <div class="table-title">
+            <nav class="sidebar sid "  >
+                <ul class="nav">
+
+
+                    <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
+
+                    </li><br>
+                    <li class="nav-item " >
+                        <a class="nav-link" href="adindex.jsp">
+                            Dashboard
+
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link"   >
+                            Movies 
+
+                        </a>
+                        <div  >
+                            <ul class="nav  sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="user.jsp">
+
+                            Customer Details
+                        </a>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="paymentdetails.jsp">
+
+                            Payment Details
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"   >
+
+                            Employees
+
+                        </a>
+                        <div  >
+                            <ul class="nav  sub-menu">
+                                <li class="nav-item"> <a class="nav-link" href="stff.jsp">Manage Employee</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="show.jsp">
+
+                            Manage Shows
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="booking.jsp">
+
+                            Booking Details
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="review.jsp">
+
+                            Approve Feedback
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/emplogin.jsp">
+
+                            Logout
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <div class="container-fluid page-body-wrapper ">
+
+                <nav class="navbar   ">
+                    <div class="navbar-menu-wrapper  ">
+
+                        <div class="navbar-brand-wrapper ">
+                            <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </nav>
+                <div id="confirm">
+                    <div class="message"></div>
+                    <button class="yes">Yes</button>
+                    <button class="no">No</button>
+                </div>
+                <div class="main-panel">        
+                    <div class="content-wrapper">
                         <div class="row">
-                              <div class="col-sm-8"><h2>Customer <b> Feedback</b></h2></div>
-                             
-                          </div>
-                      </div>
-                      
-                      <table class="table table-bordered">
-                          <thead>
-                              <tr>
-                                  <th>Customer ID</th>
-                                  
-                                  
-                                  <th>Feedback</th>
-                                  <th>Add Comment</th>
-                                  
-                                  <th>Approve</th>
-                                  
-                                 
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <td>100</td>
-                                  
-                                 
-                                  <td>sadfghjksdfret wertyu wertyu wertyu werty awerty</td>
-                                  <td><input type="text" class="form-control"  name="comment" placeholder="Enter Comment" required>
-                                  </td>
-                                  <td>
-                                    <input type="button" value = "✔" onclick='functionConfirm("Approve Customer Feedback?", function yes() {
-                                    
-                                    },
-                                    function no() {
-                                    
-                                    });'></button>
-                                    <input type="button" value = "❌" onclick='functionConfirm("Approve Customer FeedBack?", function yes() {
-                                    
-                                    },
-                                    function no() {
-                                    
-                                    });'>
-                                  </td>
-                                 
-                                 
-                                   
-</td>
-                                 
-                              </tr>
-                              
-                                    
-                          </tbody>
-                      </table>
-                      <div id="confirm-box" hidden>
-      <h3>Confirmation</h3>
-      
-      <button onclick="confirm('yes')">Yes</button>
-      <button onclick="confirm('no')">No</button>
-    </div>
-                  </div>
-              </div>
-          </div>     
-            
-            
-          </div>
+
+
+                        </div>
+
+
+                        <div class="container-lg">
+                            <div class="table table-responsive">
+
+                                <div class="table-wrapper">
+                                    <div class="table-title">
+                                        <div class="row">
+                                            <div class="col-sm-8"><h2>Customer <b> Feedback</b></h2></div>
+
+                                        </div>
+                                    </div>
+                                    <%
+                                        String id = request.getParameter("userId");
+                                        String driverName = "com.mysql.jdbc.Driver";
+                                        String connectionUrl = "jdbc:mysql://localhost:3306/";
+                                        String dbName = "abc_cinema";
+                                        String userId = "root";
+                                        String password = "";
+
+                                        try {
+                                            Class.forName(driverName);
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        Connection connection = null;
+                                        Statement statement = null;
+                                        ResultSet resultSet = null;
+                                    %>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Customer Name</th>
+                                                <th>Feedback</th>
+                                                <th>Add Comment</th>
+                                                <th>Approve</th>
+                                            </tr>
+
+                                            <%
+                                                try {
+                                                    connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+                                                    statement = connection.createStatement();
+                                                    String sql = "SELECT Name,message FROM feedback";
+                                                    resultSet = statement.executeQuery(sql);
+                                                    while (resultSet.next()) {
+                                            %>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><%=resultSet.getString("Name")%></td>
+                                                <td><%=resultSet.getString("message")%></td>
+                                                <td><input type="text" class="form-control"  name="comment" placeholder="Enter Comment" required></td>
+                                                <td>
+                                                    <input type="button" value = "?" onclick='functionConfirm("Approve Customer Feedback?", function yes() {
+
+                                                            },
+                                                                    function no() {
+
+                                                                    });'></button>
+                                                    <input type="button" value = "?" onclick='functionConfirm("Approve Customer FeedBack?", function yes() {
+
+                                                            },
+                                                                    function no() {
+
+                                                                    });'>
+                                                </td>
+                                            </tr>
+
+                                            <%
+                                                    }
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            %>
+
+                                        </tbody>
+                                    </table>
+                                    <div id="confirm-box" hidden>
+                                        <h3>Confirmation</h3>
+
+                                        <button onclick="confirm('yes')">Yes</button>
+                                        <button onclick="confirm('no')">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>     
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
         </div>
-       
-        
-        
-      </div>
     </div>
-  </div>
-  
-  
+
+
 </body>
 
 </html>

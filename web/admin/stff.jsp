@@ -93,7 +93,7 @@
           <div  >
             <ul class="nav  sub-menu">
               <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
+              <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
             </ul>
           </div>
         </li>
@@ -121,7 +121,7 @@
           <div  >
             <ul class="nav  sub-menu">
               <li class="nav-item active"> <a class="nav-link" href="stff.jsp">Manage Employee</a></li>
-              <li class="nav-item"> <a class="nav-link" href="stff details.jsp">Employee Details</a></li>
+              <li class="nav-item"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
             </ul>
           </div>
         </li>
@@ -183,19 +183,19 @@
                 <div class="card-body">
                   <h4 class="card-title">Employee details</h4>
                   
-                  <form class="forms-sample" id="contact" method="post">
+                  <form class="forms-sample" id="contact" method="post" action="/addstaff">
                     <div class="form-group">
                       <label >Employee Name</label>
                       <input type="text" class="form-control"  name="empname" placeholder="Name" required>
                     </div>
                     <div class="form-group">
-                      <label >Employee Mobile</label>
-                      <input type="int" class="form-control" name="empmobile"  placeholder="Mobile" required>
+                      <label >Employee Email</label>
+                      <input type="email" class="form-control" name="empmail"  placeholder="Email" required>
                     </div>
                     
                       <div class="form-group">
-                        <label >Employee Email</label>
-                        <input type="email" class="form-control"  name="empmail" placeholder="Email" required>
+                        <label >Employee Password</label>
+                        <input type="password" class="form-control"  name="emppassword" placeholder="Password" required>
                       </div>
                     
                     
