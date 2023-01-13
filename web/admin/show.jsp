@@ -3,6 +3,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.io.PrintWriter;"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
@@ -96,17 +97,14 @@
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="review.jsp">
-
                             Approve Feedback
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/emplogin.jsp">
-
                             Logout
                         </a>
                     </li>
-
                 </ul>
             </nav>
 
@@ -114,18 +112,10 @@
 
                 <nav class="navbar   ">
                     <div class="navbar-menu-wrapper   ">
-
                         <div class="navbar-brand-wrapper ">
                             <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
-
                         </div>
-
-
-
                     </div>
-
-
-
 
                 </nav>
                 <br>
@@ -158,27 +148,19 @@
                                     </div>
                                     <%
                                         String driverName = "com.mysql.jdbc.Driver";
-                                        String connectionUrl = "jdbc:mysql://localhost:3306/";
-                                        String dbName = "abc_cinema";
-                                        String userId = "root";
-                                        String password = "";
-
+        
                                         try {
                                             Class.forName(driverName);
                                         } catch (ClassNotFoundException e) {
                                             e.printStackTrace();
                                         }
-
-                                        Connection connection = null;
-                                        Statement statement = null;
-                                        ResultSet resultSet = null;
                                     %>
                                     <div class="form-group">
                                         <label >Movie Name</label>
                                         <%
                                             try {
                                                 ArrayList<String> dataList = new ArrayList<String>();
-                                                Connection con = DriverManager.getConnection("jdbc:your-db-url", "username", "password");
+                                                Connection con = DriverManager.getConnection( "jdbc:mysql://localhost:3306/", "root", "");
                                                 Statement stmt = con.createStatement();
                                                 ResultSet rs = stmt.executeQuery("SELECT m_name FROM movie");
                                                 while (rs.next()) {
@@ -187,19 +169,17 @@
                                                     String data = new String(mname);
                                                     dataList.add(data);
                                                 }
-                                        %>
-                                        <select name="movie">
-                                            <c:forEach items="${dataList}" var="String">
-                                                <option value="${String.mname}">${String.mname}</option>
-                                            </c:forEach>
-
-                                        </select>
-                                        <%
                                             } catch (Exception e) {
                                                 e.printStackTrace();
                                             }
                                         %>
-
+                                        ${"test"}
+                                        <select name="movie">
+                                            <c:forEach items="${dataList}" var="s">
+                                            </c:forEach>
+                                        <option value="${s.mname}">${s.mname}</option>
+                                            <option value="${s.mname}">${s.mname}</option>
+                                        </select>
                                     </div>
                                     <button type="submit" class="btn btn-primary mr-2">Add Show</button>
                                     <button type="clear" class="btn btn-light">Cancel</button>
