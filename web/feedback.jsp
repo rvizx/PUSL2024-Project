@@ -84,7 +84,7 @@
                     <div class="grow-0 shrink-0 basis-auto mb-12 lg:mb-0 w-full lg:w-5/12 px-3 lg:px-6">
                         <form method="post" action="feedback">
                             <div class="form-group mb-6">
-                                <p>${message}</p>
+                                <p class="text-white">${message}</p>
                                 <input type="text" name="name" class="form-control block
                       w-full
                       px-3

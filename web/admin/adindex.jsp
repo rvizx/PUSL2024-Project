@@ -121,7 +121,7 @@
           <div  >
             <ul class="nav  sub-menu">
               <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
+              <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
             </ul>
           </div>
         </li>
@@ -149,7 +149,7 @@
           <div  >
             <ul class="nav  sub-menu">
               <li class="nav-item"> <a class="nav-link" href="stff.jsp">Manage Employee</a></li>
-              <li class="nav-item"> <a class="nav-link" href="stff details.jsp">Employee Details</a></li>
+              <li class="nav-item"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
             </ul>
           </div>
         </li>
@@ -187,7 +187,7 @@
     <div class="navbar-menu-wrapper    ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="index.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
         
       </div>
       
