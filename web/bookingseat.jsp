@@ -24,36 +24,36 @@
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.css" />
     <link href="/assets/css/style.css" rel="stylesheet">
     <script>
-    function getSeats(seat) {
-    let seatIndex = selectedSeats.indexOf(seat);
-    if(seatIndex !== -1) {
-        selectedSeats.splice(seatIndex, 1);
-    } else {
-        selectedSeats.push(seat);
-    }
-        console.log(selectedSeats);  //remove this later
-    }
+        function getSeats(seat) {
+        let seatIndex = selectedSeats.indexOf(seat);
+        if(seatIndex !== -1) {
+            selectedSeats.splice(seatIndex, 1);
+        } else {
+            selectedSeats.push(seat);
+        }
+            console.log(selectedSeats);  //remove this later
+        }
 
     
-    function sendSelectedSeats() {
-    let halfTicketAmount = document.getElementById("half-tickets").value;
-    let fullTicketAmount = document.getElementById("full-tickets").value;
-    fetch('/bookseats', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({selectedSeats: selectedSeats, halfTicketAmount: halfTicketAmount, fullTicketAmount: fullTicketAmount})
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        function sendSelectedSeats() {
+        let halfTicketAmount = document.getElementById("half-tickets").value;
+        let fullTicketAmount = document.getElementById("full-tickets").value;
+        fetch('/bookseats', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({selectedSeats: selectedSeats, halfTicketAmount: halfTicketAmount, fullTicketAmount: fullTicketAmount})
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 
-</script>
+    </script>
 </head>
 
 <body class=" bg-black">
@@ -276,7 +276,7 @@
                         <div class="row px-20 m-5">
                             <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A1')">A1</div>
                             <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A2')">A2</div>
-                            <div class="seat ${status} reserved text-black font-bold text-2xl px-4 pt-1" onClick="getSeats('A3')">A3</div>
+                            <div class="seat ${status} text-black font-bold text-2xl px-4 pt-1" onClick="getSeats('A3')">A3</div>
                             <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A4')">A4</div>
                             <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A5')">A5</div>
                             <div class="seat ${status} text-black text-2xl font-bold px-4 pt-1" onClick="getSeats('A6')">A6</div>
@@ -391,7 +391,7 @@
                             <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I7')">I7</div>
                             <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I8')">I8</div>
                             <div class="seat ${status} text-black text-l font-bold px-4 pt-2" onClick="getSeats('I9')">I9</div>
-                            <div class="seat ${status} reserved text-black text-l font-bold px-3 pt-2" onClick="getSeats('I10')">I10</div>
+                            <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('I10')">I10</div>
                             <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('I11')">I11</div>
                             <div class="seat ${status} text-black text-l font-bold px-3 pt-2" onClick="getSeats('I12')">I12</div>
                         </div>
