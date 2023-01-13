@@ -10,24 +10,24 @@
 
         <title>ABC Cinema</title>
 
-
         <link rel="stylesheet" href="css/style.css">
         <link href="table.css" rel="stylesheet">
-
         <link rel="shortcut icon" href="images/film.png" />
-
-
         <style>
+            table.table th:nth-child(4) {
+                width: 240px;
+            }
             table.table th:nth-child(1) {
-                width: 100px;
+                width: 65px;
+            }
+            table.table th:nth-child(3) {
+                width: 200px;
             }
             table.table th:nth-child(2) {
-                width: 280px;
-            }
-            table.table th:nth-child(4) {
-                width: 120px;
+                width: 220px;
             }
         </style>
+
 
         <script>
             $(document).ready(function () {
@@ -46,7 +46,6 @@
                     $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
                     $('[data-toggle="tooltip"]').tooltip();
                 });
-                // Add row on add button click
                 $(document).on("click", ".add", function () {
                     var empty = false;
                     var input = $(this).parents("tr").find('input[type="text"]');
@@ -81,109 +80,12 @@
                     $(".add-new").removeAttr("disabled");
                 });
             });
-            var ALERT_TITLE = "Alert";
-            var ALERT_BUTTON_TEXT = "Ok";
-
-            if (document.getElementById) {
-                window.alert = function (txt) {
-                    createCustomAlert(txt);
-                }
-            }
-
-            function createCustomAlert(txt) {
-                d = document;
-
-                if (d.getElementById("modalContainer"))
-                    return;
-
-                mObj = d.getElementsByTagName("body")[0].appendChild(d.createElement("div"));
-                mObj.id = "modalContainer";
-                mObj.style.height = d.documentElement.scrollHeight + "px";
-
-                alertObj = mObj.appendChild(d.createElement("div"));
-                alertObj.id = "alertBox";
-                if (d.all && !window.opera)
-                    alertObj.style.top = document.documentElement.scrollTop + "px";
-                alertObj.style.left = (d.documentElement.scrollWidth - alertObj.offsetWidth) / 2 + "px";
-                alertObj.style.visiblity = "visible";
-
-                h1 = alertObj.appendChild(d.createElement("h1"));
-                h1.appendChild(d.createTextNode(ALERT_TITLE));
-
-                msg = alertObj.appendChild(d.createElement("p"));
-                msg.innerHTML = txt;
-
-                btn = alertObj.appendChild(d.createElement("a"));
-                btn.id = "closeBtn";
-                btn.appendChild(d.createTextNode(ALERT_BUTTON_TEXT));
-                btn.href = "#";
-                btn.focus();
-                btn.onclick = function () {
-                    removeCustomAlert();
-                    return false;
-                }
-
-                alertObj.style.display = "block";
-
-            }
-
-            function removeCustomAlert() {
-                document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
-            }
-            function showConfirmBox() {
-                document.getElementById("confirm-box").hidden = false;
-            }
-
-            function confirm(data) {
-                if (data === "yes") {
-                    console.log(" user clicked yes");
-                } else {
-                    console.log("user clicked No");
-                }
-            }
         </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script>
-            function functionConfirm(msg, myYes, myNo) {
-                var confirmBox = $("#confirm");
-                confirmBox.find(".message").text(msg);
-                confirmBox.find(".yes,.no").unbind().click(function () {
-                    confirmBox.hide();
-                });
-                confirmBox.find(".yes").click(myYes);
-                confirmBox.find(".no").click(myNo);
-                confirmBox.show();
-            }
-        </script>
-        <style>
-            #confirm {
-                display: none;
-                background-color: white;
-                border: 1px solid rgb(189, 143, 28);
-                position:fixed;
-                width: 200px;
-                height: 100px;
-                left: 55%;
-                margin-left: -100px;
-                padding: 8px;
-                box-sizing: border-box;
-                text-align: center;
-            }
-            #confirm button {
-                background-color: rgb(189, 143, 28);
-                display: inline-block;
-                border-radius: 5px;
-                border: 1px solid white;
-                padding: 5px;
-                text-align: center;
-                width: 80px;
-                cursor: pointer;
-                margin-top: 20px;
-            }
-            #confirm .message {
-                text-align: center;
-            }
-        </style>
+
+
+
+
+
     </head>
     <body>
         <div class=" divide">
@@ -223,7 +125,7 @@
 
 
 
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="paymentdetails.jsp">
 
                             Payment Details
@@ -254,7 +156,7 @@
                             Booking Details
                         </a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <a class="nav-link" href="review.jsp">
 
                             Approve Feedback
@@ -273,7 +175,7 @@
             <div class="container-fluid page-body-wrapper ">
 
                 <nav class="navbar   ">
-                    <div class="navbar-menu-wrapper  ">
+                    <div class="navbar-menu-wrapper   ">
 
                         <div class="navbar-brand-wrapper ">
                             <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
@@ -288,11 +190,8 @@
 
 
                 </nav>
-                <div id="confirm">
-                    <div class="message"></div>
-                    <button class="yes">Yes</button>
-                    <button class="no">No</button>
-                </div>
+
+
                 <div class="main-panel">        
                     <div class="content-wrapper">
                         <div class="row">
@@ -307,10 +206,11 @@
                                 <div class="table-wrapper">
                                     <div class="table-title">
                                         <div class="row">
-                                            <div class="col-sm-8"><h2>Customer <b> Feedback</b></h2></div>
+                                            <div class="col-sm-8"><h2>Payment <b>Details</b></h2></div>
 
                                         </div>
                                     </div>
+
                                     <%
                                         String id = request.getParameter("userId");
                                         String driverName = "com.mysql.jdbc.Driver";
@@ -329,20 +229,25 @@
                                         Statement statement = null;
                                         ResultSet resultSet = null;
                                     %>
+
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>Customer Name</th>
-                                                <th>Feedback</th>
-                                                <th>Add Comment</th>
-                                                <th>Approve</th>
+                                                <th>Payment ID</th>
+                                                <th>Customer ID</th>
+                                                <th>Customer First Name</th>
+                                                <th>Total Price(LKR)</th>
+
+
                                             </tr>
 
                                             <%
                                                 try {
                                                     connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
                                                     statement = connection.createStatement();
-                                                    String sql = "SELECT Name,message FROM feedback";
+                                                    String sql = "SELECT payment.pay_id,payment.c_id,customer.name,payment.total_amount FROM payment,customer "
+                                                            + "WHERE payment.c_id=customer.c_id";
+
                                                     resultSet = statement.executeQuery(sql);
                                                     while (resultSet.next()) {
                                             %>
@@ -350,23 +255,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><%=resultSet.getString("Name")%></td>
-                                                <td><%=resultSet.getString("message")%></td>
-                                                <td><input type="text" class="form-control"  name="comment" placeholder="Enter Comment" required></td>
-                                                <td>
-                                                    <input type="button" value = "?" onclick='functionConfirm("Approve Customer Feedback?", function yes() {
-
-                                                            },
-                                                                    function no() {
-
-                                                                    });'></button>
-                                                    <input type="button" value = "?" onclick='functionConfirm("Approve Customer FeedBack?", function yes() {
-
-                                                            },
-                                                                    function no() {
-
-                                                                    });'>
-                                                </td>
+                                                <td><%=resultSet.getString("payment.pay_id")%></td>
+                                                <td><%=resultSet.getString("payment.c_id")%></td>
+                                                <td><%=resultSet.getString("customer.name")%></td>
+                                                <td><%=resultSet.getString("payment.total_amount")%></td>
                                             </tr>
 
                                             <%
@@ -379,12 +271,7 @@
 
                                         </tbody>
                                     </table>
-                                    <div id="confirm-box" hidden>
-                                        <h3>Confirmation</h3>
 
-                                        <button onclick="confirm('yes')">Yes</button>
-                                        <button onclick="confirm('no')">No</button>
-                                    </div>
                                 </div>
                             </div>
                         </div>     
@@ -393,12 +280,9 @@
                     </div>
                 </div>
 
-
-
             </div>
         </div>
     </div>
-
 
 </body>
 

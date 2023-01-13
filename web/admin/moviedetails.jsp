@@ -1,28 +1,37 @@
-s<!DOCTYPE html>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<!DOCTYPE html>
 <html lang="en">
 
     <head>
 
         <title>ABC Cinema</title>
 
+
         <link rel="stylesheet" href="css/style.css">
         <link href="table.css" rel="stylesheet">
         <link rel="shortcut icon" href="images/film.png" />
-
-
+        <style>
+            table.table th:nth-child(4) {
+                width: 140px;
+            }
+            table.table th:nth-child(1) {
+                width: 65px;
+            }
+            table.table th:nth-child(8) {
+                width: 80px;
+            }
+            table.table th:nth-child(7) {
+                width: 120px;
+            }
+        </style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-
-        <style>
-            @media screen and (min-width: 1000px) {
-                .sid {
-                    min-height: calc(170vh - 65px);
-                }
-            }
-
-        </style>
-
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip();
@@ -40,7 +49,6 @@ s<!DOCTYPE html>
                     $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
                     $('[data-toggle="tooltip"]').tooltip();
                 });
-                // Add row on add button click
                 $(document).on("click", ".add", function () {
                     var empty = false;
                     var input = $(this).parents("tr").find('input[type="text"]');
@@ -61,9 +69,8 @@ s<!DOCTYPE html>
                         $(".add-new").removeAttr("disabled");
                     }
                 });
-                // Edit row on edit button click
                 $(document).on("click", ".edit", function () {
-                    $(this).parents("tr").find("td:not(:last-child)").each(function () {
+                    $(this).parents("tr").find("td:not(:last-child ,:nth-child(4))").each(function () {
                         $(this).jsp('<input type="text" class="form-control" value="' + $(this).text() + '">');
                     });
                     $(this).parents("tr").find(".add, .edit").toggle();
@@ -75,12 +82,14 @@ s<!DOCTYPE html>
                     $(".add-new").removeAttr("disabled");
                 });
             });
+
+
         </script>
     </head>
     <body>
         <div class=" divide">
 
-            <nav class="sidebar sid "  >
+            <nav class="sidebar sid " >
                 <ul class="nav">
 
 
@@ -101,8 +110,8 @@ s<!DOCTYPE html>
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item active"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
+                                <li class="nav-item active"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
                             </ul>
                         </div>
                     </li>
@@ -165,7 +174,7 @@ s<!DOCTYPE html>
             <div class="container-fluid page-body-wrapper ">
 
                 <nav class="navbar   ">
-                    <div class="navbar-menu-wrapper ">
+                    <div class="navbar-menu-wrapper  ">
 
                         <div class="navbar-brand-wrapper ">
                             <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
@@ -180,7 +189,7 @@ s<!DOCTYPE html>
 
 
                 </nav>
-                <br>
+
                 <div class="main-panel">        
                     <div class="content-wrapper">
                         <div class="row">
@@ -188,94 +197,106 @@ s<!DOCTYPE html>
 
                         </div>
 
-                        <div class="card">
-                            <div class="card-body">
 
-                                <h4 class="card-title">Movie details</h4>
+                        <div class="container-lg">
+                            <div class="table table-responsive">
 
-                                <form class="forms-sample" id="contact" method="post" action="/addmovie">
+                                <div class="table-wrapper">
+                                    <div class="table-title">
+                                        <div class="row">
+                                            <div class="col-sm-8"><h2>Movie <b>Details</b></h2></div>
+                                            <div class="col-sm-4">
 
-                                    <div class="form-group" >
-                                        <label >Movie Name </label>
-                                        <input type="text" class="form-control" name="moviename" placeholder="Name" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label >Movie Language</label>
-                                        <select class="form-control" name="movielanguage" required>
-                                            <option>English</option>
-                                            <option>Sinhala</option>
-                                            <option>Tamil</option>
-                                            <option>Hindi</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Movie Status</label>
-                                        <select class="form-control" name="moviestatus" required>
-                                            <option value="0">Coming Soon</option>
-                                            <option value="1">Now Showing</option>
-
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Movie Genre</label>
-                                        <select class="form-control" name="moviegenre" required>
-                                            <option value="Comedy">Comedy</option>
-                                            <option value="Aventure">Aventure</option>
-                                            <option value="Thriller">Thriller</option>
-                                            <option value="Action">Action</option>
-                                            <option value="Mystery">Mystery</option>
-                                            <option value="Crime">Crime</option>
-                                            <option value="Sci-fi">Sci-fi</option>
-                                            <option value="Romance">Romance</option>
-                                            <option value="Horror">Horror</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group" >
-                                        <label > Movie Runtime </label>
-                                        <input type="time" class="form-control" name="movieruntime" placeholder="Movie Runtime" required>
-                                    </div>
-                                    <div class="form-group" >
-                                        <label>Movie Description </label>
-                                        <input type="text" class="form-control" name="moviedescription" placeholder="Movie Description" required>
-                                    </div>
-                                    <div class="form-group" >
-                                        <label>Trailer link</label>
-                                        <input type="text" class="form-control" name="moviedtrailer" placeholder="Movie Trailer link" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>File upload</label>
-                                        <input type="file" name="img[]" class="file-upload-default">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                                            <span class="input-group-append">
-
-                                                <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                            </span>
+                                            </div>
                                         </div>
                                     </div>
 
+                                    <%
+                                        String id = request.getParameter("userId");
+                                        String driverName = "com.mysql.jdbc.Driver";
+                                        String connectionUrl = "jdbc:mysql://localhost:3306/";
+                                        String dbName = "abc_cinema";
+                                        String userId = "root";
+                                        String password = "";
 
-                                    <button type="submit" class="btn btn-primary ">Add Movie</button>
-                                    <button class="btn ">Cancel</button>
-                                </form>
+                                        try {
+                                            Class.forName(driverName);
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        Connection connection = null;
+                                        Statement statement = null;
+                                        ResultSet resultSet = null;
+                                    %>
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Movie ID</th>
+                                                <th>Movie Name</th>
+                                                <th>Movie Language</th>
+                                                <th>Genre</th>
+                                                <th>Runtime</th>
+                                                <th>Description</th>
+                                                <th>Trailer</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+
+                                            <%
+                                                try {
+                                                    connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+                                                    statement = connection.createStatement();
+                                                    String sql = "SELECT * FROM movie";
+                                                    resultSet = statement.executeQuery(sql);
+                                                    while (resultSet.next()) {
+                                            %>
+
+                                        </thead>
+                                        <tbody>
+                                        <form method="post" action="/updatemoviestatus">
+                                            <tr>
+                                                <td><%=resultSet.getString("m_id")%></td>
+                                                <td><%=resultSet.getString("m_name")%></td>
+                                                <td><%=resultSet.getString("m_language")%></td>
+                                                <td><%=resultSet.getString("genre")%></td>
+                                                <td><%=resultSet.getString("runtime")%></td>
+                                                <td><%=resultSet.getString("description")%></td>
+                                                <td><%=resultSet.getString("trailer_link")%></td>
+                                                <td><%=resultSet.getString("m_status")%></td>
+                                                
+                                                <td>
+                                                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                                </td>
+                                            </tr>
+
+                                            <%
+                                                    }
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            %>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
+
+
+
                     </div>
-
-
                 </div>
-
 
             </div>
         </div>
-
-
     </div>
 
 
-
-    <script src="../../js/file-upload.js"></script>
     <script src="test.js"></script>
     <script>
             var myInput = document.getElementById("psw");

@@ -2,8 +2,8 @@
 <html>
   <head>
     <title> ABC Cinema</title>
-    <link rel="stylesheet" type="text/css" href="log.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="admin/log.css" />
+    <link rel="stylesheet" type="text/css" href="admin/css/style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap"
       rel="stylesheet"
@@ -53,20 +53,23 @@
 
   </head>
 <body>
-    <img class="imgdes" src="images/film.png" />
+    <img class="imgdes" src="admin/images/film.png" />
     <div class="container">
       <div class="img"></div>
       <div class="login-content">
-    <form  method="post" action="index.html">
-        
-        <h1 class="title">Admin Login </h1>
+    <form  method="post" action="emplogin">
+  
+        <h1 class="title">Employee Login </h1>
+        <p>${message}</p>
         <div class="inputvalue ">
+            
             <div class="icon">
               <i class="fas fa-user"></i>
             </div>
             <div class="div">
             
-            <input type="email"  class="input"  name="name" placeholder="Email" required></input>
+            
+            <input type="email"  class="input"  name="email" placeholder="Email" required></input>
             
         </div>
     </div>
@@ -76,12 +79,14 @@
             </div>
             <div class="div">
             
-            <input type="password" class="input" name="psw" id="psw" autocomplete="off" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
+            <input type="password" class="input" name="password" id="psw" autocomplete="off" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required/>
            			
         </div>
     </div>					
         
         <a href="forgot pass.html">Forgot Password</a>
+        
+        
       
             
         <div >				

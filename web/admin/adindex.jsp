@@ -107,7 +107,7 @@
           
         </li><br>
         <li class="nav-item active" >
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="adindex.jsp">
             Dashboard
             
           </a>
@@ -120,13 +120,13 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="movie.html">Manage Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="movie details.html">Movie Details</a></li>
+              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
             </ul>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="user.html">
+          <a class="nav-link" href="user.jsp">
             
              Customer Details
           </a>
@@ -135,32 +135,44 @@
         
         
        <li class="nav-item">
-          <a class="nav-link" href="Payment details.html">
+          <a class="nav-link" href="paymentdetails.jsp">
             
              Payment Details
           </a>
         </li>
-       
         <li class="nav-item">
-          <a class="nav-link" href="show.html">
+          <a class="nav-link"   >
+           
+             Employees
+            
+          </a>
+          <div  >
+            <ul class="nav  sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="stff.jsp">Manage Employee</a></li>
+              <li class="nav-item"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="show.jsp">
             
             Manage Shows
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="booking.html">
+          <a class="nav-link" href="booking.jsp">
            
             Booking Details
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="review.html">
+          <a class="nav-link" href="review.jsp">
             
             Approve Feedback
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="log.html">
+          <a class="nav-link" href="/emplogin.jsp">
            
             Logout
           </a>
@@ -175,7 +187,7 @@
     <div class="navbar-menu-wrapper    ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="index.html"><img src="images/abc logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
         
       </div>
       

@@ -10,7 +10,6 @@ import java.sql.*;
 import javax.servlet.RequestDispatcher;  
 import java.security.MessageDigest; 
 import java.security.NoSuchAlgorithmException;
-import java.util.Random;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;

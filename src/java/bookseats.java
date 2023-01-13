@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Map;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 
 
@@ -36,6 +37,7 @@ public class bookseats extends HttpServlet {
                 response.setContentType("application/json");
                 String[] bookedSeats = new String[0];
                 
+                
            try{            
             PrintWriter out=response.getWriter();        
             Connection con=null;        
@@ -45,14 +47,19 @@ public class bookseats extends HttpServlet {
                     Class.forName("com.mysql.jdbc.Driver");
                     con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
                     st=con.createStatement();
-                    String sql = "SELECT seat_no FROM seats WHERE seat_status = 1";
+                    
+                    HttpSession session = request.getSession();
+                    HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
+                    String date_time = (String) info.get("date_time");
+                    
+                    String sql = "SELECT seat_status FROM seats WHERE date_time = "+date_time;
                     ResultSet rs = st.executeQuery(sql);
                     bookedSeats = new String[rs.getFetchSize()];
                     
                     // append seat names to the array 
                     int i = 0;
                     while (rs.next()) {
-                        bookedSeats[i] = rs.getString("seatname");
+                        bookedSeats[i] = rs.getString("seat_status");
                         i++;
                     }
                     
@@ -77,9 +84,8 @@ public class bookseats extends HttpServlet {
                         }
                     }
             
-                    request.setAttribute("bookedSeats", bookedSeats);
-                request.getRequestDispatcher("/seats.jsp").forward(request, response);                                    
-
+                request.setAttribute("bookedSeats", bookedSeats);
+                request.getRequestDispatcher("/bookingseat.jsp").forward(request, response);                                    
            
             }        
          
@@ -108,13 +114,16 @@ public class bookseats extends HttpServlet {
         
         try{
             String[] seatNames = request.getParameterValues("selectedSeats"); //getting the seat names from the front-end and put it into an array
-            String[] tickets = request.getParameterValues("tickets"); //getting the seat names from the front-end and put it into an array
-            
+           String halfTicketAmount = request.getParameter("halfTicketAmount");
+           String fullTicketAmount = request.getParameter("fullTicketAmount");
+
             
             HttpSession session = request.getSession();
-            Map<String, Object> info = (Map<String, Object>) session.getAttribute("info");
+            HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
             info.put("seats", seatNames);
-            info.put("tickets", tickets);
+            info.put("half-tickets", halfTicketAmount);
+            info.put("half-tickets", fullTicketAmount);
+
             // if no seats we're selected 
             if (seatNames == null || seatNames.length == 0) { 
                   response.sendError(HttpServletResponse.SC_BAD_REQUEST, "No seats were selected");
@@ -130,12 +139,61 @@ public class bookseats extends HttpServlet {
                 con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cienma","root","");
                 st=con.createStatement();
                 
-                String sql = "UPDATE seats SET booked = 1 WHERE seat_name IN (?";
+                String date_time = (String) info.get("date_time");
+                String sql = "UPDATE seats SET booked = 1 WHERE date_time = "+date_time+"AND seat_no IN (?";
                 for (int i = 1; i < seatNames.length; i++) {
                     sql += ",?";
                 }
                 sql += ")";
-                PreparedStatement ps = con.prepareStatement(sql);
+                PreparedStatement ps = con.prepareStatement(sql);                
+                for (int i = 1; i <= seatNames.length; i++) {
+                    ps.setString(i, seatNames[i - 1]);
+                }
+                
+                int rowsUpdated = ps.executeUpdate();
+                if (rowsUpdated == seatNames.length) {
+                        response.setStatus(HttpServletResponse.SC_OK);
+                } else {
+                    
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "an error occured - all the seats were not booked!");
+                }
+
+               } catch (ClassNotFoundException | SQLException e) {
+                    // An error occurred while connecting to the database or executing the query
+                    e.printStackTrace();
+                    response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
+               } finally {
+                    // closing the database resources
+                      if (st != null) {
+                            try {
+                                st.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                      }
+                       if (con != null) {
+                            try {
+                                con.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                    }
+            }
+           
+            
+            
+            //update tickets
+            try {
+                    Class.forName("com.mysql.jdbc.Driver");
+                    con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cienma","root","");
+                    st=con.createStatement();
+                
+                    String sql = "UPDATE seats SET booked = 1 WHERE seat_name IN (?";
+                    for (int i = 1; i < seatNames.length; i++) {
+                        sql += ",?";
+                    }
+                    sql += ")";
+                    PreparedStatement ps = con.prepareStatement(sql);
                 
                 for (int i = 1; i <= seatNames.length; i++) {
                     ps.setString(i, seatNames[i - 1]);
@@ -170,7 +228,7 @@ public class bookseats extends HttpServlet {
                             }
                     }
             }
-            
+
             
             session.setAttribute("info", info);
             response.sendRedirect("details.jsp");   

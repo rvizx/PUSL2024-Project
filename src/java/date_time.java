@@ -12,7 +12,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
+import java.util.HashMap;
+
 /**
  *
  * @author sanid
@@ -44,7 +45,7 @@ public class date_time extends HttpServlet {
             //HTTP Session
             HttpSession session = request.getSession();                    
             Cookie[] loginCookie = request.getCookies();            
-            Map<String, Object> info = (Map<String, Object>) session.getAttribute("info");
+            HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
             
             if (null == session.getAttribute("email") && loginCookie.length == 0 && null == loginCookie){
                 

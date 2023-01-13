@@ -48,25 +48,21 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
           con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
           st=con.createStatement();            
           
-          PreparedStatement ps= con.prepareStatement("SELECT * FROM bookings WHERE booking_id = ?");
+          PreparedStatement ps= con.prepareStatement("SELECT * FROM booking where ");
           ps.setString(1, booking_id);
           ResultSet rs = ps.executeQuery();
           
-          PreparedStatement ps2= con.prepareStatement("?"); //write query
+          PreparedStatement ps2= con.prepareStatement("SELECT movie.m_name FROM movie JOIN shows ON shows.m_id = movie.m_id JOIN ticket ON ticket.t_id = boooking.t_id;  WHERE booking.booking_id=?; "); //write query
           ps2.setString(1, booking_id);
           ResultSet movie = ps2.executeQuery();
 
-          PreparedStatement ps3= con.prepareStatement("?"); //write query
+          PreparedStatement ps3= con.prepareStatement("SELECT ticket.date_time FROM ticket JOIN booking ON ticket.t_id = booking.t_id WHERE booking.booking_id=?"); //write query
           ps3.setString(1, booking_id);
           ResultSet date_time = ps3.executeQuery();
 
-          
-          
           //if the booking id-exists
-          if (rs.next() && movie.next() && date_time.next()) {
-              
-              
-              PreparedStatement ps4 = con.prepareStatement("?"); //write query
+          if (rs.next()) {                            
+              PreparedStatement ps4 = con.prepareStatement("DROP * FROM ticket JOIN booking ON ticket.t_id = booking.t_id WHERE booking.booking_id=?");
               ResultSet rs2 = ps4.executeQuery();
               if (rs2.next()) {
                     String message = "your booking(s) for the "+movie+" on "+date_time+" were/was cancelled successfully!"; //add movie,date_time this
