@@ -30,7 +30,7 @@
   <script>
   $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
-	var actions = $("table td:last-child").html();
+	var actions = $("table td:last-child").jsp();
     $(".add-new").click(function(){
 		$(this).attr("disabled", "disabled");
 		var index = $("table tbody tr:last-child").index();
@@ -59,7 +59,7 @@
 		$(this).parents("tr").find(".error").first().focus();
 		if(!empty){
 			input.each(function(){
-				$(this).parent("td").html($(this).val());
+				$(this).parent("td").jsp($(this).val());
 			});			
 			$(this).parents("tr").find(".add, .edit").toggle();
 			$(".add-new").removeAttr("disabled");
@@ -68,7 +68,7 @@
 	// Edit row on edit button click
 	$(document).on("click", ".edit", function(){		
         $(this).parents("tr").find("td:not(:last-child)").each(function(){
-			$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+			$(this).jsp('<input type="text" class="form-control" value="' + $(this).text() + '">');
 		});		
 		$(this).parents("tr").find(".add, .edit").toggle();
 		$(".add-new").attr("disabled", "disabled");
@@ -92,7 +92,7 @@
           
         </li><br>
         <li class="nav-item " >
-          <a class="nav-link" href="index.html">
+          <a class="nav-link" href="index.jsp">
             Dashboard
             
           </a>
@@ -105,14 +105,14 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item "> <a class="nav-link" href="movie.html">Add Movies</a></li>
-               <li class="nav-item active"> <a class="nav-link" href="managemovie.html">Manage Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="movie details.html">Movie Details</a></li>
+              <li class="nav-item "> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+               <li class="nav-item active"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
             </ul>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="user.html">
+          <a class="nav-link" href="user.jsp">
             
              Customer Details
           </a>
@@ -121,27 +121,27 @@
         
         
        <li class="nav-item">
-          <a class="nav-link" href="Payment details.html">
+          <a class="nav-link" href="Payment details.jsp">
             
              Payment Details
           </a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="show.html">
+          <a class="nav-link" href="show.jsp">
             
             Manage Shows
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="booking.html">
+          <a class="nav-link" href="booking.jsp">
            
             Booking Details
           </a>
         </li>
        
         <li class="nav-item">
-          <a class="nav-link" href="log.html">
+          <a class="nav-link" href="log.jsp">
            
             Logout
           </a>
@@ -156,7 +156,7 @@
     <div class="navbar-menu-wrapper ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="index.html"><img src="images/abc logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="index.jsp"><img src="images/abc logo.png" alt="logo"/></a>
         
       </div>
       

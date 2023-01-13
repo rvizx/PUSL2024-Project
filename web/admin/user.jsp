@@ -53,7 +53,7 @@
                             <ul class="nav  sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
                             </ul>
                         </div>
                     </li>
@@ -218,7 +218,7 @@
                                 </div>
                             </div>
                         </div>     
-                                        
+
                     </div>
 
 
