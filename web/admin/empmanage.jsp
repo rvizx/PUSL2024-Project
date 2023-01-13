@@ -17,7 +17,7 @@
   <script>
   $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
-	var actions = $("table td:last-child").jsp();
+	var actions = $("table td:last-child").html();
     $(".add-new").click(function(){
 		$(this).attr("disabled", "disabled");
 		var index = $("table tbody tr:last-child").index();
@@ -46,7 +46,7 @@
 		$(this).parents("tr").find(".error").first().focus();
 		if(!empty){
 			input.each(function(){
-				$(this).parent("td").jsp($(this).val());
+				$(this).parent("td").html($(this).val());
 			});			
 			$(this).parents("tr").find(".add, .edit").toggle();
 			$(".add-new").removeAttr("disabled");
@@ -55,7 +55,7 @@
 	// Edit row on edit button click
 	$(document).on("click", ".edit", function(){		
         $(this).parents("tr").find("td:not(:last-child)").each(function(){
-			$(this).jsp('<input type="text" class="form-control" value="' + $(this).text() + '">');
+			$(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
 		});		
 		$(this).parents("tr").find(".add, .edit").toggle();
 		$(".add-new").attr("disabled", "disabled");
@@ -79,7 +79,7 @@
           
         </li><br>
         <li class="nav-item " >
-          <a class="nav-link" href="adindex.jsp">
+          <a class="nav-link" href="index.html">
             Dashboard
             
           </a>
@@ -92,14 +92,14 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
-               <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
+              <li class="nav-item"> <a class="nav-link" href="movie.html">Add Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="movie details.html">Movie Details</a></li>
             </ul>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="user.jsp">
+          <a class="nav-link" href="user.html">
             
              Customer Details
           </a>
@@ -108,7 +108,7 @@
         
         
        <li class="nav-item">
-          <a class="nav-link" href="paymentdetails.jsp">
+          <a class="nav-link" href="Payment details.html">
             
              Payment Details
           </a>
@@ -121,32 +121,32 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-               <li class="nav-item active"> <a class="nav-link" href="stff.jsp">Add Employee</a></li>
-                <li class="nav-item"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
-                <li class="nav-item "> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
+                <li class="nav-item "> <a class="nav-link" href="stff.html">Add Employee</a></li>
+              <li class="nav-item active"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
+              <li class="nav-item"> <a class="nav-link" href="stff details.html">Employee Details</a></li>
             </ul>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="show.jsp">
+          <a class="nav-link" href="show.html">
             
             Manage Shows
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="booking.jsp">
+          <a class="nav-link" href="booking.html">
            
             Booking Details
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="review.jsp">
+          <a class="nav-link" href="review.html">
             
             Approve Feedback
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/emplogin.jsp">
+          <a class="nav-link" href="log.html">
            
             Logout
           </a>
@@ -161,7 +161,7 @@
     <div class="navbar-menu-wrapper  ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="index.html"><img src="images/abc logo.png" alt="logo"/></a>
         
       </div>
       
@@ -181,28 +181,51 @@
             
             </div>
             
+                  
+                  <h4 class="card-title">Search employee details</h4>
+                  
+                  <form class="forms-sample" id="contact" method="post">
+                    
+                    <div class="form-group " >
+                      <label >Employee ID </label>
+                      <input  type="text" class="" name="moviename" placeholder="Enter employee ID" required>
+                   
+                    
+                    
+                    
+                    
+                    <button type="submit" class=" btn-primary ">Search</button>
+                    
+                  </form>
+                  
+                   
+                </div>
+              </div>
+            </div>
+           
+            
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Employee details</h4>
+                 
                   
-                  <form class="forms-sample" id="contact" method="post" action="/addstaff">
+                  <form class="forms-sample" id="contact" method="post">
                     <div class="form-group">
                       <label >Employee Name</label>
                       <input type="text" class="form-control"  name="empname" placeholder="Name" required>
                     </div>
                     <div class="form-group">
-                      <label >Employee Email</label>
-                      <input type="email" class="form-control" name="empmail"  placeholder="Email" required>
+                      <label >Employee Mobile</label>
+                      <input type="int" class="form-control" name="empmobile"  placeholder="Mobile" required>
                     </div>
                     
                       <div class="form-group">
-                        <label >Employee Password</label>
-                        <input type="password" class="form-control"  name="emppassword" placeholder="Password" required>
+                        <label >Employee Email</label>
+                        <input type="email" class="form-control"  name="empmail" placeholder="Email" required>
                       </div>
                     
                     
-                    <button type="submit" class="btn btn-primary  ">Add User</button>
-                    <button class="btn ">Cancel</button>
+                      <button type="submit" class="btn btn-primary ">Update</button>
+                      <button type="submit" class="btn btn-primary ">Delete</button>                    <button class="btn ">Cancel</button>
                   </form>
                 </div>
               </div>
