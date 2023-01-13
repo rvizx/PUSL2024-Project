@@ -31,7 +31,7 @@
             <nav class="sidebar sid "  >
                 <ul class="nav">
 
-                    
+
                     <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
 
                     </li><br>
@@ -156,53 +156,52 @@
                                             <option value="21:00:00">09.00 PM</option>
                                         </select>
                                     </div>
-                                    <%
-                                        String driverName = "com.mysql.jdbc.Driver";
-                                        String connectionUrl = "jdbc:mysql://localhost:3306/";
-                                        String dbName = "abc_cinema";
-                                        String userId = "root";
-                                        String password = "";
-
-                                        try {
-                                            Class.forName(driverName);
-                                        } catch (ClassNotFoundException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                        Connection connection = null;
-                                        Statement statement = null;
-                                        ResultSet resultSet = null;
-                                    %>
                                     <div class="form-group">
-                                        <label >Movie Name</label>
+
                                         <%
+                                            String id = request.getParameter("userId");
+                                            String driverName = "com.mysql.jdbc.Driver";
+                                            String connectionUrl = "jdbc:mysql://localhost:3306/";
+                                            String dbName = "abc_cinema";
+                                            String userId = "root";
+                                            String password = "";
+
                                             try {
-                                                ArrayList<String> dataList = new ArrayList<String>();
-                                                Connection con = DriverManager.getConnection("jdbc:your-db-url", "username", "password");
-                                                Statement stmt = con.createStatement();
-                                                ResultSet rs = stmt.executeQuery("SELECT m_name FROM movie");
-                                                while (rs.next()) {
-
-                                                    String mname = rs.getString("name");
-                                                    String data = new String(mname);
-                                                    dataList.add(data);
-                                                }
-                                        %>
-                                        <select name="movie">
-                                            <c:forEach items="${dataList}" var="String">
-                                                <option value="${String.mname}">${String.mname}</option>
-                                            </c:forEach>
-
-                                        </select>
-                                        <%
-                                            } catch (Exception e) {
+                                                Class.forName(driverName);
+                                            } catch (ClassNotFoundException e) {
                                                 e.printStackTrace();
                                             }
+
+                                            Connection connection = null;
+                                            Statement statement = null;
+                                            ResultSet resultSet = null;
                                         %>
 
-                                    </div>
-                                    <button type="submit" class="btn btn-primary mr-2">Add Show</button>
-                                    <button type="clear" class="btn btn-light">Cancel</button>
+                                        <label >Movie Name</label>
+                                        <select class="form-control" name="movie" required>
+                                            <option value="0">Select a Movie </option>
+                                            <%
+                                                try {
+                                                    connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+                                                    statement = connection.createStatement();
+                                                    String sql = "SELECT * FROM movie";
+                                                    resultSet = statement.executeQuery(sql);
+                                                    while (resultSet.next()) {
+                                            %>
+
+                                            <option><%=resultSet.getString("m_name")%></option>
+
+                                            <%
+                                                    }
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            %>
+                                        </select>
+                                          
+                                            <button type="submit" class="btn btn-primary mr-2">Add Show</button>
+                                            <button type="clear" class="btn btn-light">Cancel</button>
                                 </form>
                             </div>
                         </div>

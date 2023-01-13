@@ -25,6 +25,19 @@
             }
             table.table th:nth-child(7) {
                 width: 120px;
+
+               
+                }
+
+                 .table-wrapper {
+                    width: 1600px;
+                    margin: 1px auto;
+                    background: #fff;
+                    padding: 1px;	
+                    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            }
+            table.table th:nth-child(6) {
+                width: 170px;
             }
         </style>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -265,7 +278,7 @@
                                                 <td><%=resultSet.getString("description")%></td>
                                                 <td><%=resultSet.getString("trailer_link")%></td>
                                                 <td><%=resultSet.getString("m_status")%></td>
-                                                
+                                             
                                                 <td>
                                                     <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                                                     <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
@@ -281,7 +294,7 @@
                                                 }
                                             %>
 
-                                        </tbody>
+                                            </tbody>
                                     </table>
                                 </div>
                             </div>
