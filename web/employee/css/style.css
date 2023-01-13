@@ -91,7 +91,16 @@ table {
   cursor: pointer;
 }
  
+.btn-primary2 {
+  color: #fff;
+  background-color: red;
 
+}
+.btn-primary2:hover {
+  color: #fff;
+  background-color: red;
+  border-color: red;
+}
 
 
 .btn-primary {

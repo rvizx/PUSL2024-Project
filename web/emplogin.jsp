@@ -84,13 +84,13 @@
         </div>
     </div>					
         
-        <a href="forgot pass.html">Forgot Password</a>
+        <a href="forgot pass.jsp">Forgot Password</a>
         
         
       
             
         <div >				
-            <a href="index.html"> <input  class="btn btn-primary"  type="submit" onclick="validate()"></button></a>
+            <a href="index.jsp"> <input  class="btn btn-primary"  type="submit" onclick="validate()"></button></a>
         </div>
        
         </div>

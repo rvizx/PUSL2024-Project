@@ -3,6 +3,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.io.PrintWriter;"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
@@ -49,7 +50,8 @@
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
                             </ul>
                         </div>
@@ -77,7 +79,8 @@
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="stff.jsp">Manage Employee</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="stff.jsp">Add Employee</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
                                 <li class="nav-item "> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
                             </ul>
                         </div>
@@ -96,17 +99,14 @@
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="review.jsp">
-
                             Approve Feedback
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/emplogin.jsp">
-
                             Logout
                         </a>
                     </li>
-
                 </ul>
             </nav>
 
@@ -114,18 +114,10 @@
 
                 <nav class="navbar   ">
                     <div class="navbar-menu-wrapper   ">
-
                         <div class="navbar-brand-wrapper ">
                             <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
-
                         </div>
-
-
-
                     </div>
-
-
-
 
                 </nav>
                 <br>
@@ -156,6 +148,9 @@
                                             <option value="21:00:00">09.00 PM</option>
                                         </select>
                                     </div>
+
+
+
                                     <div class="form-group">
 
                                         <%
@@ -166,16 +161,11 @@
                                             String userId = "root";
                                             String password = "";
 
-                                            try {
-                                                Class.forName(driverName);
-                                            } catch (ClassNotFoundException e) {
-                                                e.printStackTrace();
-                                            }
-
                                             Connection connection = null;
                                             Statement statement = null;
                                             ResultSet resultSet = null;
                                         %>
+
 
                                         <label >Movie Name</label>
                                         <select class="form-control" name="movie" required>
@@ -199,17 +189,13 @@
                                                 }
                                             %>
                                         </select>
-                                          
-                                            <button type="submit" class="btn btn-primary mr-2">Add Show</button>
-                                            <button type="clear" class="btn btn-light">Cancel</button>
+
+                                        <button type="submit" class="btn btn-primary mr-2">Add Show</button>
+                                        <button type="clear" class="btn btn-light">Cancel</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-
-
-
-
                 </div>
             </div>
 

@@ -48,7 +48,8 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
               <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
             </ul>
           </div>
@@ -81,12 +82,7 @@
             Booking Details
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="review.jsp">
-            
-            Approve Feedback
-          </a>
-        </li>
+       
         <li class="nav-item">
           <a class="nav-link" href="/emplogin.jsp">
            

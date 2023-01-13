@@ -101,7 +101,7 @@
     </head>
     <body>
 
-
+<form method="post" action="/updatemoviestatus">
         <%
             String id = request.getParameter("userId");
             String driverName = "com.mysql.jdbc.Driver";
@@ -121,7 +121,7 @@
             ResultSet resultSet = null;
         %>
 
-        <form method="post" action="/updatemoviestatus">
+        
             <select>
                 <option value="0">Select a Movie </option>
                 <%
