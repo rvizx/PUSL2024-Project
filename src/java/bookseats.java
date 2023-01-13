@@ -23,6 +23,7 @@ import java.util.HashMap;
 /**
  *
  * @author rvz
+ * 
  */
 
 
@@ -34,7 +35,7 @@ public class bookseats extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                response.setContentType("application/json");
+                //response.setContentType("application/json");
                 String[] bookedSeats = new String[0];
                 
                 
@@ -45,44 +46,31 @@ public class bookseats extends HttpServlet {
                         
                  try {
                     Class.forName("com.mysql.jdbc.Driver");
-                    con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
+                    con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","pmauser","123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
                     st=con.createStatement();
                     
                     HttpSession session = request.getSession();
                     HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
                     String date_time = (String) info.get("date_time");
-                    
-                    String sql = "SELECT seat_status FROM seats WHERE date_time = "+date_time;
+                    //String sql = "SELECT seat_status FROM seats WHERE date_time = "+date_time;
+                    String sql = "SELECT * FROM seats";
                     ResultSet rs = st.executeQuery(sql);
                     bookedSeats = new String[rs.getFetchSize()];
+                    out.print(rs);
+                    
                     
                     // append seat names to the array 
                     int i = 0;
                     while (rs.next()) {
                         bookedSeats[i] = rs.getString("seat_status");
+                        out.print(bookedSeats[i]);
                         i++;
                     }
                     
                  } catch (ClassNotFoundException | SQLException e) {
                         e.printStackTrace();
                          response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred!");
-                 } finally {
-                        // closing the database resources
-                          if (st != null) {
-                                try {
-                                    st.close();
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
-                          }
-                           if (con != null) {
-                                try {
-                                    con.close();
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
-                        }
-                    }
+                 }
             
                 request.setAttribute("bookedSeats", bookedSeats);
                 request.getRequestDispatcher("/bookingseat.jsp").forward(request, response);                                    
@@ -158,27 +146,11 @@ public class bookseats extends HttpServlet {
                     response.sendError(HttpServletResponse.SC_BAD_REQUEST, "an error occured - all the seats were not booked!");
                 }
 
-               } catch (ClassNotFoundException | SQLException e) {
+               } catch (Exception e) {
                     // An error occurred while connecting to the database or executing the query
                     e.printStackTrace();
                     response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
-               } finally {
-                    // closing the database resources
-                      if (st != null) {
-                            try {
-                                st.close();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                      }
-                       if (con != null) {
-                            try {
-                                con.close();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                    }
-            }
+               } 
            
             
             
