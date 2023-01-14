@@ -28,93 +28,54 @@ public class showdetails extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        PrintWriter out = response.getWriter();
-        Connection con = null;
-        Statement stmt = null;
-        ResultSet rs = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            // Connect to the database
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
-            stmt = con.createStatement();
-            // Execute the SQL query and store the results in a ResultSet
-            rs = stmt.executeQuery("SELECT m_name FROM movie");
-            // Create a StringBuilder to hold the options
-            StringBuilder options = new StringBuilder();
-            // Iterate through the ResultSet
-            while (rs.next()) {
-                // Get the values from the ResultSet
-                String mname = rs.getString("m_name");
-                out.println(mname);
-
-                // Append an option tag to the StringBuilder
-                options.append("<option value='").append(mname).append("'>").append(mname).append("</option>\n");
-            }
-            out.println(options);
-            // Set the options as an attribute on the request
-            request.setAttribute("options", options.toString());
-            // Forward the request to the JSP page
-            request.getRequestDispatcher("admin/show.jsp").forward(request, response);
-        } catch (SQLException e) {
-            // Handle any SQL exceptions
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(showdetails.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                // Close the ResultSet, Statement, and Connection
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-
-            } catch (SQLException e) {
-                // Handle any SQL exceptions
-            }
-        }
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Connection con = null;
-        Statement stmt = null;
-        ResultSet rs = null;
+        String date = request.getParameter("date");
+        String time = request.getParameter("time");
+        String movie = request.getParameter("movie");
+        String empID="4";
+
+        String datetime = date + " " + time;
         try {
-            // Connect to the database
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
-            stmt = con.createStatement();
-            // Execute the SQL query and store the results in a ResultSet
-            rs = stmt.executeQuery("SELECT * FROM employee");
-            // Store the ResultSet in a request attribute
-            request.setAttribute("resultSet", rs);
-            // Forward the request to the JSP page
-            request.getRequestDispatcher("admin/staffdetails.jsp").forward(request, response);
+            Connection con = null;
+            Statement st = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
+            st = con.createStatement();
+
+            PreparedStatement ps = con.prepareStatement("SELECT m_id FROM movie WHERE m_name=?");
+            ps.setString(1, movie);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                
+                String m_id = rs.getString("m_id");
+                
+                PreparedStatement ps1 = con.prepareStatement("INSERT INTO SHOWS VALUES(?,?,?)");
+                ps1.setString(1, datetime);
+                ps1.setString(2, m_id);
+                ps1.setString(3, empID);
+
+                ResultSet rs1 = ps1.executeQuery();
+                
+
+            } else {
+
+                String message = "Invalid email or password!";
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("/emplogin.jsp").forward(request, response);
+            }
 
         } catch (SQLException e) {
             // Handle any SQL exceptions
-        } finally {
 
-            try {
-                // Close the ResultSet, Statement, and Connection
-                if (rs != null) {
-                    rs.close();
-                }
-                if (stmt != null) {
-                    stmt.close();
-                }
-                if (con != null) {
-                    con.close();
-                }
-            } catch (SQLException e) {
-                // Handle any SQL exceptions
-            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(showdetails.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
