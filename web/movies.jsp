@@ -152,7 +152,7 @@
             <div class="flex justify-between item-center">
                 <span class="cursor-pointer">
                     <a href="index.jsp">
-                        <img class="h-10 inline" src="/assets/images/ABC Cinema LOGO.png" alt="">
+                        <img class="h-10 inline" src="/assets/images/abc_cinema_logo.png" alt="">
                     </a>
                 </span>
                 <span class="text-3xl cursor-pointer mx-2 md:hidden block">
@@ -266,7 +266,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 1.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card_1.png" alt="" />
                         </a>
                         <div class="p-6">
                                 <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name1%>
@@ -285,7 +285,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 2.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card_2.png" alt="" />
                         </a>
                         <div class="p-6">
                                 <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name2%></h5><br>
@@ -304,7 +304,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 3.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card_3.png" alt="" />
                         </a>
                         <div class="p-6">
                                 <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name3%>
@@ -323,7 +323,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 4.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card_4.png" alt="" />
                         </a>
                         <div class="p-6">
                                 <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name4%>
@@ -342,7 +342,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 5.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card_5.png" alt="" />
                         </a>
                         <div class="p-6">
                                 <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name5%>
@@ -361,7 +361,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 1.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card_1.png" alt="" />
                         </a>
                         <div class="p-6">
                                 <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name6%>
@@ -399,7 +399,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 6.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card_6.png" alt="" />
                         </a>
                         <div class="p-6">
                                 <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name7%>
@@ -416,7 +416,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 7.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card_7.png" alt="" />
                         </a>
                         <div class="p-6">
                                 <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name8%></h5>
@@ -431,7 +431,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 8.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card_8.png" alt="" />
                         </a>
                         <div class="p-6">
                                 <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name9%>
@@ -447,7 +447,7 @@
                 <div class="flex justify-center">
                     <div class="max-w-sm bg-white rounded-lg shadow-lg">
                         <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 9.png" alt="" />
+                            <img class="rounded-t-lg" src="/assets/images/card_9.png" alt="" />
                         </a>
                         <div class="p-6">
                                 <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name10%></h5>
@@ -480,7 +480,7 @@
         <footer class="p-4 bg-black  shadow md:px-6 md:py-8 ">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <a href="index.jsp" class="flex items-center mb-4 sm:mb-0">
-                    <img src="/assets/images/ABC Cinema LOGO.png" class="h-8 mr-3" alt="Flowbite Logo" />
+                    <img src="/assets/images/abc_cinema_logo.png" class="h-8 mr-3" alt="Flowbite Logo" />
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
                 </a>
                 <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">

@@ -171,7 +171,7 @@
                     <div class="navbar-menu-wrapper  ">
 
                         <div class="navbar-brand-wrapper ">
-                            <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+                            <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc_logo.png" alt="logo"/></a>
 
                         </div>
 

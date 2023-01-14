@@ -99,7 +99,7 @@
     <div class="navbar-menu-wrapper  ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="staffdetails.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="staffdetails.jsp"><img src="imabc_logo.pngo.png" alt="logo"/></a>
         
       </div>
       
