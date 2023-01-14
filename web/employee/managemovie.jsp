@@ -5,29 +5,28 @@
  
   <title>ABC Cinema</title>
  
- 
   <link rel="stylesheet" href="css/style.css">
   <link href="table.css" rel="stylesheet">
   <link rel="shortcut icon" href="images/film.png" />
-<style>
-  table.table th:nth-child(4) {
-    width: 140px;
-}
-table.table th:nth-child(1) {
-    width: 65px;
-}
-table.table th:nth-child(8) {
-    width: 80px;
-}
-table.table th:nth-child(7) {
-    width: 120px;
-}
-</style>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  
   
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  
+  
+  <style>
+@media screen and (min-width: 1000px) {
+  .sid {
+  min-height: calc(170vh - 65px);
+}
+}
+.ccard-body {
+  padding-right: 1.25rem;
+  padding-top:0%;
+  padding-bottom: 0%;
+}
+  </style>
+  
   <script>
   $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
@@ -45,6 +44,7 @@ table.table th:nth-child(7) {
 		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
         $('[data-toggle="tooltip"]').tooltip();
     });
+	// Add row on add button click
 	$(document).on("click", ".add", function(){
 		var empty = false;
 		var input = $(this).parents("tr").find('input[type="text"]');
@@ -65,8 +65,9 @@ table.table th:nth-child(7) {
 			$(".add-new").removeAttr("disabled");
 		}		
     });
+	// Edit row on edit button click
 	$(document).on("click", ".edit", function(){		
-        $(this).parents("tr").find("td:not(:last-child ,:nth-child(4))").each(function(){
+        $(this).parents("tr").find("td:not(:last-child)").each(function(){
 			$(this).jsp('<input type="text" class="form-control" value="' + $(this).text() + '">');
 		});		
 		$(this).parents("tr").find(".add, .edit").toggle();
@@ -78,14 +79,12 @@ table.table th:nth-child(7) {
 		$(".add-new").removeAttr("disabled");
     });
 });
-
-
 </script>
 </head>
 <body>
   <div class=" divide">
     
-    <nav class="sidebar sid " >
+    <nav class="sidebar sid "  >
       <ul class="nav">
         
           
@@ -93,7 +92,7 @@ table.table th:nth-child(7) {
           
         </li><br>
         <li class="nav-item " >
-          <a class="nav-link" href="adindex.jsp">
+          <a class="nav-link" href="index.jsp">
             Dashboard
             
           </a>
@@ -106,8 +105,9 @@ table.table th:nth-child(7) {
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
-              <li class="nav-item active"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
+              <li class="nav-item "> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+               <li class="nav-item active"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
             </ul>
           </div>
         </li>
@@ -121,24 +121,12 @@ table.table th:nth-child(7) {
         
         
        <li class="nav-item">
-          <a class="nav-link" href="paymentdetails.jsp">
+          <a class="nav-link" href="Payment details.jsp">
             
              Payment Details
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link"   >
-           
-             Employees
-            
-          </a>
-          <div  >
-            <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="stff.jsp">Manage Employee</a></li>
-              <li class="nav-item"> <a class="nav-link" href="stff details.jsp">Employee Details</a></li>
-            </ul>
-          </div>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link" href="show.jsp">
             
@@ -151,14 +139,9 @@ table.table th:nth-child(7) {
             Booking Details
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="review.jsp">
-            
-            Approve Feedback
-          </a>
-        </li>
+       
         <li class="nav-item">
-          <a class="nav-link" href="/emplogin.jsp">
+          <a class="nav-link" href="log.jsp">
            
             Logout
           </a>
@@ -170,10 +153,10 @@ table.table th:nth-child(7) {
  <div class="container-fluid page-body-wrapper ">
  
   <nav class="navbar   ">
-    <div class="navbar-menu-wrapper  ">
+    <div class="navbar-menu-wrapper ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="index.jsp"><img src="images/abc logo.png" alt="logo"/></a>
         
       </div>
       
@@ -185,77 +168,112 @@ table.table th:nth-child(7) {
       
         
   </nav>
-      
+      <br>
       <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
             
             
             </div>
-           
             
-            <div class="container-lg">
-              <div class="table table-responsive">
-                
-                  <div class="table-wrapper">
-                      <div class="table-title">
-                          <div class="row">
-                              <div class="col-sm-8"><h2>Movie <b>Details</b></h2></div>
-                              <div class="col-sm-4">
-                                  
-                              </div>
-                          </div>
-                      </div>
-                      <table class="table table-bordered">
-                          <thead>
-                              <tr>
-                                  <th>Movie ID</th>
-                                  <th>Movie Name</th>
-                                  <th>Movie Language</th>
-                                  <th>Status</th>
-                                  <th>Genre</th>
-                                  <th>Runtime</th>
-                                  <th>Description</th>
-                                  <th>Actions</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <td>09</td>
-                                  <td>Happy Birthday</td>
-                                  <td> English</td>
-                                  <td>
-                                    <select id ="cr">
-                                      <option>Now Showing </option>
-                                    <option>Coming Soon</option>
-                                  </select></td>
-                                  <td>Comedy</td>
-                                  <td>3 hr</td>
-                                  <td>better as a movie and so good and best</td>
-                                  
-                                  <td>
-                                      <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                      <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                      <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                  </td>
-                              </tr>
-                              
-                                    
-                          </tbody>
-                      </table>
-                  </div>
+                  
+                  <h4 class="card-title">Search Movie Details</h4>
+                  
+                  <form class="forms-sample" id="contact" method="post">
+                    
+                    <div class="form-group " >
+                      <label >Movie ID </label>
+                      <input  type="text" class="" name="movieID" placeholder="Enter Movie ID" required>
+                   
+                    
+                    
+                    
+                    
+                    <button type="submit" class=" btn-primary ">Search</button>
+                    
+                  </form>
+                  
+                   
+                </div>
               </div>
-          </div>     
+            </div>
+            
+       
+            
+              <div class="card">
+                <div class="card-body">
+                  
+                  
+                  <form class="forms-sample" id="contact" method="post">
+                    
+                    <div class="form-group" >
+                      <label >Movie Name </label>
+                      <input type="text" class="form-control" name="moviename" placeholder="Name" required>
+                    </div>
+                    
+                    <div class="form-group ">
+                      <label >Movie Language</label>
+                        <select class="form-control" name="movielanguage" required>
+                          <option>English</option>
+                          <option>Sinhala</option>
+                          <option>Tamil</option>
+                          <option>Hindi</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label >Movie Status</label>
+                          <select class="form-control" name="moviestatus" required>
+                            <option>Coming Soon</option>
+                            <option>Now Showing</option>
+                            
+                          </select>
+                        </div>
+                    <div class="form-group">
+                      <label>Movie Genre</label>
+                        <select class="form-control" name="moviegenre" required>
+                          <option>Comedy</option>
+                          <option>Thriller</option>
+                          <option>Action</option>
+                          <option>Mystery</option>
+                          <option>Crime</option>
+                          <option>Science</option>
+                          <option>Romance</option>
+                          <option>Horror</option>
+                        </select>
+                      </div>
+                    <div class="form-group" >
+                      <label > Movie Runtime </label>
+                      <input type="time" class="form-control" name="movieruntime" placeholder="Movie Runtime" required>
+                    </div>
+                    <div class="form-group" >
+                      <label>Movie Description </label>
+                      <input type="text" class="form-control" name="moviedescription" placeholder="Movie Description" required>
+                    </div>
+                   
+                     <div class="form-group" >
+                                        <label>Trailer link</label>
+                                        <input type="text" class="form-control" name="moviedtrailer" placeholder="Movie Trailer link" required>
+                                    </div>
+                    
+                    <button type="submit" class="btn btn-primary ">Update</button>
+                    <button type="submit" style="background-color:red;" class="btn btn-primary  ">Delete</button>
+                    <button class="btn ">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
             
             
-          </div>
         </div>
+        
         
       </div>
     </div>
   </div>
+  
  
 
+  <script src="../../js/file-upload.js"></script>
   <script src="test.js"></script>
   <script>
     var myInput = document.getElementById("psw");

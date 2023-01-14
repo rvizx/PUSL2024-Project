@@ -41,7 +41,7 @@
             <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-black w-full left-0 md:w-auto md:py-0 py-6 md:pl-0 pl-7
     md:opacity-100 opacity-100 top-[-400px] transition-all ease-in duration-500">
                 <li class="mx-6 my-6 md:my-0">
-                    <a href="/index.jsp"
+
                         class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">HOME</a>
                 </li>
                 <li class="mx-6 my-6 md:my-0">
@@ -49,7 +49,7 @@
                         class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">MOVIES</a>
                 </li>
                 <li class="mx-6 my-6 md:my-0">
-                    <a href="/feedback.jsp"
+
                         class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">FEEDBACK</a>
                 </li>
 
@@ -162,7 +162,7 @@
 
         <footer class="p-4 bg-black  shadow md:px-6 md:py-8 ">
             <div class="sm:flex sm:items-center sm:justify-between">
-                <a href="index.jsp" class="flex items-center mb-4 sm:mb-0">
+
                     <img src="/assets/images/ABC Cinema LOGO.png" class="h-8 mr-3" alt="Flowbite Logo" />
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
                 </a>

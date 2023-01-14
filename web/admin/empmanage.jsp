@@ -10,12 +10,7 @@
   <link rel="shortcut icon" href="images/film.png" />
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <style>
-    table.table th:nth-child(3) {
-      width: 240px;
-  }
- 
-  </style>
+  
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -74,7 +69,7 @@
 </script>
 </head>
 <body>
-  <div class=" divide">
+  <div class="divide">
     
     <nav class="sidebar sid "  >
       <ul class="nav">
@@ -84,7 +79,7 @@
           
         </li><br>
         <li class="nav-item " >
-          <a class="nav-link" href="adindex.jsp">
+          <a class="nav-link" href="index.jsp">
             Dashboard
             
           </a>
@@ -97,8 +92,9 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
+              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
             </ul>
           </div>
         </li>
@@ -125,8 +121,9 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="stff.jsp">Manage Employee</a></li>
-              <li class="nav-item active"> <a class="nav-link" href="stff details.jsp">Employee Details</a></li>
+                <li class="nav-item "> <a class="nav-link" href="stff.jsp">Add Employee</a></li>
+              <li class="nav-item active"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
+              <li class="nav-item"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
             </ul>
           </div>
         </li>
@@ -149,7 +146,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/emplogin.jsp">
+          <a class="nav-link" href="log.jsp">
            
             Logout
           </a>
@@ -164,7 +161,7 @@
     <div class="navbar-menu-wrapper  ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="index.jsp"><img src="images/abc logo.png" alt="logo"/></a>
         
       </div>
       
@@ -176,67 +173,76 @@
       
         
   </nav>
-
-        <div class="main-panel">        
+        <br>
+      <div class="main-panel">        
+        <div class="content-wrapper">
+          <div class="row">
             
-            <div class="container-lg">
-                <div class="table-responsive">
-                    <div class="table-wrapper">
-                        <div class="table-title">
-                            <div class="row">
-                                <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div>
-                                <div class="col-sm-4">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Employee ID</th>
-                                    <th>Employee Name</th>
-                                    <th>Employee  Email</th>
-                                    <th>Employee Mobile</th>
-                                    
-                                    
-                                   
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>001</td>
-                                    <td>Jack lego</td>
-                                    <td>Jack@gmail.com</td>
-                                    <td>0773480535</td>
-                                    
-                                    
-                                    <td>
-                                        <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                                        <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                        <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                                    </td>
-                                </tr>
-                                
-                                      
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>     
-              
-              
+            
             </div>
+            
+                  
+                  <h4 class="card-title">Search employee details</h4>
+                  
+                  <form class="forms-sample" id="contact" method="post">
+                    
+                    <div class="form-group " >
+                      <label >Employee ID </label>
+                      <input  type="text" class="" name="moviename" placeholder="Enter employee ID" required>
+                   
+                    
+                    
+                    
+                    
+                    <button type="submit" class=" btn-primary ">Search</button>
+                    
+                  </form>
+                  
+                   
+                </div>
+              </div>
+            </div>
+           
+            
+              <div class="card">
+                <div class="card-body">
+                 
+                  
+                  <form class="forms-sample" id="contact" method="post">
+                    <div class="form-group">
+                      <label >Employee Name</label>
+                      <input type="text" class="form-control"  name="empname" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                      <label >Employee Mobile</label>
+                      <input type="int" class="form-control" name="empmobile"  placeholder="Mobile" required>
+                    </div>
+                    
+                      <div class="form-group">
+                        <label >Employee Email</label>
+                        <input type="email" class="form-control"  name="empmail" placeholder="Email" required>
+                      </div>
+                    
+                    
+                      <button type="submit" class="btn btn-primary ">Update</button>
+                      <button type="submit" class="btn btn-primary ">Delete</button>                    <button class="btn ">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+            
+            
+            
           </div>
-         
-          
-         
         </div>
+       
       </div>
     </div>
-   
-    
-    <script src="test.js"></script>
+  </div>
+  
+
+  <script src="test.js"></script>
     <script>
       var myInput = document.getElementById("psw");
       var letter = document.getElementById("letter");
@@ -284,6 +290,6 @@
         }
       }
       </script>
-  </body>
-  
-  </html>
+</body>
+
+</html>

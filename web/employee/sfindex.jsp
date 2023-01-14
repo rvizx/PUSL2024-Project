@@ -18,7 +18,9 @@
   }
   }
 
- 
+  table.table td:nth-child(1) {
+      width: 900px;
+  }
 
 </style>
 
@@ -33,27 +35,6 @@
   function drawChart() {
 
    
-    var data = new google.visualization.DataTable();
-    data.addColumn('string', 'Topping');    
-    data.addColumn('number', 'Slices');
-    data.addRows([
-      ['Mushrooms', 3],
-      ['Onions', 1],
-      ['Olives', 1],
-      ['Zucchini', 1],
-      ['Pepperoni', 2]
-    ]);
-    // Create the data table.
-    var data2 = new google.visualization.DataTable();
-    data2.addColumn('string', 'Topping');
-    data2.addColumn('number', 'Slices');
-    data2.addRows([
-      ['Mushrooms', 3],
-      ['Onions', 1],
-      ['Olives', 15],
-      ['Zucchini', 1],
-      ['Pepperoni', 2]
-    ]);
 
     var data3 = new google.visualization.DataTable();
     data3.addColumn('string', 'Year');
@@ -68,29 +49,17 @@
     
 
     // Set chart options
-    var options = {'title':'How Much Pizza I Ate Last Night',
-                   'width':500,
-                   'height':300};
-    // Set chart options
-    var options2 = {'title':'How Much Pizza You Ate Last Night',
-                   'width':500,
-                   'height':300};
-    // Set chart options
+    
     var options3 = {'title':'Line chart',
                    'width':1000,
                    'height':300};
  
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
-    var chart2 = new google.visualization.BarChart(document.getElementById('chart_div2'));
-    chart2.draw(data2, options2);
+ 
     var chart3 = new google.visualization.LineChart(document.getElementById('chart_div3'));
     chart3.draw(data3, options3);
-    var chart4 = new google.visualization.DonutChart(document.getElementById('chart_div4'));
-    chart4.draw(data4, options4);
-
+ 
   }
 </script>
 
@@ -107,7 +76,7 @@
           
         </li><br>
         <li class="nav-item active" >
-          <a class="nav-link" href="sfindex.jsp">
+          <a class="nav-link" href="index.jsp">
             Dashboard
             
           </a>
@@ -120,7 +89,8 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
               <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
             </ul>
           </div>
@@ -135,7 +105,7 @@
         
         
        <li class="nav-item">
-          <a class="nav-link" href="paymentdetails.jsp">
+          <a class="nav-link" href="Payment details.jsp">
             
              Payment Details
           </a>
@@ -153,14 +123,9 @@
             Booking Details
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="review.jsp">
-            
-            Approve Feedback
-          </a>
-        </li>
+       
         <li class="nav-item">
-          <a class="nav-link" href="/emplogin.jsp">
+          <a class="nav-link" href="log.jsp">
            
             Logout
           </a>
@@ -189,13 +154,41 @@
   </nav>
   <br>
       <!-- partial -->
-     
-          <div class="row">
+      <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+              </div>
+          </div>
+           
+          <div class="card">
+            <div class="card-body">
+             
+          <table class="table table-bordered">
+             
+              <tbody>
+                  <tr>
+                    <div class="col-sm-8"><h2 style="color:red;" >Admin<b> Alert !
+                      
+                     
+                      <td>sadfghjksdfret wertyu wertyu wertyu werty awerty</td>
+                    
+                     
+                  </tr>
+                  
+                        
+              </tbody>
+          </table>
+         
+      </div>
+  </div>
+</div>     
+
+
+           <div class="card">
+            <div class="card-body">
+          
             
-            <div class="card">
-            <div id="chart_div"></div></div>
-            <div class="card">
-        <div id="chart_div2"></div></div>
+          
         <br>
         <div class="card">
         <div id="chart_div3"></div></div>

@@ -7,28 +7,44 @@
 
     <head>
 
-
         <title>ABC Cinema</title>
+
 
         <link rel="stylesheet" href="css/style.css">
         <link href="table.css" rel="stylesheet">
         <link rel="shortcut icon" href="images/film.png" />
         <style>
             table.table th:nth-child(4) {
-                width: 240px;
+                width: 140px;
             }
             table.table th:nth-child(1) {
                 width: 65px;
             }
-            table.table th:nth-child(3) {
-                width: 200px;
+            table.table th:nth-child(8) {
+                width: 80px;
             }
-            table.table th:nth-child(2) {
-                width: 220px;
+            table.table th:nth-child(7) {
+                width: 120px;
+
+               
+                }
+
+                 .table-wrapper {
+                    width: 1600px;
+                    margin: 1px auto;
+                    background: #fff;
+                    padding: 1px;	
+                    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            }
+            table.table th:nth-child(6) {
+                width: 170px;
             }
         </style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip();
@@ -66,9 +82,8 @@
                         $(".add-new").removeAttr("disabled");
                     }
                 });
-                // Edit row on edit button click
                 $(document).on("click", ".edit", function () {
-                    $(this).parents("tr").find("td:not(:last-child)").each(function () {
+                    $(this).parents("tr").find("td:not(:last-child ,:nth-child(4))").each(function () {
                         $(this).jsp('<input type="text" class="form-control" value="' + $(this).text() + '">');
                     });
                     $(this).parents("tr").find(".add, .edit").toggle();
@@ -80,17 +95,14 @@
                     $(".add-new").removeAttr("disabled");
                 });
             });
+
+
         </script>
-
-
-
-
-
     </head>
     <body>
         <div class=" divide">
 
-            <nav class="sidebar sid "  >
+            <nav class="sidebar sid " >
                 <ul class="nav">
 
 
@@ -112,8 +124,8 @@
                         <div  >
                             <ul class="nav  sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
-                                 <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
+                                <li class="nav-item active"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
                             </ul>
                         </div>
                     </li>
@@ -126,7 +138,7 @@
 
 
 
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="paymentdetails.jsp">
 
                             Payment Details
@@ -141,7 +153,7 @@
                         <div  >
                             <ul class="nav  sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="stff.jsp">Add Employee</a></li>
-                                 <li class="nav-item"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
                             </ul>
                         </div>
@@ -177,7 +189,7 @@
             <div class="container-fluid page-body-wrapper ">
 
                 <nav class="navbar   ">
-                    <div class="navbar-menu-wrapper   ">
+                    <div class="navbar-menu-wrapper  ">
 
                         <div class="navbar-brand-wrapper ">
                             <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
@@ -193,7 +205,6 @@
 
                 </nav>
 
-
                 <div class="main-panel">        
                     <div class="content-wrapper">
                         <div class="row">
@@ -208,8 +219,10 @@
                                 <div class="table-wrapper">
                                     <div class="table-title">
                                         <div class="row">
-                                            <div class="col-sm-8"><h2>Payment <b>Details</b></h2></div>
+                                            <div class="col-sm-8"><h2>Movie <b>Details</b></h2></div>
+                                            <div class="col-sm-4">
 
+                                            </div>
                                         </div>
                                     </div>
 
@@ -235,32 +248,44 @@
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>Payment ID</th>
-                                                <th>Customer ID</th>
-                                                <th>Customer First Name</th>
-                                                <th>Total Price(LKR)</th>
-
-
+                                                <th>Movie ID</th>
+                                                <th>Movie Name</th>
+                                                <th>Movie Language</th>
+                                                <th>Genre</th>
+                                                <th>Runtime</th>
+                                                <th>Description</th>
+                                                <th>Trailer</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
                                             </tr>
 
                                             <%
                                                 try {
                                                     connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
                                                     statement = connection.createStatement();
-                                                    String sql = "SELECT payment.pay_id,payment.c_id,customer.name,payment.total_amount FROM payment,customer "
-                                                            + "WHERE payment.c_id=customer.c_id";
-
+                                                    String sql = "SELECT * FROM movie";
                                                     resultSet = statement.executeQuery(sql);
                                                     while (resultSet.next()) {
                                             %>
 
                                         </thead>
                                         <tbody>
+                                        <form method="post" action="/updatemoviestatus">
                                             <tr>
-                                                <td><%=resultSet.getString("payment.pay_id")%></td>
-                                                <td><%=resultSet.getString("payment.c_id")%></td>
-                                                <td><%=resultSet.getString("customer.name")%></td>
-                                                <td><%=resultSet.getString("payment.total_amount")%></td>
+                                                <td><%=resultSet.getString("m_id")%></td>
+                                                <td><%=resultSet.getString("m_name")%></td>
+                                                <td><%=resultSet.getString("m_language")%></td>
+                                                <td><%=resultSet.getString("genre")%></td>
+                                                <td><%=resultSet.getString("runtime")%></td>
+                                                <td><%=resultSet.getString("description")%></td>
+                                                <td><%=resultSet.getString("trailer_link")%></td>
+                                                <td><%=resultSet.getString("m_status")%></td>
+                                             
+                                                <td>
+                                                    <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                                                    <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                                                    <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                                                </td>
                                             </tr>
 
                                             <%
@@ -271,12 +296,12 @@
                                                 }
                                             %>
 
-                                        </tbody>
+                                            </tbody>
                                     </table>
-
                                 </div>
                             </div>
-                        </div>     
+                        </div>
+
 
 
                     </div>
@@ -286,6 +311,55 @@
         </div>
     </div>
 
+
+    <script src="test.js"></script>
+    <script>
+            var myInput = document.getElementById("psw");
+            var letter = document.getElementById("letter");
+            var capital = document.getElementById("capital");
+
+            var length = document.getElementById("length");
+
+            myInput.onfocus = function () {
+                document.getElementById("message").style.display = "block";
+            }
+
+            myInput.onblur = function () {
+                document.getElementById("message").style.display = "none";
+            }
+
+            myInput.onkeyup = function () {
+                // Validate lowercase letters
+                var lowerCaseLetters = /[a-z]/g;
+                if (myInput.value.match(lowerCaseLetters)) {
+                    letter.classList.remove("invalid");
+                    letter.classList.add("valid");
+                } else {
+                    letter.classList.remove("valid");
+                    letter.classList.add("invalid");
+                }
+
+                // Validate capital letters
+                var upperCaseLetters = /[A-Z]/g;
+                if (myInput.value.match(upperCaseLetters)) {
+                    capital.classList.remove("invalid");
+                    capital.classList.add("valid");
+                } else {
+                    capital.classList.remove("valid");
+                    capital.classList.add("invalid");
+                }
+
+
+                // Validate length
+                if (myInput.value.length >= 8) {
+                    length.classList.remove("invalid");
+                    length.classList.add("valid");
+                } else {
+                    length.classList.remove("valid");
+                    length.classList.add("invalid");
+                }
+            }
+    </script>
 </body>
 
 </html>

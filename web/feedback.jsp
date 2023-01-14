@@ -98,8 +98,7 @@
                     <div class="grow-0 shrink-0 basis-auto mb-12 lg:mb-0 w-full lg:w-5/12 px-3 lg:px-6">
                         <form>
                             <div class="form-group mb-6">
-                                <p class=" text-xl font-bold my-3 text-center ">${message}</p>
-                                <input type="text" class="form-control block
+
                       w-full
                       px-3
                       py-1.5

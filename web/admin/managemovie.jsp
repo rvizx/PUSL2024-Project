@@ -20,7 +20,11 @@
   min-height: calc(170vh - 65px);
 }
 }
-
+.ccard-body {
+  padding-right: 1.25rem;
+  padding-top:0%;
+  padding-bottom: 0%;
+}
   </style>
   
   <script>
@@ -88,7 +92,7 @@
           
         </li><br>
         <li class="nav-item " >
-          <a class="nav-link" href="sfindex.jsp">
+          <a class="nav-link" href="index.jsp">
             Dashboard
             
           </a>
@@ -101,9 +105,10 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item active"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
+              <li class="nav-item "> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+
+              <li class="nav-item active"> <a class="nav-link" href="managemovies.jsp">Manage Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
             </ul>
           </div>
         </li>
@@ -122,7 +127,20 @@
              Payment Details
           </a>
         </li>
-        
+        <li class="nav-item">
+          <a class="nav-link"   >
+           
+             Employees
+            
+          </a>
+          <div  >
+            <ul class="nav  sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="stff.jsp">Add Employee</a></li>
+              <li class="nav-item"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
+              <li class="nav-item"> <a class="nav-link" href="stffdetails.jsp">Employee Details</a></li>
+            </ul>
+          </div>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="show.jsp">
             
@@ -135,9 +153,14 @@
             Booking Details
           </a>
         </li>
-      
+        <li class="nav-item ">
+          <a class="nav-link" href="review.jsp">
+            
+            Approve Feedback
+          </a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link" href="/emplogin.jsp">
+          <a class="nav-link" href="log.jsp">
            
             Logout
           </a>
@@ -152,7 +175,7 @@
     <div class="navbar-menu-wrapper ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="sfindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="index.jsp"><img src="images/abc logo.png" alt="logo"/></a>
         
       </div>
       
@@ -172,9 +195,33 @@
             
             </div>
             
+                  
+                  <h4 class="card-title">Search Movie Details</h4>
+                  
+                  <form class="forms-sample" id="contact" method="post">
+                    
+                    <div class="form-group " >
+                      <label >Movie ID </label>
+                      <input  type="text" class="" name="movieID" placeholder="Enter Movie ID" required>
+                   
+                    
+                    
+                    
+                    
+                    <button type="submit" class=" btn-primary ">Search</button>
+                    
+                  </form>
+                  
+                   
+                </div>
+              </div>
+            </div>
+            
+       
+            
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Movie details</h4>
+                  
                   
                   <form class="forms-sample" id="contact" method="post">
                     
@@ -183,7 +230,7 @@
                       <input type="text" class="form-control" name="moviename" placeholder="Name" required>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group ">
                       <label >Movie Language</label>
                         <select class="form-control" name="movielanguage" required>
                           <option>English</option>
@@ -221,19 +268,14 @@
                       <label>Movie Description </label>
                       <input type="text" class="form-control" name="moviedescription" placeholder="Movie Description" required>
                     </div>
-                    <div class="form-group">
-                      <label>File upload</label>
-                      <input type="file" name="img[]" class="file-upload-default">
-                      <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
-                      </div>
-                    </div>
+                   
+                     <div class="form-group" >
+                                        <label>Trailer link</label>
+                                        <input type="text" class="form-control" name="moviedtrailer" placeholder="Movie Trailer link" required>
+                                    </div>
                     
-                    
-                    <button type="submit" class="btn btn-primary ">Add Movie</button>
+                    <button type="submit" class="btn btn-primary ">Update</button>
+                    <button type="submit" class="btn btn-primary " style="background-color:red;">Delete</button>
                     <button class="btn ">Cancel</button>
                   </form>
                 </div>

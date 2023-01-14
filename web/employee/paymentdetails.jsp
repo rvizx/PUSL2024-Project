@@ -1,82 +1,87 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  
-  
-  <title>ABC Cinema</title>
-  
-  <link rel="stylesheet" href="css/style.css">
-  <link href="table.css" rel="stylesheet">
-  <link rel="shortcut icon" href="images/film.png" />
-  <style>
-    table.table th:nth-child(4) {
-      width: 240px;
-  }
-  table.table th:nth-child(1) {
-      width: 65px;
-  }
-  table.table th:nth-child(3) {
-      width: 200px;
-  }
-  table.table th:nth-child(2) {
-      width: 220px;
-  }
-  </style>
-  
-  
-  <script>
-  $(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-	var actions = $("table td:last-child").jsp();
-    $(".add-new").click(function(){
-		$(this).attr("disabled", "disabled");
-		var index = $("table tbody tr:last-child").index();
-        var row = '<tr>' +
-            '<td><input type="text" class="form-control" name="name" id="name"></td>' +
-            '<td><input type="text" class="form-control" name="department" id="department"></td>' +
-            '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
-			'<td>' + actions + '</td>' +
-        '</tr>';
-    	$("table").append(row);		
-		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-	$(document).on("click", ".add", function(){
-		var empty = false;
-		var input = $(this).parents("tr").find('input[type="text"]');
-        input.each(function(){
-			if(!$(this).val()){
-				$(this).addClass("error");
-				empty = true;
-			} else{
-                $(this).removeClass("error");
+    <head>
+
+
+        <title>ABC Cinema</title>
+
+        <link rel="stylesheet" href="css/style.css">
+        <link href="table.css" rel="stylesheet">
+        <link rel="shortcut icon" href="images/film.png" />
+        <style>
+            table.table th:nth-child(4) {
+                width: 240px;
             }
-		});
-		$(this).parents("tr").find(".error").first().focus();
-		if(!empty){
-			input.each(function(){
-				$(this).parent("td").jsp($(this).val());
-			});			
-			$(this).parents("tr").find(".add, .edit").toggle();
-			$(".add-new").removeAttr("disabled");
-		}		
-    });
-	// Edit row on edit button click
-	$(document).on("click", ".edit", function(){		
-        $(this).parents("tr").find("td:not(:last-child)").each(function(){
-			$(this).jsp('<input type="text" class="form-control" value="' + $(this).text() + '">');
-		});		
-		$(this).parents("tr").find(".add, .edit").toggle();
-		$(".add-new").attr("disabled", "disabled");
-    });
-	// Delete row on delete button click
-	$(document).on("click", ".delete", function(){
-        $(this).parents("tr").remove();
-		$(".add-new").removeAttr("disabled");
-    });
-});
-</script>
+            table.table th:nth-child(1) {
+                width: 65px;
+            }
+            table.table th:nth-child(3) {
+                width: 200px;
+            }
+            table.table th:nth-child(2) {
+                width: 220px;
+            }
+        </style>
+
+
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+                var actions = $("table td:last-child").jsp();
+                $(".add-new").click(function () {
+                    $(this).attr("disabled", "disabled");
+                    var index = $("table tbody tr:last-child").index();
+                    var row = '<tr>' +
+                            '<td><input type="text" class="form-control" name="name" id="name"></td>' +
+                            '<td><input type="text" class="form-control" name="department" id="department"></td>' +
+                            '<td><input type="text" class="form-control" name="phone" id="phone"></td>' +
+                            '<td>' + actions + '</td>' +
+                            '</tr>';
+                    $("table").append(row);
+                    $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
+                    $('[data-toggle="tooltip"]').tooltip();
+                });
+                $(document).on("click", ".add", function () {
+                    var empty = false;
+                    var input = $(this).parents("tr").find('input[type="text"]');
+                    input.each(function () {
+                        if (!$(this).val()) {
+                            $(this).addClass("error");
+                            empty = true;
+                        } else {
+                            $(this).removeClass("error");
+                        }
+                    });
+                    $(this).parents("tr").find(".error").first().focus();
+                    if (!empty) {
+                        input.each(function () {
+                            $(this).parent("td").jsp($(this).val());
+                        });
+                        $(this).parents("tr").find(".add, .edit").toggle();
+                        $(".add-new").removeAttr("disabled");
+                    }
+                });
+                // Edit row on edit button click
+                $(document).on("click", ".edit", function () {
+                    $(this).parents("tr").find("td:not(:last-child)").each(function () {
+                        $(this).jsp('<input type="text" class="form-control" value="' + $(this).text() + '">');
+                    });
+                    $(this).parents("tr").find(".add, .edit").toggle();
+                    $(".add-new").attr("disabled", "disabled");
+                });
+                // Delete row on delete button click
+                $(document).on("click", ".delete", function () {
+                    $(this).parents("tr").remove();
+                    $(".add-new").removeAttr("disabled");
+                });
+            });
+        </script>
+
 
 
 
@@ -84,7 +89,8 @@
        
 </head>
 <body>
-  <div class=" divide">
+  
+<div class=" divide">
     
     <nav class="sidebar sid "  >
       <ul class="nav">
@@ -107,7 +113,8 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Manage Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
               <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
             </ul>
           </div>
@@ -140,12 +147,7 @@
             Booking Details
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="review.jsp">
-            
-            Approve Feedback
-          </a>
-        </li>
+       
         <li class="nav-item">
           <a class="nav-link" href="/emplogin.jsp">
            
@@ -156,88 +158,79 @@
       </ul>
     </nav>
 
- <div class="container-fluid page-body-wrapper ">
- 
-  <nav class="navbar   ">
-    <div class="navbar-menu-wrapper   ">
-      
-      <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="sfindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
-        
-      </div>
-      
-            
-      
-    </div>
-    
-      
-      
-        
-  </nav>
-     
-      
-  <div class="main-panel">        
-    <div class="content-wrapper">
-      <div class="row">
-        
-        
+                                    <%
+                                        String id = request.getParameter("userId");
+                                        String driverName = "com.mysql.jdbc.Driver";
+                                        String connectionUrl = "jdbc:mysql://localhost:3306/";
+                                        String dbName = "abc_cinema";
+                                        String userId = "root";
+                                        String password = "";
+
+                                        try {
+                                            Class.forName(driverName);
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        Connection connection = null;
+                                        Statement statement = null;
+                                        ResultSet resultSet = null;
+                                    %>
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Payment ID</th>
+                                                <th>Customer ID</th>
+                                                <th>Customer First Name</th>
+                                                <th>Total Price(LKR)</th>
+
+
+                                            </tr>
+
+                                            <%
+                                                try {
+                                                    connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+                                                    statement = connection.createStatement();
+                                                    String sql = "SELECT payment.pay_id,payment.c_id,customer.name,payment.total_amount FROM payment,customer "
+                                                            + "WHERE payment.c_id=customer.c_id";
+
+                                                    resultSet = statement.executeQuery(sql);
+                                                    while (resultSet.next()) {
+                                            %>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><%=resultSet.getString("payment.pay_id")%></td>
+                                                <td><%=resultSet.getString("payment.c_id")%></td>
+                                                <td><%=resultSet.getString("customer.name")%></td>
+                                                <td><%=resultSet.getString("payment.total_amount")%></td>
+                                            </tr>
+
+                                            <%
+                                                    }
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                            %>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>     
+
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-       
-        
-        <div class="container-lg">
-          <div class="table table-responsive">
-            
-              <div class="table-wrapper">
-                  <div class="table-title">
-                      <div class="row">
-                              <div class="col-sm-8"><h2>Payment <b>Details</b></h2></div>
-                             
-                          </div>
-                      </div>
-                      
-                      <table class="table table-bordered">
-                          <thead>
-                              <tr>
-                                  <th>Payment ID</th>
-                                  <th>Customer First Name</th>
-                                  
-                                  <th>Cus ID</th>
-                                  
-                                  <th>Price</th>
-                                  
-                                 
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <td>200</td>
-                                  <td>kamal</td>
-                                  
-                                  <td>100</td>
-                                  <td>5500.00</td>
-                                 
-                                 
-                                   
-</td>
-                                 
-                              </tr>
-                              
-                                    
-                          </tbody>
-                      </table>
-                      
-                  </div>
-              </div>
-          </div>     
-            
-            
-          </div>
-        </div>
-     
-      </div>
     </div>
-  </div>
- 
+
 </body>
 
 </html>
