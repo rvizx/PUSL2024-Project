@@ -74,7 +74,7 @@ public class addstaff extends HttpServlet {
             
             String sucessmsg = "Staff member Data was entered succesfully!!"; 
             request.setAttribute("message", sucessmsg);
-            request.getRequestDispatcher("admin/movie.jsp").forward(request, response);  
+            request.getRequestDispatcher("admin/addemployee.jsp").forward(request, response);  
 
         }
             
