@@ -1,4 +1,28 @@
-<!doctype html>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
+<!DOCTYPE html>
+
+<%
+                                        String driverName = "com.mysql.jdbc.Driver";
+                                        String connectionUrl = "jdbc:mysql://localhost:3306/";
+                                        String dbName = "abc_cinema";
+                                        String userId = "pmauser";
+                                        String password = "123NxUok4IL4pW9GvkJF8gO1C6MyRFed";
+
+                                        try {
+                                            Class.forName(driverName);
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        
+%>
+
 <html>
 
 <head>
@@ -77,7 +101,7 @@
         </Section><br>
 
 
-        <div class="grid grid-cols-3">
+        <div class="grid grid-cols-2">
 
             <div class="flex justify-center">
                 <label for="countries" class="block mb-2 text-sm font-medium text-white pr-3 "><ion-icon name="calendar"
@@ -115,36 +139,6 @@
                 </div>
             </div>
 
-            <div class="flex justify-center">
-                <label for="countries" class="block mb-2 text-sm font-medium text-white pr-3 "><ion-icon name="videocam"
-                        size="large"></ion-icon></label>
-                <div class="mb-3 xl:w-96">
-                    <select class="form-select appearance-none
-            block
-            w-full
-            px-3
-            py-1.5
-            text-base
-            rounded
-            font-normal
-            text-gray-700
-            bg-white bg-clip-padding bg-no-repeat
-            border border-solid border-gray-300
-            
-            transition
-            ease-in-out
-            m-0
-            focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                        aria-label="Default select example">
-                        <option selected>ALL MOVIES</option>
-                        <option value="1">BLACK PANTHER: WAKANDA FOREVER</option>
-                        <option value="2">BLACK ADAM</option>
-                        <option value="3">TOP GUN : MAVERICK</option>
-                        <option value="4">JURASSIC WORLD : DOMINION</option>
-                        <option value="5">K.G.F: CHAPTER 2</option>
-                    </select>
-                </div>
-            </div>
             <div class="flex justify-center">
                 <label for="countries" class="block mb-2 text-sm font-medium text-white pr-3 "><ion-icon name="eye"
                         size="large"></ion-icon></label>
@@ -274,7 +268,7 @@
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="#"
-                    class="hover:underline"></a>COPYRIGHT © 2022 ABC CINEMA.ALL RIGHTS RESERVED.
+                    class="hover:underline"></a>COPYRIGHT Â© 2022 ABC CINEMA.ALL RIGHTS RESERVED.
             </span>
         </footer>
 

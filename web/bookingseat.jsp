@@ -41,36 +41,6 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.css" />
     <link href="/assets/css/style.css" rel="stylesheet">
-    <script>
-        function getSeats(seat) {
-        let seatIndex = selectedSeats.indexOf(seat);
-        if(seatIndex !== -1) {
-            selectedSeats.splice(seatIndex, 1);
-        } else {
-            selectedSeats.push(seat);
-        }
-            console.log(selectedSeats);  //remove this later
-        }
-    
-        function sendSelectedSeats() {
-        let halfTicketAmount = document.getElementById("half-tickets").value;
-        let fullTicketAmount = document.getElementById("full-tickets").value;
-        fetch('/bookseats', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({selectedSeats: selectedSeats, halfTicketAmount: halfTicketAmount, fullTicketAmount: fullTicketAmount})
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-
-    </script>
 </head>
 
 <body class=" bg-black">
@@ -637,10 +607,38 @@
             e.name === 'grid' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100'))
                 : (e.name = "grid", list.classList.remove('top-[80px]'), list.classList.remove(opacity - 100))
         }
+        function getSeats(seat) {
+        let seatIndex = selectedSeats.indexOf(seat);
+        if(seatIndex !== -1) {
+            selectedSeats.splice(seatIndex, 1);
+        } else {
+            selectedSeats.push(seat);
+        }
+            console.log(selectedSeats);  //remove this later
+        }
+    
+        function sendSelectedSeats() {
+        let halfTicketAmount = document.getElementById("half-tickets").value;
+        let fullTicketAmount = document.getElementById("full-tickets").value;
+        fetch('/bookseats', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({selectedSeats: selectedSeats, halfTicketAmount: halfTicketAmount, fullTicketAmount: fullTicketAmount})
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
     </script>
     <script src="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
-    <script src="script.js"></script>
+    <script src="/assets/js/script.js"></script>
 </body>
 
 </html>
