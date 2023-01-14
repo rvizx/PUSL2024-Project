@@ -5,8 +5,8 @@
   
   <title>ABC Cinema</title>
   
-  <link rel="stylesheet" href="css/style.css">
-  <link href="table.css" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/css/style.css">
+  <link href="/admin/table.css" rel="stylesheet">
   <link rel="shortcut icon" href="images/film.png" />
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -75,7 +75,7 @@
       <ul class="nav">
         
           
-          <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
+          <center><img src="/admin/images/kindpng_2267500.png" height="40" width="40"></center>
           
         </li><br>
         <li class="nav-item " >
@@ -93,7 +93,7 @@
           <div  >
             <ul class="nav  sub-menu">
               <li class="nav-item"> <a class="nav-link" href="addmovie.jsp">Add Movies</a></li>
-               <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
+               <li class="nav-item"> <a class="nav-link" href="/admin/managemovie.jsp">Manage Movies</a></li>
               <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
             </ul>
           </div>
@@ -161,7 +161,7 @@
     <div class="navbar-menu-wrapper  ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="/admin/images/abc logo.png" alt="logo"/></a>
         
       </div>
       
@@ -180,7 +180,7 @@
             
             
             </div>
-            
+            ${message}
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Employee details</h4>

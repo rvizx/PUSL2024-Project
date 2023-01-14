@@ -242,18 +242,21 @@
                     ResultSet rs = ps.executeQuery();
 
             %>
+            
+            
 
             <div class="card">
                 <div class="card-body">
                     <form class="forms-sample" id="contact" method="post">
 
                         <% 
+                            
                             while (rs.next()) {
 
                         %>
                         <div class="form-group" >
-                            <label >Movie ID </label>
-                            <input type="text" value="<%=rs.getString("m_id")%>" class="form-control" name="moviename" placeholder="Name" required>
+                            <label >Movie ID- ${mid} </label>
+                            
                         </div>
                         <div class="form-group" >
                             <label >Movie Name </label>
