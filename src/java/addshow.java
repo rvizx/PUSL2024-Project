@@ -60,13 +60,14 @@ public class addshow extends HttpServlet {
                     ps1.setString(1, datetime);
                     ps1.setString(2, movieid);
                     ps1.executeUpdate();
+                    }
+
 
                     String sucessmsg = "Show Data was entered succesfully!!"; 
                     request.setAttribute("message", sucessmsg);
                     request.getRequestDispatcher("admin/movie.jsp").forward(request, response);  
             
-            }
-
+            
         }
             
     catch(ClassNotFoundException | SQLException e){

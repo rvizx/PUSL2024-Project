@@ -35,7 +35,7 @@
           
         </li><br>
         <li class="nav-item " >
-          <a class="nav-link" href="sfindex.jsp">
+          <a class="nav-link" href="staffdetails.jsp">
             Dashboard
             
           </a>
@@ -99,7 +99,7 @@
     <div class="navbar-menu-wrapper  ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="sfindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="staffdetails.jsp"><img src="images/abc logo.png" alt="logo"/></a>
         
       </div>
       

@@ -63,7 +63,7 @@ public class addmovie extends HttpServlet {
             
             String sucessmsg = "Movie Data was entered succesfully!!"; 
             request.setAttribute("message", sucessmsg);
-            request.getRequestDispatcher("admin/movie.jsp").forward(request, response);  
+            request.getRequestDispatcher("admin/addmovie.jsp").forward(request, response);  
 
         }
             
