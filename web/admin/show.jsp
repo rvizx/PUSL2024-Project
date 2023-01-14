@@ -133,7 +133,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Show details</h4>
 
-                                <form class="forms-sample" id="contact" method="post" action="showdetails">
+                                <form class="forms-sample" id="contact" method="post" action="/showdetails">
                                     <div class="form-group">
                                         <label >Show Date</label>
                                         <input type="date" class="form-control"  name="date" placeholder="Name" required>
@@ -148,11 +148,6 @@
                                             <option value="21:00:00">09.00 PM</option>
                                         </select>
                                     </div>
-
-
-
-                                    <div class="form-group">
-
                                         <%
                                             String id = request.getParameter("userId");
                                             String driverName = "com.mysql.jdbc.Driver";
@@ -161,12 +156,17 @@
                                             String userId = "root";
                                             String password = "";
 
+                                            try {
+                                                Class.forName(driverName);
+                                            } catch (ClassNotFoundException e) {
+                                                e.printStackTrace();
+                                            }
+
                                             Connection connection = null;
                                             Statement statement = null;
                                             ResultSet resultSet = null;
                                         %>
-
-
+                                        <div class="form-group">
                                         <label >Movie Name</label>
                                         <select class="form-control" name="movie" required>
                                             <option value="0">Select a Movie </option>
@@ -188,24 +188,26 @@
                                                     e.printStackTrace();
                                                 }
                                             %>
-                                        </select>
 
-                                        <button type="submit" class="btn btn-primary mr-2">Add Show</button>
-                                        <button type="clear" class="btn btn-light">Cancel</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                            <select>
+                                            </div>
 
-        </div>
+                                                <button type="submit" class="btn btn-primary mr-2">Add Show</button>
+                                                <button type="clear" class="btn btn-light">Cancel</button>
+                                                </form>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div>
 
-    </div>
+                                                </div>
 
-</div>
+                                                </div>
+
+                                                </div>
 
 
-</body>
+                                                </body>
 
-</html>
+                                                </html>
