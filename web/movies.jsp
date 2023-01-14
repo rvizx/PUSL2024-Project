@@ -402,7 +402,7 @@
                             <img class="rounded-t-lg" src="/assets/images/card 6.png" alt="" />
                         </a>
                         <div class="p-6">
-                                <h5 class="mb-2 text-xl font-medium text-gray-900">><%=m_name7%>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name7%>
                                 </h5>
                                 <p class="mb-4 text-base text-gray-700">
                                      <%=m_language7%> | <%=genre7%>
@@ -419,7 +419,7 @@
                             <img class="rounded-t-lg" src="/assets/images/card 7.png" alt="" />
                         </a>
                         <div class="p-6">
-                                <h5 class="mb-2 text-xl font-medium text-gray-900">><%=m_name8%></h5>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name8%></h5>
                                 <p class="mb-4 text-base text-gray-700">
                                      <%=m_language8%> | <%=genre8%>
                                 </p>
@@ -434,7 +434,7 @@
                             <img class="rounded-t-lg" src="/assets/images/card 8.png" alt="" />
                         </a>
                         <div class="p-6">
-                                <h5 class="mb-2 text-xl font-medium text-gray-900">><%=m_name9%>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name9%>
                                     WISH</h5>
                                 <p class="mb-4 text-base text-gray-700">
                                      <%=m_language9%> | <%=genre9%>
@@ -450,7 +450,7 @@
                             <img class="rounded-t-lg" src="/assets/images/card 9.png" alt="" />
                         </a>
                         <div class="p-6">
-                                <h5 class="mb-2 text-xl font-medium text-gray-900">><%=m_name10%></h5>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name10%></h5>
                                 <p class="mb-4 text-base text-gray-700">
                                      <%=m_language10%> | <%=genre10%>
                                 </p>
@@ -510,16 +510,7 @@
     </div>
 
 
-
-
-                                     <%=m_language5%> | <%=genre5%>
-                                
-         
-
-
-
-
-
+                              
     <script>
         function Menu(e) {
             let list = document.querySelector('ul');
