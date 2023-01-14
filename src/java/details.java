@@ -112,9 +112,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
           String c_id = rs3.getString("c_id");
           
           String date_time = (String) info.get("date_time");
-          String[] tickets = (String[]) info.get("tickets");
+          String[] tickets = (String[]) info.get("TicketAmount");
           
-           //tickets 
+          //tickets 
           PreparedStatement ps4=con.prepareStatement("INSERT INTO ticket(seat_no,c_id,date_time) VALUES(?,?,?)");
           for (int i = 0; i < tickets.length; i++) {
               ps4.setString(1,seats[i]); //from line 99
@@ -123,19 +123,6 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
               ps4.executeUpdate();
         }
           
-          //half tickets and full tickets
-          int halfTicketAmount = (int) info.get("halfTicketAmount");
-          int fullTicketAmount = (int) info.get("fullTicketAmount");                                
-          
-          PreparedStatement ps5=con.prepareStatement("INSERT INTO child_tickets(t_id,price) VALUES(DEFAULT,DEFAULT)");
-          for (int i = 0; i < halfTicketAmount; i++) {
-              ps5.executeUpdate();
-        }
-          
-          PreparedStatement ps6=con.prepareStatement("INSERT INTO adult_tickets(t_id,price) VALUES(DEFAULT,DEFAULT)");
-          for (int i = 0; i < fullTicketAmount; i++) {
-              ps6.executeUpdate();
-        }
            
        }
         

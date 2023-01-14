@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 14, 2023 at 04:06 AM
+-- Generation Time: Jan 15, 2023 at 04:31 AM
 -- Server version: 10.6.11-MariaDB-1
 -- PHP Version: 8.1.12
 
@@ -24,12 +24,12 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `adult_ticket`
+-- Table structure for table `admin_message`
 --
 
-CREATE TABLE `adult_ticket` (
-  `t_id` int(11) NOT NULL,
-  `a_price` int(11) DEFAULT NULL
+CREATE TABLE `admin_message` (
+  `msg_id` int(11) NOT NULL,
+  `message` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -41,17 +41,6 @@ CREATE TABLE `adult_ticket` (
 CREATE TABLE `booking` (
   `booking_id` varchar(30) NOT NULL,
   `t_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `child_ticket`
---
-
-CREATE TABLE `child_ticket` (
-  `t_id` int(11) NOT NULL,
-  `c_price` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -173,12 +162,16 @@ CREATE TABLE `movie` (
 --
 
 INSERT INTO `movie` (`m_id`, `m_name`, `m_language`, `genre`, `runtime`, `description`, `trailer_link`, `m_status`) VALUES
-(3, 'Puss in Boots: The Last Wish', 'English', 'Comedy', '01:40:00', 'Puss in Boots discovers that his passion for adventure has taken its toll: he has burnt through eight of his nine lives. Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives.', 'https://www.youtube.com/watch?v=xgZLXyqbYOc', 0),
-(4, 'Avatar: The Way of Water', 'English', 'Action', '03:12:00', 'Jake Sully and Ney\'tiri have formed a family and are doing everything to stay together. However, they must leave their home and explore the regions of Pandora. When an ancient threat resurfaces, Jake must fight a difficult war against the humans.', 'https://www.youtube.com/watch?v=d9MyW72ELq0', 1),
-(5, 'lwldksld', 'English', 'Crime', '02:34:00', 'lkdlsakdlkdsldkls', 'ksmdlksmdklfklewrwk', 1),
-(6, 'kmdkewmdkewkmd;lewkdlwkae', 'Tamil', 'Romance', '01:56:00', 'wkdmqwklmdkqemdklemdklwmdw', 'wqmdklqwmdklqwmd;kqedk;leqkmd;', 1),
-(7, 'kmqwkdmkqewmdklqewd', 'English', 'Comedy', '03:12:00', 'dasklmdkamdkamkmd', 'mdwmdklwmdklaldalsdkal', 0),
-(8, 'dlqwkdqewkdlqewk', 'English', 'Comedy', '02:34:00', 'wqdlqwkdqwkdleqkd', 'kmdkqedlkekdklew', 0);
+(1, 'BLACK PANTHER: WAKANDA FOREVER', 'English', 'Action', '01:40:00', 'BLACK PANTHER: WAKANDA FOREVERBLACK PANTHER: WAKANDA FOREVERBLACK PANTHER: WAKANDA FOREVERBLACK PANTHER: WAKANDA FOREVERBLACK PANTHER: WAKANDA FOREVERBLACK PANTHER: WAKANDA FOREVER', 'https://www.youtube.com/watch?v=xgZLXyqbYOc', 0),
+(2, 'BLACK ADAM', 'English', 'Action', '01:40:00', 'BLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAM', 'https://www.youtube.com/watch?v=xgZLXyqbYOc', 0),
+(3, 'TOP GUN: MAVERTICK', 'ENGLISH', 'ACTION | DRAMA', '01:40:00', 'TOP GUN: MAVERTICKTOP GUN: MAVERTICKTOP GUN: MAVERTICKTOP GUN: MAVERTICKTOP GUN: MAVERTICKTOP GUN: MAVERTICK', 'https://www.youtube.com/watch?v=xgZLXyqbYOc', 0),
+(4, 'JURASSIC WORLD:DOMINION', 'English', 'Action | Adventure', '03:12:00', 'TOP GUN:MAVERICKTOP GUN:MAVERICKTOP GUN:MAVERICKTOP GUN:MAVERICKTOP GUN:MAVERICKTOP GUN:MAVERICKTOP GUN:MAVERICK', 'https://www.youtube.com/watch?v=d9MyW72ELq0', 1),
+(5, 'K.G.F CHAPTER 2', 'Tamil', 'Action', '02:34:00', 'K.G.F CHAPTER 2K.G.F CHAPTER 2K.G.F CHAPTER 2K.G.F CHAPTER 2K.G.F CHAPTER 2K.G.F CHAPTER 2', 'https://www.youtube.com/video?K.G.F CHAPTER 2', 1),
+(6, 'AVATAR:THE WAY OF WATER', 'TAMIL', 'ACTION', '01:56:00', 'AVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATER', 'AVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATER', 1),
+(7, 'AVATAR: THE WAY OF WATER', 'ENGLISH', 'ACTION', '03:12:00', 'AVATAR: THE WAY OF WATERAVATAR: THE WAY OF WATERAVATAR: THE WAY OF WATER', 'AVATAR: THE WAY OF WATERAVATAR: THE WAY OF WATER', 0),
+(8, 'DEVOTION', 'ENGLISH', 'ACTION', '02:34:00', 'DEVOTION DEVOTION DEVOTION DEVOTION ', 'DEVOTION DEVOTIONDEVOTION DEVOTION ', 0),
+(9, 'PUSS IN BOOTS:THE LAST WISH', 'ENGLISH', 'ACTION | DRAMA', '01:40:00', 'PUSS IN BOOTS:THE LAST WISH', 'PUSS IN BOOTS:THE LAST WISH', 0),
+(10, 'SHOTGUN WEDDING', 'ENGLISH', 'ACTION', '01:40:00', 'SHOTGUN WEDDINGSHOTGUN WEDDING', 'SHOTGUN WEDDINGSHOTGUN WEDDING', 0);
 
 -- --------------------------------------------------------
 
@@ -382,6 +375,7 @@ INSERT INTO `staff` (`emp_id`) VALUES
 
 CREATE TABLE `ticket` (
   `t_id` int(11) NOT NULL,
+  `ticket_price` int(11) NOT NULL DEFAULT 1200,
   `seat_no` varchar(5) DEFAULT NULL,
   `c_id` int(11) DEFAULT NULL,
   `date_time` datetime DEFAULT NULL
@@ -392,10 +386,10 @@ CREATE TABLE `ticket` (
 --
 
 --
--- Indexes for table `adult_ticket`
+-- Indexes for table `admin_message`
 --
-ALTER TABLE `adult_ticket`
-  ADD PRIMARY KEY (`t_id`);
+ALTER TABLE `admin_message`
+  ADD PRIMARY KEY (`msg_id`);
 
 --
 -- Indexes for table `booking`
@@ -403,12 +397,6 @@ ALTER TABLE `adult_ticket`
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`booking_id`),
   ADD KEY `booking_ibfk_1` (`t_id`);
-
---
--- Indexes for table `child_ticket`
---
-ALTER TABLE `child_ticket`
-  ADD PRIMARY KEY (`t_id`);
 
 --
 -- Indexes for table `customer`
@@ -480,6 +468,12 @@ ALTER TABLE `ticket`
 --
 
 --
+-- AUTO_INCREMENT for table `admin_message`
+--
+ALTER TABLE `admin_message`
+  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
@@ -501,29 +495,17 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
-  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `adult_ticket`
---
-ALTER TABLE `adult_ticket`
-  ADD CONSTRAINT `adult_ticket_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `ticket` (`t_id`);
-
---
 -- Constraints for table `booking`
 --
 ALTER TABLE `booking`
   ADD CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `ticket` (`t_id`);
-
---
--- Constraints for table `child_ticket`
---
-ALTER TABLE `child_ticket`
-  ADD CONSTRAINT `child_ticket_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `ticket` (`t_id`);
 
 --
 -- Constraints for table `manager`

@@ -27,8 +27,6 @@ import java.util.HashMap;
  */
 
 
-// todo : add ticket amounts
-
 // get seat names of already booked seats
 @WebServlet(urlPatterns = {"/bookseats"})
 public class bookseats extends HttpServlet {        
@@ -88,29 +86,18 @@ public class bookseats extends HttpServlet {
   }
     
     // add booked seats to the database
-    /*
-    
-    show_id
-    seat_no
-    adult_ticket_amount
-    child_ticket_amount 
-    
-    */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         try{
            String[] seatNames = request.getParameterValues("selectedSeats"); //getting the seat names from the front-end and put it into an array
-           String halfTicketAmount = request.getParameter("halfTicketAmount");
-           String fullTicketAmount = request.getParameter("fullTicketAmount");
-
+           String TicketAmount = request.getParameter("TicketAmount");
             
             HttpSession session = request.getSession();
             HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
             info.put("seats", seatNames);
-            info.put("half-tickets", halfTicketAmount);
-            info.put("half-tickets", fullTicketAmount);
+            info.put("TicketAmount", TicketAmount);
 
             // if no seats we're selected 
             if (seatNames == null || seatNames.length == 0) { 

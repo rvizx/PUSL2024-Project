@@ -130,7 +130,7 @@
 
                 <div>
                     <div class="px-5 text-xl font-bold">
-                        <h1 class="text-white">No. Of Full Tickets</h1>
+                        <h1 class="text-white">No. Of Tickets</h1>
                     </div>
                     <div class="flex justify-center">
 
@@ -170,30 +170,6 @@
                 </div>
 
 
-                <div>
-                    <div class="px-5 text-xl font-bold">
-                        <h1 class="text-white">No. Of Half Tickets</h1>
-                    </div>
-                    <div class="flex justify-center">
-
-                        <div class="mb-3 xl:w-96">
-                            <select id="half-tickets" class="form-select appearance-none block w-56 px-3 py-1.5 rounded text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" aria-label="Default select example">
-
-                                <option selected>1</option>
-                                <option value="1">2</option>
-                                <option value="2">3</option>
-                                <option value="3">4</option>
-                                <option value="4">5</option>
-                                <option value="5">6</option>
-                                <option value="6">7</option>
-                                <option value="7">8</option>
-                                <option value="8">9</option>
-                                <option value="9">10</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
 
                 <div>
                     <div class="px-[80px] text-xl font-bold">
