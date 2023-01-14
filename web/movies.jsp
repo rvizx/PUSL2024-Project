@@ -1,6 +1,128 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!doctype html>
 <html>
 
+
+    <%
+        String driverName = "com.mysql.jdbc.Driver";
+        String connectionUrl = "jdbc:mysql://localhost:3306/";
+        String dbName = "abc_cinema";
+        String userId = "pmauser";
+        String password = "123NxUok4IL4pW9GvkJF8gO1C6MyRFed";
+
+        try {
+            Class.forName(driverName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    %>
+
+
+
+    <%              try {
+            Connection connection = null;
+            Statement statement = null;
+            ResultSet resultSet = null;
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql = "SELECT * FROM movie WHERE m_id=1";
+            resultSet = statement.executeQuery(sql);
+            resultSet.next();
+                String m_name1 = resultSet.getString("m_name");
+                String m_language1 = resultSet.getString("m_language");
+                String genre1 = resultSet.getString("genre");
+
+                
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql2 = "SELECT * FROM movie WHERE m_id=2";
+            resultSet = statement.executeQuery(sql2);
+            resultSet.next();
+                String m_name2 = resultSet.getString("m_name");
+                String m_language2 = resultSet.getString("m_language");
+                String genre2 = resultSet.getString("genre");
+                
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql3 = "SELECT * FROM movie WHERE m_id=3";
+            resultSet = statement.executeQuery(sql3);
+            resultSet.next();
+                String m_name3 = resultSet.getString("m_name");
+                String m_language3 = resultSet.getString("m_language");
+                String genre3 = resultSet.getString("genre");
+
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql4 = "SELECT * FROM movie WHERE m_id=4";
+            resultSet = statement.executeQuery(sql4);
+            resultSet.next();
+                String m_name4 = resultSet.getString("m_name");
+                String m_language4 = resultSet.getString("m_language");
+                String genre4 = resultSet.getString("genre");
+
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql5 = "SELECT * FROM movie WHERE m_id=5";
+            resultSet = statement.executeQuery(sql5);
+            resultSet.next();
+                String m_name5 = resultSet.getString("m_name");
+                String m_language5 = resultSet.getString("m_language");
+                String genre5 = resultSet.getString("genre");
+                
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql6 = "SELECT * FROM movie WHERE m_id=6";
+            resultSet = statement.executeQuery(sql6);
+            resultSet.next();
+                String m_name6 = resultSet.getString("m_name");
+                String m_language6 = resultSet.getString("m_language");
+                String genre6 = resultSet.getString("genre");
+
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql7 = "SELECT * FROM movie WHERE m_id=7";
+            resultSet = statement.executeQuery(sql7);
+            resultSet.next();
+                String m_name7 = resultSet.getString("m_name");
+                String m_language7 = resultSet.getString("m_language");
+                String genre7 = resultSet.getString("genre");
+                
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql8 = "SELECT * FROM movie WHERE m_id=8";
+            resultSet = statement.executeQuery(sql8);
+            resultSet.next();
+                String m_name8 = resultSet.getString("m_name");
+                String m_language8 = resultSet.getString("m_language");
+                String genre8 = resultSet.getString("genre");
+
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql9 = "SELECT * FROM movie WHERE m_id=9";
+            resultSet = statement.executeQuery(sql9);
+            resultSet.next();
+                String m_name9 = resultSet.getString("m_name");
+                String m_language9 = resultSet.getString("m_language");
+                String genre9 = resultSet.getString("genre");
+                
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql10 = "SELECT * FROM movie WHERE m_id=10";
+            resultSet = statement.executeQuery(sql10);
+            resultSet.next();
+                String m_name10 = resultSet.getString("m_name");
+                String m_language10 = resultSet.getString("m_language");
+                String genre10 = resultSet.getString("genre");                
+
+    %>
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -147,10 +269,10 @@
                             <img class="rounded-t-lg" src="/assets/images/card 1.png" alt="" />
                         </a>
                         <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">BLACK PANTHER: WAKANDA FOREVER
+                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name1%>
                             </h5>
                             <p class="mb-4 text-base text-gray-700">
-                                English | Action
+                                    <%=m_language1%> | <%=genre1%>
                             </p>
                             <button type="button"
                                 class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
@@ -166,10 +288,11 @@
                             <img class="rounded-t-lg" src="/assets/images/card 2.png" alt="" />
                         </a>
                         <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">BLACK ADAM</h5><br>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action | Adventure
-                            </p>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name2%></h5><br>
+
+                                <p class="mb-4 text-base text-gray-700">
+                                     <%=m_language2%> | <%=genre2%>
+                                </p>
                             <button type="button"
                                 class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
                                 Tickets</button>
@@ -184,11 +307,11 @@
                             <img class="rounded-t-lg" src="/assets/images/card 3.png" alt="" />
                         </a>
                         <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">TOP GUN : MAVERICK
-                            </h5><br>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name3%>
+                                </h5><br>
+                                <p class="mb-4 text-base text-gray-700">
+                                    <%=m_language3%> | <%=genre3%>
+                                </p>
                             <button type="button"
                                 class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
                                 Tickets</button>
@@ -203,11 +326,11 @@
                             <img class="rounded-t-lg" src="/assets/images/card 4.png" alt="" />
                         </a>
                         <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">JURASSIC WORLD : DOMINION
-                            </h5><br>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name4%>
+                                </h5><br>
+                                <p class="mb-4 text-base text-gray-700">
+                                     <%=m_language4%> | <%=genre4%>
+                                </p>
                             <button type="button"
                                 class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
                                 Tickets</button>
@@ -222,11 +345,11 @@
                             <img class="rounded-t-lg" src="/assets/images/card 5.png" alt="" />
                         </a>
                         <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">K.G.F: CHAPTER 2
-                            </h5><br>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name5%>
+                                </h5><br>
+                                <p class="mb-4 text-base text-gray-700">
+                                     <%=m_language5%> | <%=genre5%>
+                       </p>
                             <button type="button"
                                 class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
                                 Tickets</button>
@@ -241,68 +364,11 @@
                             <img class="rounded-t-lg" src="/assets/images/card 1.png" alt="" />
                         </a>
                         <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">BLACK PANTHER: WAKANDA FOREVER
-                            </h5>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
-                            <button type="button"
-                                class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
-                                Tickets</button>
-                            <button type="button"
-                                class=" inline-block px-6 py-2.5  bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out">Trailer</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div class="max-w-sm bg-white rounded-lg shadow-lg">
-                        <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 1.png" alt="" />
-                        </a>
-                        <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">BLACK PANTHER: WAKANDA FOREVER
-                            </h5>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
-                            <button type="button"
-                                class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
-                                Tickets</button>
-                            <button type="button"
-                                class=" inline-block px-6 py-2.5  bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out">Trailer</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div class="max-w-sm bg-white rounded-lg shadow-lg">
-                        <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 1.png" alt="" />
-                        </a>
-                        <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">BLACK PANTHER: WAKANDA FOREVER
-                            </h5>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
-                            <button type="button"
-                                class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
-                                Tickets</button>
-                            <button type="button"
-                                class=" inline-block px-6 py-2.5  bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out">Trailer</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div class="max-w-sm bg-white rounded-lg shadow-lg">
-                        <a href="#!">
-                            <img class="rounded-t-lg" src="/assets/images/card 1.png" alt="" />
-                        </a>
-                        <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">BLACK PANTHER: WAKANDA FOREVER
-                            </h5>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name6%>
+                                </h5><br>
+                                <p class="mb-4 text-base text-gray-700">
+                                     <%=m_language6%> | <%=genre6%>
+                       </p>
                             <button type="button"
                                 class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">Book
                                 Tickets</button>
@@ -336,11 +402,11 @@
                             <img class="rounded-t-lg" src="/assets/images/card 6.png" alt="" />
                         </a>
                         <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">AVATAR : THE WAY OF WATER
-                            </h5>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900">><%=m_name7%>
+                                </h5>
+                                <p class="mb-4 text-base text-gray-700">
+                                     <%=m_language7%> | <%=genre7%>
+                                </p>
 
                             <button type="button"
                                 class=" inline-block px-6 py-2.5  bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out">Trailer</button>
@@ -353,10 +419,10 @@
                             <img class="rounded-t-lg" src="/assets/images/card 7.png" alt="" />
                         </a>
                         <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">DEVOTION</h5>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900">><%=m_name8%></h5>
+                                <p class="mb-4 text-base text-gray-700">
+                                     <%=m_language8%> | <%=genre8%>
+                                </p>
                             <button type="button"
                                 class=" inline-block px-6 py-2.5  bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out">Trailer</button>
                         </div>
@@ -368,11 +434,11 @@
                             <img class="rounded-t-lg" src="/assets/images/card 8.png" alt="" />
                         </a>
                         <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">PUSS IN BOOTS: THE LAST
-                                WISH</h5>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900">><%=m_name9%>
+                                    WISH</h5>
+                                <p class="mb-4 text-base text-gray-700">
+                                     <%=m_language9%> | <%=genre9%>
+                                </p>
                             <button type="button"
                                 class=" inline-block px-6 py-2.5  bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out">Trailer</button>
                         </div>
@@ -384,10 +450,10 @@
                             <img class="rounded-t-lg" src="/assets/images/card 9.png" alt="" />
                         </a>
                         <div class="p-6">
-                            <h5 class="mb-2 text-xl font-medium text-gray-900">SHOTGUN WEDDING</h5>
-                            <p class="mb-4 text-base text-gray-700">
-                                English | Action
-                            </p>
+                                <h5 class="mb-2 text-xl font-medium text-gray-900">><%=m_name10%></h5>
+                                <p class="mb-4 text-base text-gray-700">
+                                     <%=m_language10%> | <%=genre10%>
+                                </p>
                             <button type="button"
                                 class=" inline-block px-6 py-2.5  bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out">Trailer</button>
                         </div>
@@ -399,7 +465,12 @@
         </section>
 
 
+    <%
+                        } catch (Exception e) {
+                                e.printStackTrace();
+                }
 
+    %>     
 
 
 
@@ -429,7 +500,7 @@
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="#"
-                    class="hover:underline"></a>COPYRIGHT © 2022 ABC CINEMA.ALL RIGHTS RESERVED.
+                    class="hover:underline"></a>COPYRIGHT Â© 2022 ABC CINEMA.ALL RIGHTS RESERVED.
             </span>
         </footer>
 
@@ -441,7 +512,9 @@
 
 
 
-
+                                     <%=m_language5%> | <%=genre5%>
+                                
+         
 
 
 
