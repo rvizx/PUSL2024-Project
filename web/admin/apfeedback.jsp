@@ -11,8 +11,8 @@
         <title>ABC Cinema</title>
 
 
-        <link rel="stylesheet" href="css/style.css">
-        <link href="table.css" rel="stylesheet">
+        <link rel="stylesheet" href="/admin/css/style.css">
+        <link href="/admin/table.css" rel="stylesheet">
 
         <link rel="shortcut icon" href="images/film.png" />
 
@@ -98,14 +98,14 @@
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="addmovie.jsp">Add Movies</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user.jsp">
+                        <a class="nav-link" href="customerdetail.jsp">
 
                             Customer Details
                         </a>
@@ -127,7 +127,7 @@
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="stff.jsp">Add Employee</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="addemployee.jsp">Add Employee</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
                             </ul>
@@ -146,13 +146,13 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="review.jsp">
+                        <a class="nav-link" href="apfeedback.jsp">
 
                             Approve Feedback
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="log.jsp">
+                        <a class="nav-link" href="/emplogin.jsp">
 
                             Logout
                         </a>

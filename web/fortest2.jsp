@@ -133,7 +133,7 @@
                             <div class="card-body">
                                 <h4 class="card-title">Show details</h4>
 
-                                <form class="forms-sample" id="contact" method="post" action="/showdetails">
+                                <form class="forms-sample" id="contact" method="post" action="  ">
                                     <div class="form-group">
                                         <label >Show Date</label>
                                         <input type="date" class="form-control"  name="date" placeholder="Name" required>
@@ -148,50 +148,51 @@
                                             <option value="21:00:00">09.00 PM</option>
                                         </select>
                                     </div>
-                                        <%
-                                            String id = request.getParameter("userId");
-                                            String driverName = "com.mysql.jdbc.Driver";
-                                            String connectionUrl = "jdbc:mysql://localhost:3306/";
-                                            String dbName = "abc_cinema";
-                                            String userId = "root";
-                                            String password = "";
+                                    <%
+                                        String id = request.getParameter("userId");
+                                        String driverName = "com.mysql.jdbc.Driver";
+                                        String connectionUrl = "jdbc:mysql://localhost:3306/";
+                                        String dbName = "abc_cinema";
+                                        String userId = "root";
+                                        String password = "";
 
-                                            try {
-                                                Class.forName(driverName);
-                                            } catch (ClassNotFoundException e) {
-                                                e.printStackTrace();
-                                            }
+                                        try {
+                                            Class.forName(driverName);
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        }
 
-                                            Connection connection = null;
-                                            Statement statement = null;
-                                            ResultSet resultSet = null;
-                                        %>
-                                        <div class="form-group">
+                                        Connection connection = null;
+                                        Statement statement = null;
+                                        ResultSet resultSet = null;
+                                    %>
+                                    <div class="form-group">
                                         <label >Movie Name</label>
                                         <select class="form-control" name="movie" required>
-                                            <option value="0">Select a Movie </option>
+                                            <option value="0">Select a Movie </option> <br>
                                             <%
                                                 try {
                                                     connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
                                                     statement = connection.createStatement();
-                                                    String sql = "SELECT * FROM movie";
+                                                    String sql = "SELECT * FROM movie WHERE m_id=3 ";
                                                     resultSet = statement.executeQuery(sql);
                                                     while (resultSet.next()) {
                                             %>
 
-                                            <option><%=resultSet.getString("m_name")%></option>
+                                            <option value="<%=resultSet.getString("m_name")%>"><%=resultSet.getString("m_name")%></option> <br>
 
-                                            <%
-                                                    }
-
-                                                } catch (Exception e) {
-                                                    e.printStackTrace();
-                                                }
-                                            %>
 
                                             <select>
-                                            </div>
+                                                <input type="text" value="<%=resultSet.getString("m_language")%>">
+                                                <input type="text" value="<%=resultSet.getString("m_id")%>"> <br>
+                                                </div>
+                                                <%
+                                                        }
 
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                %>
                                                 <button type="submit" class="btn btn-primary mr-2">Add Show</button>
                                                 <button type="clear" class="btn btn-light">Cancel</button>
                                                 </form>

@@ -92,14 +92,14 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="addmovie.jsp">Add Movies</a></li>
               <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
               <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
             </ul>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="user.jsp">
+          <a class="nav-link" href="customerdetail.jsp">
             
              Customer Details
           </a>
@@ -121,7 +121,7 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-                <li class="nav-item "> <a class="nav-link" href="stff.jsp">Add Employee</a></li>
+                <li class="nav-item "> <a class="nav-link" href="addemployee.jsp">Add Employee</a></li>
               <li class="nav-item active"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
               <li class="nav-item"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
             </ul>

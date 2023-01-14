@@ -5,8 +5,8 @@ s<!DOCTYPE html>
 
         <title>ABC Cinema</title>
 
-        <link rel="stylesheet" href="css/style.css">
-        <link href="table.css" rel="stylesheet">
+        <link rel="stylesheet" href="/admin/css/style.css">
+        <link href="/admin/table.css" rel="stylesheet">
         <link rel="shortcut icon" href="images/film.png" />
 
 
@@ -80,11 +80,11 @@ s<!DOCTYPE html>
     <body>
         <div class=" divide">
 
-            <nav class="sidebar sid "  >
+            <nav class="sidebar sid">
                 <ul class="nav">
 
 
-                    <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
+                    <center><img src="/admin/images/kindpng_2267500.png" height="40" width="40"></center>
 
                     </li><br>
                     <li class="nav-item " >
@@ -101,14 +101,14 @@ s<!DOCTYPE html>
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item active"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
+                                <li class="nav-item active"> <a class="nav-link" href="addmovie.jsp">Add Movies</a></li>
                                     <li class="nav-item "> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user.jsp">
+                        <a class="nav-link" href="customerdetail.jsp">
 
                             Customer Details
                         </a>
@@ -130,7 +130,7 @@ s<!DOCTYPE html>
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="stff.jsp">Add Employee</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="addemployee.jsp">Add Employee</a></li>
                                  <li class="nav-item"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
                                 <li class="nav-item"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
                             </ul>
@@ -170,7 +170,7 @@ s<!DOCTYPE html>
                     <div class="navbar-menu-wrapper ">
 
                         <div class="navbar-brand-wrapper ">
-                            <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+                            <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="/admin/images/abc logo.png" alt="logo"/></a>
 
                         </div>
 
@@ -192,23 +192,23 @@ s<!DOCTYPE html>
 
                         <div class="card">
                             <div class="card-body">
-
+                                <p>${message}</p>
                                 <h4 class="card-title">Movie details</h4>
 
                                 <form class="forms-sample" id="contact" method="post" action="/addmovie">
 
                                     <div class="form-group" >
-                                        <label >Movie Name </label>
+                                        <label>Movie Name</label>
                                         <input type="text" class="form-control" name="moviename" placeholder="Name" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label >Movie Language</label>
                                         <select class="form-control" name="movielanguage" required>
-                                            <option>English</option>
-                                            <option>Sinhala</option>
-                                            <option>Tamil</option>
-                                            <option>Hindi</option>
+                                            <option value="English" >English</option>
+                                            <option value="Sinhala" >Sinhala</option>
+                                            <option value="Tamil" >Tamil</option>
+                                            <option value="Hindi" >Hindi</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -223,7 +223,7 @@ s<!DOCTYPE html>
                                         <label>Movie Genre</label>
                                         <select class="form-control" name="moviegenre" required>
                                             <option value="Comedy">Comedy</option>
-                                            <option value="Aventure">Aventure</option>
+                                            <option value="Adventure">Adventure</option>
                                             <option value="Thriller">Thriller</option>
                                             <option value="Action">Action</option>
                                             <option value="Mystery">Mystery</option>

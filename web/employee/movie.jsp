@@ -176,7 +176,7 @@
                 <div class="card-body">
                   <h4 class="card-title">Movie details</h4>
                   
-                  <form class="forms-sample" id="contact" method="post">
+                  <form class="forms-sample" id="contact" method="post" action="">
                     
                     <div class="form-group" >
                       <label >Movie Name </label>
