@@ -46,7 +46,7 @@ public class bookseats extends HttpServlet {
                         
                  try {
                     Class.forName("com.mysql.jdbc.Driver");
-                    con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","pmauser","123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
+                    con=(Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema","root","");
                     st=con.createStatement();
                     
                     HttpSession session = request.getSession();
@@ -101,7 +101,7 @@ public class bookseats extends HttpServlet {
             throws ServletException, IOException {
         
         try{
-            String[] seatNames = request.getParameterValues("selectedSeats"); //getting the seat names from the front-end and put it into an array
+           String[] seatNames = request.getParameterValues("selectedSeats"); //getting the seat names from the front-end and put it into an array
            String halfTicketAmount = request.getParameter("halfTicketAmount");
            String fullTicketAmount = request.getParameter("fullTicketAmount");
 

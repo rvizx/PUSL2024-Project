@@ -84,40 +84,58 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
 
          }
           response.sendRedirect("/payment.jsp");
-
-/*
-
-          // DONT EDIT OR REMOVE THIS ~ rvz
           
           //insert rest of the values to the database
           
           //seat_numbers
-          PreparedStatement ps1=con.prepareStatement("INSERT INTO seats(name,mobile,email) VALUES(?,?,?)");
+          PreparedStatement ps1=con.prepareStatement("INSERT INTO seat(name,mobile,email) VALUES(?,?,?)");
           ps1.setString(1, name);
+          ps1.setString(2, phone);
+          ps1.setString(3, email);
           ps1.executeUpdate();
           
-          //tickets          
-          PreparedStatement ps3=con.prepareStatement("INSERT INTO tickets(seat_no,seat_status,email) VALUES(?,?,?)");
-                  ps1.setString(1, name);
-                  ps1.executeUpdate();
-
           
+          //seat
+          String[] seats = (String[]) info.get("seats");
+          PreparedStatement ps2=con.prepareStatement("UPDATE seats SET seat_status = 'reserved' WHERE seat_no = ?");
+          for (int i = 0; i < seats.length; i++) {
+              ps2.setString(1,seats[i]);
+              ps2.executeUpdate();
+        }
           
-          // filter
-          PreparedStatement ps3=con.prepareStatement("INSERT INTO child_tickets(seat_no,seat_status,email) VALUES(?,?,?)");
-                  ps1.setString(1, name);
-                  ps1.executeUpdate();
-
-
-          PreparedStatement ps3=con.prepareStatement("INSERT INTO adulit_tickets(seat_no,seat_status,email) VALUES(?,?,?)");
-
-                  ps1.setString(1, name);
-                  ps1.executeUpdate();
+                             
+          //get seat number -> set as fk
+          PreparedStatement ps3= con.prepareStatement("SELECT c_id FROM customer WHERE email = ?");
+          ps3.setString(1, email);
+          ResultSet rs3 = ps3.executeQuery();
+          rs3.next();
+          String c_id = rs3.getString("c_id");
           
-        
-*/
-
-
+          String date_time = (String) info.get("date_time");
+          String[] tickets = (String[]) info.get("tickets");
+          
+           //tickets 
+          PreparedStatement ps4=con.prepareStatement("INSERT INTO ticket(seat_no,c_id,date_time) VALUES(?,?,?)");
+          for (int i = 0; i < tickets.length; i++) {
+              ps4.setString(1,seats[i]); //from line 99
+              ps4.setString(2,c_id);
+              ps4.setString(3,date_time);
+              ps4.executeUpdate();
+        }
+          
+          //half tickets and full tickets
+          int halfTicketAmount = (int) info.get("halfTicketAmount");
+          int fullTicketAmount = (int) info.get("fullTicketAmount");                                
+          
+          PreparedStatement ps5=con.prepareStatement("INSERT INTO child_tickets(t_id,price) VALUES(DEFAULT,DEFAULT)");
+          for (int i = 0; i < halfTicketAmount; i++) {
+              ps5.executeUpdate();
+        }
+          
+          PreparedStatement ps6=con.prepareStatement("INSERT INTO adult_tickets(t_id,price) VALUES(DEFAULT,DEFAULT)");
+          for (int i = 0; i < fullTicketAmount; i++) {
+              ps6.executeUpdate();
+        }
            
        }
         
