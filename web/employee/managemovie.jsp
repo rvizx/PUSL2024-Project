@@ -1,3 +1,4 @@
+<%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -12,9 +13,9 @@
 
         <title>ABC Cinema</title>
 
-        <link rel="stylesheet" href="css/style.css">
-        <link href="table.css" rel="stylesheet">
-        <link rel="shortcut icon" href="images/film.png" />
+        <link rel="stylesheet" href="/admin/css/style.css">
+        <link href="/admin/table.css" rel="stylesheet">
+        <link rel="shortcut icon" href="/admin/images/film.png" />
 
 
 
@@ -89,17 +90,18 @@
         </script>
     </head>
     <body>
+        
         <div class=" divide">
 
-            <nav class="sidebar sid "  >
+            <nav class="sidebar sid ">
                 <ul class="nav">
 
 
-                    <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
+                    <center><img src="/admin/images/kindpng_2267500.png" height="40" width="40"></center>
 
                     </li><br>
                     <li class="nav-item " >
-                        <a class="nav-link" href="index.jsp">
+                        <a class="nav-link" href="/admin/adindex.jsp">
                             Dashboard
 
                         </a>
@@ -112,14 +114,14 @@
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item "> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
-                                <li class="nav-item active"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
+                                <li class="nav-item "> <a class="nav-link" href="addmovie.jsp">Add Movies</a></li>
+                                <li class="nav-item active"> <a class="nav-link" href="managemovies.jsp">Manage Movies</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user.jsp">
+                        <a class="nav-link" href="customerdetail.jsp">
 
                             Customer Details
                         </a>
@@ -128,12 +130,12 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Payment details.jsp">
+                        <a class="nav-link" href="paymentdetails.jsp">
 
                             Payment Details
                         </a>
                     </li>
-
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="show.jsp">
 
@@ -146,7 +148,7 @@
                             Booking Details
                         </a>
                     </li>
-
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="log.jsp">
 
@@ -156,14 +158,15 @@
 
                 </ul>
             </nav>
-abc_logo.png
-            <div class="container-fluid page-body-wrapper ">
 
-                <nav class="navbar   ">
+            <div class="container-fluid page-body-wrapper ">
+                
+
+               <nav class="navbar">
                     <div class="navbar-menu-wrapper ">
 
                         <div class="navbar-brand-wrapper ">
-                            <a class="navbar-brand brand-logo" href="index.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+                            <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" alt="logo"/></a>
 
                         </div>
 
@@ -175,6 +178,7 @@ abc_logo.png
 
 
                 </nav>
+         
                 <br>
                 <div class="main-panel">        
                     <div class="content-wrapper">
@@ -182,110 +186,105 @@ abc_logo.png
 
 
                         </div>
-
-
+                       
                         <h4 class="card-title">Search Movie Details</h4>
 
-                        <form class="forms-sample" id="contact" method="post" name="/updatemovie">
+                        <form class="forms-sample" id="contact" method="post" action="/managemovie_emp">
 
                             <div class="form-group " >
                                 <label >Movie ID </label>
-                                <input  type="text" class="" name="movieID" placeholder="Enter Movie ID" required>
-                                <%
-                                    String id = request.getParameter("userId");
-                                    String driverName = "com.mysql.jdbc.Driver";
-                                    String connectionUrl = "jdbc:mysql://localhost:3306/";
-                                    String dbName = "abc_cinema";
-                                    String userId = "root";
-                                    String password = "";
-
-                                    try {
-                                        Class.forName(driverName);
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                    Connection connection = null;
-                                    Statement statement = null;
-                                    ResultSet resultSet = null;
-
-                                    try {
-                                        connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
-                                        statement = connection.createStatement();
-                                        String sql = "SELECT * FROM movie";
-                                        resultSet = statement.executeQuery(sql);
-                                        while (resultSet.next()) {
-
-                                %>
-
-
-
-
+                                <input  type="text" class=""  name="movieID" placeholder="Enter Movie ID" required>
                                 <button type="submit" class=" btn-primary ">Search</button>
 
                         </form>
-
 
                     </div>
                 </div>
             </div>
 
+                 
+                 
 
+            <%  String mid = (String) request.getAttribute("MID");
+                String driverName = "com.mysql.jdbc.Driver";
+
+                try {
+                    Class.forName(driverName);
+
+                    Connection con = null;
+                    Statement st = null;
+
+                    Class.forName("com.mysql.jdbc.Driver");
+                    con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
+                    st = con.createStatement();
+
+                    PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE m_id=?");
+                    ps.setString(1, mid);
+                    ResultSet rs = ps.executeQuery();
+
+            %>
+            
+            
 
             <div class="card">
                 <div class="card-body">
+                    <form class="forms-sample" id="contact" method="post">
 
+                        <% 
+                            
+                            while (rs.next()) {
 
-                    <form class="forms-sample" id="contact" method="post" name="/updatemovie">
-
+                        %>
+                        <div class="form-group" >
+                            <label >Movie ID- ${mid} </label>
+                            
+                        </div>
                         <div class="form-group" >
                             <label >Movie Name </label>
-                            <input type="text" class="form-control" value="<%=resultSet.getString("m_name")%>" name="moviename" placeholder="Name" required>
+                            <input type="text" value="<%=rs.getString("m_name")%>" class="form-control" name="moviename" placeholder="Name" required>
                         </div>
 
                         <div class="form-group ">
                             <label >Movie Language</label>
-                            <select class="form-control" name="movielanguage" required>
-                                <option><%=resultSet.getString("m_language")%></option>
-                            </select>
+                            <input type="text" value="<%=rs.getString("m_language")%>" class="form-control" name="moviename" placeholder="Name" required>
                         </div>
                         <div class="form-group">
-                            <label >Movie Status</label>
-                            <select class="form-control" name="moviestatus" required>
-                                <option><%=resultSet.getString("m_status")%></option>
-
-                            </select>
+                            <label >Movie Status (1 - Now Showing, 0 - Coming soon)</label>
+                            <input type="text" value="<%=rs.getString("m_status")%>" class="form-control" name="moviename" placeholder="Name" required>
                         </div>
                         <div class="form-group">
                             <label>Movie Genre</label>
-                            <select class="form-control" name="moviegenre" required>
-                                <option><%=resultSet.getString("m_genre")%></option>
-                            </select>
+                            <input type="text" value="<%=rs.getString("genre")%>" class="form-control" name="moviename" placeholder="Name" required>
                         </div>
                         <div class="form-group" >
                             <label > Movie Runtime </label>
-                            <input type="time" class="form-control" value="<%=resultSet.getString("runtime")%>" name="movieruntime" placeholder="Movie Runtime" required>
+                            <input type="time" class="form-control" value="<%=rs.getString("runtime")%>" name="movieruntime" placeholder="Movie Runtime" required>
                         </div>
                         <div class="form-group" >
                             <label>Movie Description </label>
-                            <input type="text" class="form-control" value="<%=resultSet.getString("description")%>" name="moviedescription" placeholder="Movie Description" required>
+                            <input type="text" class="form-control" value="<%=rs.getString("description")%>" name="moviedescription" placeholder="Movie Description" required>
                         </div>
 
                         <div class="form-group" >
                             <label>Trailer link</label>
-                            <input type="text" class="form-control" value="<%=resultSet.getString("trailer_link")%>" name="moviedtrailer" placeholder="Movie Trailer link" required>
+                            <input type="text" class="form-control" value="<%=rs.getString("trailer_link")%>" name="moviedtrailer" placeholder="Movie Trailer link" required>
                         </div>
-                        <%                                 }
-
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                        %>
 
                         <button type="submit" class="btn btn-primary ">Update</button>
-                        <button type="submit" style="background-color:red;" class="btn btn-primary  ">Delete</button>
+                        <button type="submit" class="btn btn-primary " style="background-color:red;">Delete</button>
                         <button class="btn ">Cancel</button>
+                        <%
+
+                                }
+
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+
+
+                        %>
                     </form>
+
                 </div>
             </div>
         </div>

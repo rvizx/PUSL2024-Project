@@ -9,17 +9,39 @@
 
         <title>ABC Cinema</title>
 
+
         <link rel="stylesheet" href="css/style.css">
         <link href="table.css" rel="stylesheet">
         <link rel="shortcut icon" href="images/film.png" />
-
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <style>
-            table.table th:nth-child(3) {
-                width: 240px;
+            table.table th:nth-child(4) {
+                width: 140px;
             }
+            table.table th:nth-child(1) {
+                width: 65px;
+            }
+            table.table th:nth-child(8) {
+                width: 80px;
+            }
+            table.table th:nth-child(7) {
+                width: 120px;
 
+               
+                }
+
+                 .table-wrapper {
+                    width: 1600px;
+                    margin: 1px auto;
+                    background: #fff;
+                    padding: 1px;	
+                    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            }
+            table.table th:nth-child(6) {
+                width: 170px;
+            }
         </style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -40,7 +62,6 @@
                     $("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
                     $('[data-toggle="tooltip"]').tooltip();
                 });
-                // Add row on add button click
                 $(document).on("click", ".add", function () {
                     var empty = false;
                     var input = $(this).parents("tr").find('input[type="text"]');
@@ -61,9 +82,8 @@
                         $(".add-new").removeAttr("disabled");
                     }
                 });
-                // Edit row on edit button click
                 $(document).on("click", ".edit", function () {
-                    $(this).parents("tr").find("td:not(:last-child)").each(function () {
+                    $(this).parents("tr").find("td:not(:last-child ,:nth-child(4))").each(function () {
                         $(this).jsp('<input type="text" class="form-control" value="' + $(this).text() + '">');
                     });
                     $(this).parents("tr").find(".add, .edit").toggle();
@@ -75,13 +95,14 @@
                     $(".add-new").removeAttr("disabled");
                 });
             });
+
+
         </script>
     </head>
     <body>
-
         <div class=" divide">
 
-            <nav class="sidebar sid "  >
+            <nav class="sidebar sid " >
                 <ul class="nav">
 
 
@@ -103,8 +124,8 @@
                         <div  >
                             <ul class="nav  sub-menu">
                                 <li class="nav-item"> <a class="nav-link" href="addmovie.jsp">Add Movies</a></li>
-                                   <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
+                                <li class="nav-item active"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
                             </ul>
                         </div>
                     </li>
@@ -123,20 +144,7 @@
                             Payment Details
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link"   >
-
-                            Employees
-
-                        </a>
-                        <div  >
-                            <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="addemployee.jsp">Add Employee</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
-                                <li class="nav-item active"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
-                            </ul>
-                        </div>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="show.jsp">
 
@@ -149,12 +157,7 @@
                             Booking Details
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="/admin/apfeedback.jsp">
-
-                            Approve Feedback
-                        </a>
-                    </li>
+                   
                     <li class="nav-item">
                         <a class="nav-link" href="/emplogin.jsp">
 
@@ -185,93 +188,109 @@
                 </nav>
 
                 <div class="main-panel">        
+                    <div class="content-wrapper">
+                        <div class="row">
 
-                    <div class="container-lg">
-                        <div class="table-responsive">
-                            <div class="table-wrapper">
-                                <div class="table-title">
-                                    <div class="row">
-                                        <div class="col-sm-8"><h2>Employee <b>Details</b></h2></div>
-                                        <div class="col-sm-4">
 
+                        </div>
+
+
+                        <div class="container-lg">
+                            <div class="table table-responsive">
+
+                                <div class="table-wrapper">
+                                    <div class="table-title">
+                                        <div class="row">
+                                            <div class="col-sm-8"><h2>Movie <b>Details</b></h2></div>
+                                            <div class="col-sm-4">
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <%
-                                    String id = request.getParameter("userId");
-                                    String driverName = "com.mysql.jdbc.Driver";
-                                    String connectionUrl = "jdbc:mysql://localhost:3306/";
-                                    String dbName = "abc_cinema";
-                                    String userId = "root";
-                                    String password = "";
+                                    <%
+                                        String id = request.getParameter("userId");
+                                        String driverName = "com.mysql.jdbc.Driver";
+                                        String connectionUrl = "jdbc:mysql://localhost:3306/";
+                                        String dbName = "abc_cinema";
+                                        String userId = "root";
+                                        String password = "";
 
-                                    try {
-                                        Class.forName(driverName);
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    }
+                                        try {
+                                            Class.forName(driverName);
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        }
 
-                                    Connection connection = null;
-                                    Statement statement = null;
-                                    ResultSet resultSet = null;
-                                %>
+                                        Connection connection = null;
+                                        Statement statement = null;
+                                        ResultSet resultSet = null;
+                                    %>
 
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Employee ID</th>
-                                            <th>Employee Name</th>
-                                            <th>Employee  Email</th>
-                                        </tr>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Movie ID</th>
+                                                <th>Movie Name</th>
+                                                <th>Movie Language</th>
+                                                <th>Genre</th>
+                                                <th>Runtime</th>
+                                                <th>Description</th>
+                                                <th>Trailer</th>
+                                                <th>Status</th>
+                                               
+                                            </tr>
 
-                                        <%
-                                            try {
-                                                connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
-                                                statement = connection.createStatement();
-                                                String sql = "SELECT * FROM employee "
-                                                            + "WHERE emp_id!=1";
+                                            <%
+                                                try {
+                                                    connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+                                                    statement = connection.createStatement();
+                                                    String sql = "SELECT * FROM movie";
+                                                    resultSet = statement.executeQuery(sql);
+                                                    while (resultSet.next()) {
+                                            %>
 
-                                                resultSet = statement.executeQuery(sql);
-                                                while (resultSet.next()) {
-                                        %>
-                                    </thead>
-                                    <tbody>
+                                        </thead>
+                                        <tbody>
+                                        <form method="post" action="/updatemoviestatus">
+                                            <tr>
+                                                <td><%=resultSet.getString("m_id")%></td>
+                                                <td><%=resultSet.getString("m_name")%></td>
+                                                <td><%=resultSet.getString("m_language")%></td>
+                                                <td><%=resultSet.getString("genre")%></td>
+                                                <td><%=resultSet.getString("runtime")%></td>
+                                                <td><%=resultSet.getString("description")%></td>
+                                                <td><%=resultSet.getString("trailer_link")%></td>
+                                                <td><%=resultSet.getString("m_status")%></td>
 
-                                        <tr>
-                                            <td><%=resultSet.getString("emp_id")%></td>
-                                            <td><%=resultSet.getString("name")%></td>
-                                            <td><%=resultSet.getString("email")%></td>
-                                            
-                                        </tr>
+                                            </tr>
 
-                                        <%
+                                            <%
+                                                    }
+
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
                                                 }
+                                            %>
 
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                        %>
-
-                                    </tbody>
-                                </table>
+                                            </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>     
 
 
+
+                    </div>
                 </div>
+
             </div>
-
-
-
         </div>
     </div>
-</div>
 
 
-<script src="test.js"></script>
-<script>
+    <script src="test.js"></script>
+    <script>
             var myInput = document.getElementById("psw");
             var letter = document.getElementById("letter");
             var capital = document.getElementById("capital");
@@ -317,7 +336,7 @@
                     length.classList.add("invalid");
                 }
             }
-</script>
+    </script>
 </body>
 
 </html>

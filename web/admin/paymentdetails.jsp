@@ -159,7 +159,7 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="review.jsp">
+                        <a class="nav-link" href="/admin/admin/apfeedback.jsp">
 
                             Approve Feedback
                         </a>

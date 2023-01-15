@@ -98,7 +98,7 @@
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="review.jsp">
+                        <a class="nav-link" href="/admin/admin/apfeedback.jsp">
                             Approve Feedback
                         </a>
                     </li>
@@ -131,12 +131,13 @@
 
                         <div class="card">
                             <div class="card-body">
+                                <p>${message}</p>
                                 <h4 class="card-title">Show details</h4>
 
                                 <form class="forms-sample" id="contact" method="post" action="/showdetails">
                                     <div class="form-group">
                                         <label >Show Date</label>
-                                        <input type="date" class="form-control"  name="date" placeholder="Name" required>
+                                        <input type="date" class="form-control"  name="date" placeholder="date" required>
                                     </div>
 
                                     <div class="form-group">
@@ -179,7 +180,7 @@
                                                     while (resultSet.next()) {
                                             %>
 
-                                            <option><%=resultSet.getString("m_name")%></option>
+                                            <option value="<%=resultSet.getString("m_name")%>"><%=resultSet.getString("m_name")%></option>
 
                                             <%
                                                     }

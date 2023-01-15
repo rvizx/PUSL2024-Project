@@ -11,8 +11,8 @@
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
   
-  <link rel="stylesheet" href="css/style.css">
-  <link href="table.css" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/css/style.css">
+  <link href="/admin/table.css" rel="stylesheet">
   <link rel="shortcut icon" href="images/film.png" />
 
   <style>
@@ -31,7 +31,7 @@
       <ul class="nav">
         
           
-          <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
+          <center><img src="/admin/images/kindpng_2267500.png" height="40" width="40"></center>
           
         </li><br>
         <li class="nav-item " >
@@ -99,7 +99,7 @@
     <div class="navbar-menu-wrapper  ">
       
       <div class="navbar-brand-wrapper ">
-        <a class="navbar-brand brand-logo" href="staffdetails.jsp"><img src="imabc_logo.pngo.png" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="staffdetails.jsp"><img src="/admin/imabc_logo.pngo.png" alt="logo"/></a>
         
       </div>
       

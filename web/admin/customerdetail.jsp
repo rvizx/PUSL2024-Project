@@ -13,10 +13,10 @@
 
 
 
-        <link rel="stylesheet" href="css/style.css">
-        <link href="table.css" rel="stylesheet">
+        <link rel="stylesheet" href="/admin/css/style.css">
+        <link href="/admin/table.css" rel="stylesheet">
 
-        <link rel="shortcut icon" href="images/film.png" />
+        <link rel="shortcut icon" href="/admin/images/film.png" />
         <Style>
             table.table th:last-child {
                 width: 150px;
@@ -34,11 +34,11 @@
                 <ul class="nav">
 
 
-                    <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
+                    <center><img src="/admin/images/kindpng_2267500.png" height="40" width="40"></center>
 
                     </li><br>
                     <li class="nav-item " >
-                        <a class="nav-link" href="adindex.jsp">
+                        <a class="nav-link" href="/admin/adindex.jsp">
                             Dashboard
 
                         </a>
@@ -51,14 +51,14 @@
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="addmovie.jsp">Add Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/addmovie.jsp">Add Movies</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/managemovie.jsp">Manage Movies</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/moviedetails.jsp">Movie Details</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="customerdetail.jsp">
+                        <a class="nav-link" href="/admin/customerdetail.jsp">
 
                             Customer Details
                         </a>
@@ -67,7 +67,7 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="paymentdetails.jsp">
+                        <a class="nav-link" href="/admin/paymentdetails.jsp">
 
                             Payment Details
                         </a>
@@ -80,32 +80,32 @@
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="addemployee.jsp">Add Employee</a></li>
-                                 <li class="nav-item"> <a class="nav-link" href="empmanage.jsp">Manage Employee</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="staffdetails.jsp">Employee Details</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/addemployee.jsp">Add Employee</a></li>
+                                 <li class="nav-item"> <a class="nav-link" href="/admin/empmanage.jsp">Manage Employee</a></li>
+                                <li class="nav-item"> <a class="nav-link" href="/admin/staffdetails.jsp">Employee Details</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="show.jsp">
+                        <a class="nav-link" href="/admin/show.jsp">
 
                             Manage Shows
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="booking.jsp">
+                        <a class="nav-link" href="/admin/booking.jsp">
 
                             Booking Details
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="review.jsp">
+                        <a class="nav-link" href="/admin/apfeedback.jsp">
 
                             Approve Feedback
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/emplogin.jsp">
+                        <a class="nav-link" href="/admin/emplogin.jsp">
 
                             Logout
                         </a>
@@ -120,7 +120,7 @@
                     <div class="navbar-menu-wrapper  ">
 
                         <div class="navbar-brand-wrapper ">
-                            <a class="navbar-brand brand-logo" href="adindex.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+                            <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc logo.png" alt="logo"/></a>
 
                         </div>
 
