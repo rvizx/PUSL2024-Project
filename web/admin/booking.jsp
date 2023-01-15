@@ -7,7 +7,22 @@
 <html lang="en">
 
     <head>
-
+        <%
+            HttpSession empsession = request.getSession(false);
+            String sessionmail=(String)empsession.getAttribute("email");
+            String Admin="A-";
+            
+            
+            
+            
+            if (sessionmail == null || !sessionmail.substring(0, 2).equals(Admin)) {
+                
+                String redmsg = "Please Login to your Admin account to continue!";
+                request.setAttribute("message", redmsg);
+                request.getRequestDispatcher("/emplogin.jsp").forward(request, response);
+                response.sendRedirect("/emplogin.jsp");
+            } 
+        %>
         <title>ABC Cinema</title>
         <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
         <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
@@ -103,7 +118,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/emplogin.jsp">
+                    <a class="nav-link" href="/emplogin.jsp">
 
                         Logout
                     </a>
