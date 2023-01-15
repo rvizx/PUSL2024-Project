@@ -65,10 +65,7 @@
     </head>
 
     <body class=" bg-black">
-
         <div class="md:container md:mx-auto">
-
-
             <!--Nav Bar-->
             <nav class="p-5 bg-black shadow md:flex md:items-center md:justify-between">
                 <div class="flex justify-between item-center">
@@ -120,54 +117,20 @@
 
             </Section><br>
 
-
-            <div class="grid grid-cols-2">
-
+            <div class="grid grid-cols-1">
                 <div class="flex justify-center">
-                    <label for="countries" class="block mb-2 text-sm font-medium text-white pr-3 "><ion-icon name="calendar"
-                                                                                                             size="large"></ion-icon></label>
+                    <label for="countries" class="block mb-2 text-sm font-medium text-white pr-3 ">
                     <div class="mb-3 xl:w-96">
-                        <select class="form-select appearance-none
-                                block
-                                w-full
-                                px-3
-                                py-1.5
-                                text-base
-                                rounded
-                                font-normal
-                                text-gray-700
-                                bg-white bg-clip-padding bg-no-repeat
-                                border border-solid border-gray-300
 
-                                transition
-                                ease-in-out
-                                m-0
-                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                aria-label="Default select example">
 
-                            <%                                
+                            <%                                connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+                                statement = connection.createStatement();
+                                String movieId = m_id;
+                                String sql2 = "SELECT * FROM shows WHERE m_id='" + movieId + "'";
+                                resultSet = statement.executeQuery(sql2);
 
-                                    connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
-                                    statement = connection.createStatement();
-                                    String movieId = m_id;
-                                    String sql2 = "SELECT * FROM shows WHERE m_id='" + movieId + "'";
-                                    resultSet = statement.executeQuery(sql2);
-                                    while (resultSet.next()) {
-
-                                        String datetime = resultSet.getString("date_time");
-
-                                        String inputdate = datetime.substring(0, 10);
-                                        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-                                        SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd EEE");
-                                        Date date = inputFormat.parse(inputdate);
-                                        String outputDate = outputFormat.format(date);
-
-                                    
                             %>
 
-                            <option value="<%=inputdate%>"><%=outputDate%></option>
-                           <% } %>
-                        </select>
                     </div>
                 </div>
 
@@ -192,8 +155,8 @@
                                 m-0
                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 aria-label="Default select example">
-                            <option selected>ALL EXPERIENCE</option>
-                            <option value="1">2D CLASS</option>
+                            <option value="0">ALL EXPERIENCE</option>
+                            <option value="1" selected>2D CLASS</option>
                             <option value="2">3D GOLD CLASS</option>
                         </select>
                     </div>
@@ -212,33 +175,60 @@
                             <h1 class="text-white text-2xl font-bold">Havelock City Mall</h1>
                         </div><br>
                         <div>
-                            <h2 class="text-white text-xl">2D CLASS</h2>
+                            <h2 class="text-white text-xl"></h2>
+
+
+
+                            <%
+                                while (resultSet.next()) {
+                            // 20:30
+                                    String datetime = resultSet.getString("date_time");
+                                    String inputdate = datetime.substring(0, 10);
+                                    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                    SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd EEE");
+                                    Date date = inputFormat.parse(inputdate);
+                                    String outputDate = outputFormat.format(date);
+                            %>                                                       
+
                             <div class="flex items-center  mb-3">
                                 <div class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
-                                    <a href="#">
-                                        <button type="button"
-                                                class="rounded-l inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">10.30
-                                            AM</button>
-                                    </a>
-                                    <a href="/bookingseat.jsp">
-                                        <button type="button"
-                                                class="inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">01.00
-                                            PM</button>
-                                    </a>
-                                    <a href="#">
-                                        <button type="button"
-                                                class="inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">06.00
-                                            PM</button>
-                                    </a>
-                                    <a href="#">
-                                        <button type="button"
-                                                class="rounded-r inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">09.00
-                                            PM</button>
-                                    </a>
+                                    <button type="button" class="rounded-l inline-block px-7 py-3 bg-gray-400 text-white font-medium text-m leading-snug uppercase   focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-not-allowed "disabled>
+                                        <%=outputDate%>
+                                    </button>
+                                    <form action="/date_time" method="post">
+                                        <input type="hidden" name="date_time" value="<%=inputdate%> 10:30">
+                                        <input type="submit" value="10.30 AM"
+                                               class="rounded-l inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">                                            
+                                    </form>
+
+                                    <form action="/date_time" method="post">
+
+                                        <input type="hidden" name="date_time" value="<%=inputdate%> 13:00">
+                                        <input type="submit" value="01.00 PM"
+                                               class="inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">                                            
+                                    </form>
+                                    <form action="/date_time" method="post">
+
+                                        <input type="hidden" name="date_time" value="<%=inputdate%> 18:00">                                    
+                                        <input type="submit" value="06.00 PM"
+                                               class="inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">
+                                    </form>
+                                    <form action="/date_time" method="post">
+
+                                        <input type="hidden" name="date_time" value="<%=inputdate%> 21:00">                                    
+                                        <input type="submit" value="09.00 PM"
+                                               class="rounded-r inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">
+                                    </form>
                                 </div>
                             </div>
+
+                            <% }%>
+
+
+
+
                         </div><br>
-                        <div>
+                       <!-- <div>
                             <h2 class="text-white text-xl">3D GOLD CLASS</h2>
                             <div class="flex items-center  mb-3">
                                 <div class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
@@ -252,7 +242,7 @@
                                         PM</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
 

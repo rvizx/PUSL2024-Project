@@ -1,28 +1,10 @@
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.lang.Thread;
-import java.util.Properties;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,9 +19,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -92,15 +71,15 @@ public class cancel extends HttpServlet {
             ResultSet rs5 = ps5.executeQuery();
             rs5.next();
             String email = rs5.getString("email");
-            
+
             //if the booking id-exists
             if (rs.next()) {
                 PreparedStatement ps4 = con.prepareStatement("DROP * FROM ticket JOIN booking ON ticket.t_id = booking.t_id WHERE booking.booking_id=?");
                 ResultSet rs4 = ps4.executeQuery();
                 if (rs4.next()) {
 
-                    final String username = "abccinema.colombo@gmail.com"; // your email
-                    final String password = "";  // your password
+                    final String username = "abccinema.colombo@gmail.com";
+                    final String password = "";
 
                     Properties props = new Properties();
                     props.put("mail.smtp.auth", "true");
@@ -122,21 +101,21 @@ public class cancel extends HttpServlet {
                         message.setRecipients(Message.RecipientType.TO,
                                 InternetAddress.parse(email));
                         message.setSubject("ABC Cienma - Ticket Booking");
-                        
+
                         String template = "<!DOCTYPE html>"
-                    + "<html>"
-                    + "<head>"
-                    + "<title>Booking Cancellation at ABC Cinema</title>"
-                    + "</head>"
-                    + "<body>"
-                    + "<p>Dear Customer,</p>"
-                    + "<p>This is to inform you that your booking for <strong>"+movie+"</strong> on <strong>"+date_time+"</strong> has been cancelled sucessfully.</p>"
-                    + "<p>We apologize for any inconvenience that may have caused.</p>"
-                    + "<p>If you have any questions or concerns, please don't hesitate to contact us.</p>"
-                    + "<p>Best regards,</p>"
-                    + "<p>ABC Cinema</p>"
-                    + "</body>"
-                    + "</html>";                                                
+                                + "<html>"
+                                + "<head>"
+                                + "<title>Booking Cancellation at ABC Cinema</title>"
+                                + "</head>"
+                                + "<body>"
+                                + "<p>Dear Customer,</p>"
+                                + "<p>This is to inform you that your booking for <strong>" + movie + "</strong> on <strong>" + date_time + "</strong> has been cancelled sucessfully.</p>"
+                                + "<p>We apologize for any inconvenience that may have caused.</p>"
+                                + "<p>If you have any questions or concerns, please don't hesitate to contact us.</p>"
+                                + "<p>Best regards,</p>"
+                                + "<p>ABC Cinema</p>"
+                                + "</body>"
+                                + "</html>";
                         message.setText(template);
                         Transport.send(message);
                     } catch (MessagingException e) {

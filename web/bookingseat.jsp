@@ -541,6 +541,12 @@
             console.log(selectedSeats);  //remove this later
         }
     
+    /*
+     * ticketamount
+     * seat_no ={}
+     * price
+     */
+    
         function sendSelectedSeats() {
         let halfTicketAmount = document.getElementById("half-tickets").value;
         let fullTicketAmount = document.getElementById("full-tickets").value;
