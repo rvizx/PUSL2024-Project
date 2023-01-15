@@ -33,7 +33,7 @@ public class feedbackmessage extends HttpServlet {
         String message = request.getParameter("adminmsg");
 
         try {
-            
+
             // db configurations
             PrintWriter out = response.getWriter();
             Connection con = null;
@@ -43,12 +43,12 @@ public class feedbackmessage extends HttpServlet {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
             st = con.createStatement();
 
-            PreparedStatement ps=con.prepareStatement("INSERT INTO admin_message(message) VALUES(?)");
-            ps.setString(1, message);
+            String query = "INSERT INTO `admin_message` (msg_id, message) VALUES (NULL, '"+message+"')";
+            st.executeUpdate(query);
 
             String infomsg1 = "Feedback sent sucessfully!";
             request.setAttribute("message", infomsg1);
-            request.getRequestDispatcher("admin/review.jsp").forward(request, response);
+            request.getRequestDispatcher("/admin/apfeedback.jsp").forward(request, response);
 
         } catch (ClassNotFoundException | SQLException e) {
 
