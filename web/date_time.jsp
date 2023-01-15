@@ -120,7 +120,7 @@
             <div class="grid grid-cols-1">
                 <div class="flex justify-center">
                     <label for="countries" class="block mb-2 text-sm font-medium text-white pr-3 ">
-                    <div class="mb-3 xl:w-96">
+                        <div class="mb-3 xl:w-96">
 
 
                             <%                                connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
@@ -131,7 +131,7 @@
 
                             %>
 
-                    </div>
+                        </div>
                 </div>
 
                 <div class="flex justify-center">
@@ -181,7 +181,7 @@
 
                             <%
                                 while (resultSet.next()) {
-                            // 20:30
+                                    // 20:30
                                     String datetime = resultSet.getString("date_time");
                                     String inputdate = datetime.substring(0, 10);
                                     SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -195,30 +195,30 @@
                                     <button type="button" class="rounded-l inline-block px-7 py-3 bg-gray-400 text-white font-medium text-m leading-snug uppercase   focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-not-allowed "disabled>
                                         <%=outputDate%>
                                     </button>
-                                    <form action="/date_time" method="post">
-                                        <input type="hidden" name="date_time" value="<%=inputdate%> 10:30">
-                                        <input type="submit" value="10.30 AM"
-                                               class="rounded-l inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">                                            
-                                    </form>
+                                    <div class="mb-3 xl:w-96">
+                                        <select class="form-select appearance-none
+                                                block
+                                                w-full
+                                                px-3
+                                                py-1.5
+                                                text-base
+                                                rounded
+                                                font-normal
+                                                text-gray-700
+                                                bg-white bg-clip-padding bg-no-repeat
+                                                border border-solid border-gray-300
 
-                                    <form action="/date_time" method="post">
+                                                transition
+                                                ease-in-out
+                                                m-0
+                                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                aria-label="Default select example">
+                                            <option value="0">ALL EXPERIENCE</option>
+                                            <option value="1" selected>2D CLASS</option>
+                                            <option value="2">3D GOLD CLASS</option>
+                                        </select>
+                                    </div>  
 
-                                        <input type="hidden" name="date_time" value="<%=inputdate%> 13:00">
-                                        <input type="submit" value="01.00 PM"
-                                               class="inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">                                            
-                                    </form>
-                                    <form action="/date_time" method="post">
-
-                                        <input type="hidden" name="date_time" value="<%=inputdate%> 18:00">                                    
-                                        <input type="submit" value="06.00 PM"
-                                               class="inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">
-                                    </form>
-                                    <form action="/date_time" method="post">
-
-                                        <input type="hidden" name="date_time" value="<%=inputdate%> 21:00">                                    
-                                        <input type="submit" value="09.00 PM"
-                                               class="rounded-r inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-m leading-snug uppercase hover:bg-[#F6C74E] focus:bg-[#F6C74E] focus:outline-none focus:ring-0 active:bg-[#F6C74E] transition duration-150 ease-in-out">
-                                    </form>
                                 </div>
                             </div>
 
@@ -228,27 +228,29 @@
 
 
                         </div><br>
-                       <!-- <div>
-                            <h2 class="text-white text-xl">3D GOLD CLASS</h2>
-                            <div class="flex items-center  mb-3">
-                                <div class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
-                                    <button type="button"
-                                            class="rounded-l inline-block px-7 py-3 bg-gray-400 text-white font-medium text-m leading-snug uppercase   focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-not-allowed "
-                                            disabled>10.30
-                                        AM</button>
-                                    <button type="button"
-                                            class="rounded-r inline-block px-7 py-3 bg-gray-400 text-white font-medium text-m leading-snug uppercase   focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-not-allowed "
-                                            disabled>01.00
-                                        PM</button>
-                                </div>
-                            </div>
-                        </div> -->
+                        <!-- <div>
+                             <h2 class="text-white text-xl">3D GOLD CLASS</h2>
+                             <div class="flex items-center  mb-3">
+                                 <div class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
+                                     <button type="button"
+                                             class="rounded-l inline-block px-7 py-3 bg-gray-400 text-white font-medium text-m leading-snug uppercase   focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-not-allowed "
+                                             disabled>10.30
+                                         AM</button>
+                                     <button type="button"
+                                             class="rounded-r inline-block px-7 py-3 bg-gray-400 text-white font-medium text-m leading-snug uppercase   focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-not-allowed "
+                                             disabled>01.00
+                                         PM</button>
+                                 </div>
+                             </div>
+                         </div> -->
 
                     </div>
 
                 </div>
+                            
                 <div>
                     <img class="h-auto max-w-full" src="/assets/images/card_<%=m_id%>.png" alt="image description">
+                    
                 </div>
 
 
@@ -256,10 +258,9 @@
 
 
 
+                <
 
-
-
-
+                
 
 
 
