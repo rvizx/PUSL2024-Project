@@ -2,6 +2,7 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
+<%@page import="java.util.HashMap"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
@@ -19,6 +20,21 @@
                                         } catch (ClassNotFoundException e) {
                                             e.printStackTrace();
                                         }
+
+
+                                HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
+                                String m_id = (String) info.get("m_id");
+                                
+  try {
+            Connection connection = null;
+            Statement statement = null;
+            ResultSet resultSet = null;
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql = "SELECT * FROM movie WHERE m_id="+m_id;
+            resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            String m_name = resultSet.getString("m_name");
 
                                         
 %>
@@ -174,7 +190,7 @@
         <div class="grid grid-cols-2">
             <div>
                 <div class="items-center justify-center">
-                    <h1 class="text-white text-5xl font-bold">BLACK ADAM</h1><br>
+                    <h1 class="text-white text-5xl font-bold"><%=m_name%></h1><br>
                     <div class="flex flex-row items-center  ">
                         <ion-icon name="location"></ion-icon>
                         <h1 class="text-white text-2xl font-bold">Havelock City Mall</h1>
@@ -226,7 +242,7 @@
     
             </div>
             <div>
-                <img class="h-auto max-w-full" src="/assets/images/ticket_book_page_1.png" alt="image description">
+                <img class="h-auto max-w-full" src="/assets/images/card_<%=m_id%>.png" alt="image description">
             </div>
     
 
@@ -279,10 +295,13 @@
 
 
 
+    <%
 
-
-
-
+    }
+    catch(Exception e)
+    {
+    }
+%>
 
 
     <script>
