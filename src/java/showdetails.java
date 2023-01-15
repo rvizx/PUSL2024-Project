@@ -39,7 +39,7 @@ public class showdetails extends HttpServlet {
         String date = request.getParameter("date");
         String time = request.getParameter("time");
         String movie = request.getParameter("movie");
-        String empID="0";
+        String empID=request.getParameter("empID");
         String datetime = date + " " + time + ".000000";
 
         try {

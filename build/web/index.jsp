@@ -12,8 +12,8 @@
         String driverName = "com.mysql.jdbc.Driver";
         String connectionUrl = "jdbc:mysql://localhost:3306/";
         String dbName = "abc_cinema";
-        String userId = "pmauser";
-        String password = "123NxUok4IL4pW9GvkJF8gO1C6MyRFed";
+        String userId = "root";
+        String password = "";
 
         try {
             Class.forName(driverName);
@@ -558,7 +558,7 @@
                 </div>
                 <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                 <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="#"
-                                                                                               class="hover:underline"></a>COPYRIGHT Â© 2022 ABC CINEMA.ALL RIGHTS RESERVED.
+                                                                                               class="hover:underline"></a>COPYRIGHT ÃÂ© 2022 ABC CINEMA.ALL RIGHTS RESERVED.
                 </span>
             </footer>
 
