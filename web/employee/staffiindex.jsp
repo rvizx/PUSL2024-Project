@@ -2,16 +2,36 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="javax.servlet.http.HttpServlet"%>
+<%@page import="javax.servlet.http.HttpServletRequest"%>
+<%@page import="javax.servlet.http.HttpServletResponse"%>
+<%@page import="javax.servlet.http.HttpSession"%>
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
+        <%
+            HttpSession empsession = request.getSession(false);
+            String sessionmail = (String) empsession.getAttribute("email");
+            String Admin = "E-";
+
+            if (sessionmail == null || !sessionmail.substring(0, 2).equals(Admin)) {
+                
+                String redmsg = "Please Login to your Employee account to continue!";
+                request.setAttribute("message", redmsg);
+                request.getRequestDispatcher("/emplogin.jsp").forward(request, response);
+
+                response.sendRedirect("/emplogin.jsp");
+                
+                
+            }
+        %>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>ABC Cinema</title>
-        <link rel="shortcut icon" href="images/film.png" />
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="shortcut icon" href="/employee/images/film.png" />
+        <link rel="stylesheet" href="/employee/css/style.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
         <style>
@@ -75,11 +95,11 @@
                 <ul class="nav">
 
 
-                    <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
+                    <center><img src="/employee/images/kindpng_2267500.png" height="40" width="40"></center>
 
                     </li><br>
                     <li class="nav-item active" >
-                        <a class="nav-link" href="index.jsp">
+                        <a class="nav-link" href="/employee/staffiindex.jsp">
                             Dashboard
 
                         </a>
@@ -99,7 +119,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user.jsp">
+                        <a class="nav-link" href="/employee/user.jsp">
 
                             Customer Details
                         </a>
@@ -108,27 +128,27 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Payment details.jsp">
+                        <a class="nav-link" href="/employee/paymentdetails.jsp">
 
                             Payment Details
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="show.jsp">
+                        <a class="nav-link" href="/employee/show.jsp">
 
                             Manage Shows
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="booking.jsp">
+                        <a class="nav-link" href="/employee/booking.jsp">
 
                             Booking Details
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="log.jsp">
+                        <a class="nav-link" href="/emplogin.jsp">
 
                             Logout
                         </a>
@@ -143,7 +163,7 @@
                     <div class="navbar-menu-wrapper    ">
 
                         <div class="navbar-brand-wrapper ">
-                            <a class="navbar-brand brand-logo" href="index.jsp"><img src="images/abc logo.png" alt="logo"/></a>
+                            <a class="navbar-brand brand-logo" href="/employee/staffiindex.jsp"><img src="/employee/images/abc logo.png" alt="logo"/></a>
 
                         </div>
 

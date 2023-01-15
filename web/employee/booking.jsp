@@ -6,14 +6,31 @@
 <html lang="en">
 
 <head>
+     <%
+            HttpSession empsession = request.getSession(false);
+            String sessionmail = (String) empsession.getAttribute("email");
+            String Admin = "E-";
+
+            if (sessionmail == null || !sessionmail.substring(0, 2).equals(Admin)) {
+                
+                String redmsg = "Please Login to your Employee account to continue!";
+                request.setAttribute("message", redmsg);
+                request.getRequestDispatcher("/emplogin.jsp").forward(request, response);
+
+                response.sendRedirect("/emplogin.jsp");
+                
+                
+            }
+        %>
+
  
   <title>ABC Cinema</title>
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
   
-  <link rel="stylesheet" href="/admin/css/style.css">
-  <link href="/admin/table.css" rel="stylesheet">
-  <link rel="shortcut icon" href="images/film.png" />
+  <link rel="stylesheet" href="/employee/css/style.css">
+  <link href="/employee/table.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/employee/images/film.png" />
 
   <style>
     table.table th:nth-child(4) {
@@ -31,11 +48,11 @@
       <ul class="nav">
         
           
-          <center><img src="/admin/images/kindpng_2267500.png" height="40" width="40"></center>
+          <center><img src="/employee/images/kindpng_2267500.png" height="40" width="40"></center>
           
         </li><br>
         <li class="nav-item " >
-          <a class="nav-link" href="staffdetails.jsp">
+          <a class="nav-link" href="/employee/staffiindex.jsp">
             Dashboard
             
           </a>
@@ -48,9 +65,9 @@
           </a>
           <div  >
             <ul class="nav  sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
-              <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/employee/movie.jsp">Add Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/employee/managemovie.jsp">Manage Movies</a></li>
+              <li class="nav-item"> <a class="nav-link" href="/employee/moviedetails.jsp">Movie Details</a></li>
             </ul>
           </div>
         </li>

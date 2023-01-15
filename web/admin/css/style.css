@@ -90,6 +90,16 @@ table {
   padding: 0.875rem 1.5rem;
   cursor: pointer;
 }
+
+.btn-1{
+    color: #fff;
+    background-color: rgba(218, 165, 32, 1);
+    margin-top: 20px;
+    padding: 20px 0px;
+    width: 100%;
+    
+}
+
  
 
 
