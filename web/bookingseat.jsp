@@ -11,8 +11,8 @@
                                         String driverName = "com.mysql.jdbc.Driver";
                                         String connectionUrl = "jdbc:mysql://localhost:3306/";
                                         String dbName = "abc_cinema";
-                                        String userId = "pmauser";
-                                        String password = "123NxUok4IL4pW9GvkJF8gO1C6MyRFed";
+                                        String userId = "root";
+                                        String password = "";
 
                                         try {
                                             Class.forName(driverName);
@@ -126,46 +126,8 @@
 
                 </div>
 
-
-
-                <div>
-                    <div class="px-5 text-xl font-bold">
-                        <h1 class="text-white">No. Of Tickets</h1>
-                    </div>
-                    <div class="flex justify-center">
-
-                        <div class="mb-3 xl:w-96">
-                            <select id="full-tickets" class="form-select appearance-none
-                    block
-                    w-56
-                    px-3
-                    py-1.5
-                    rounded
-                    text-base
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding bg-no-repeat
-                    border border-solid border-gray-300
-                    
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                aria-label="Default select example">
-
-                                <option selected>1</option>
-                                <option value="1">2</option>
-                                <option value="2">3</option>
-                                <option value="3">4</option>
-                                <option value="4">5</option>
-                                <option value="5">6</option>
-                                <option value="6">7</option>
-                                <option value="7">8</option>
-                                <option value="8">9</option>
-                                <option value="9">10</option>
-                            </select>
-                        </div>
-                    </div>
+<div>
+                   
 
                 </div>
 
@@ -173,30 +135,16 @@
 
                 <div>
                     <div class="px-[80px] text-xl font-bold">
-                        <h1 class="text-white">TOTAL</h1>
+                        
                     </div>
                     <div class="flex justify-center">
                         <div class="mb-3 xl:w-96">
-                            <input type="text" class="
-                              form-control
-                              block
-                              w-56
-                              px-3
-                              py-1.5
-                              text-base
-                              rounded
-                              font-normal
-                              text-gray-700
-                              bg-white bg-clip-padding
-                              border border-solid border-gray-300
-                              transition
-                              ease-in-out
-                              m0-
-                              focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                            " id="exampleFormControlInput1" />
+                           
                         </div>
                     </div>
 
+
+                
                 </div>
             </div>
             <br><br><br>
