@@ -122,29 +122,23 @@ public class cancel extends HttpServlet {
                         message.setRecipients(Message.RecipientType.TO,
                                 InternetAddress.parse(email));
                         message.setSubject("ABC Cienma - Ticket Booking");
-                        message.setText("<!DOCTYPE html>"
-                                + "<html>"
-                                + "<head>"
-                                + "<title>Confirmation of your booking at ABC Cinema</title>"
-                                + "</head>"
-                                + "<body>"
-                                + "<p>Dear Customer,</p>"
-                                + "<p>. You have successfully booked seat(s) for <strong></strong> on <strong></strong>.</p>"
-                                + "<p>We are really looking forward to welcoming you to ABC Cinema and hope you have an enjoyable experience.</p>"
-                                + "<p>In case you need to cancel your booking, please click on the following button:</p>"
-                                + "<p><a href='' style='padding: 8px 12px; background-color: #ff0000; color: #fff; text-decoration: none;'>Cancel Booking</a></p>"
-                                + "<p>Please note that once you click the button, your booking will be cancelled, and the seats will be released for others to book.</p>"
-                                + "<p>Please let us know if you have any questions.</p>"
-                                + "<p>Best regards,</p>"
-                                + "<p>[Your name]</p>"
-                                + "<p>ABC Cinema</p>"
-                                + "</body>"
-                                + "</html>");
-
+                        
+                        String template = "<!DOCTYPE html>"
+                    + "<html>"
+                    + "<head>"
+                    + "<title>Booking Cancellation at ABC Cinema</title>"
+                    + "</head>"
+                    + "<body>"
+                    + "<p>Dear Customer,</p>"
+                    + "<p>This is to inform you that your booking for <strong>"+movie+"</strong> on <strong>"+date_time+"</strong> has been cancelled sucessfully.</p>"
+                    + "<p>We apologize for any inconvenience that may have caused.</p>"
+                    + "<p>If you have any questions or concerns, please don't hesitate to contact us.</p>"
+                    + "<p>Best regards,</p>"
+                    + "<p>ABC Cinema</p>"
+                    + "</body>"
+                    + "</html>";                                                
+                        message.setText(template);
                         Transport.send(message);
-
-                        System.out.println("Email sent successfully");
-
                     } catch (MessagingException e) {
                         throw new RuntimeException(e);
                     }
