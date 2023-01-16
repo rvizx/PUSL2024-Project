@@ -384,7 +384,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-center">
+<!--                    <div class="flex justify-center">
                         <div class="max-w-sm bg-white rounded-lg shadow-lg">
                             <a href="#!">
                                 <img class="rounded-t-lg" src="/assets/images/card_4.png" alt="" />
@@ -403,8 +403,8 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex justify-center">
+                    </div>-->
+<!--                    <div class="flex justify-center">
                         <div class="max-w-sm bg-white rounded-lg shadow-lg">
                             <a href="#!">
                                 <img class="rounded-t-lg" src="/assets/images/card_5.png" alt="" />
@@ -423,21 +423,18 @@
                                 </form>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex justify-center">
-                        <div class="max-w-sm bg-blck rounded-lg shadow-lg pt-56">
-                            <a href="/movies.jsp">
-                                <button type="button"
-                                        class=" inline-block px-6 py-2.5  bg-white text-black font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">VIEW
-                                    ALL</button>
-                            </a>
+                    </div>-->
+                    
 
-                        </div>
-
-                    </div>
 
                 </div>
+                                <a href="movies.jsp">
+                                     <div class="flex space-x-2 justify-center pt-[50px]">
+  <button type="button" class="inline-block w-96 px-12 py-4  bg-gray-700 text-white font-bold text-xl leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">View more</button>
+</div>
 
+                                </a>
+                               
             </section>
 
 
