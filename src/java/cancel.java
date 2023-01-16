@@ -79,7 +79,7 @@ public class cancel extends HttpServlet {
                 if (rs4.next()) {
 
                     final String username = "abccinema.colombo@gmail.com";
-                    final String password = "";
+                    final String password = "wyjeiqiichplxurl";
 
                     Properties props = new Properties();
                     props.put("mail.smtp.auth", "true");

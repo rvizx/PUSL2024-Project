@@ -92,7 +92,7 @@ public class review_payment extends HttpServlet {
                 return;
             }
             final String username = "abccinema.colombo@gmail.com"; // your email
-            final String password = "";  // your password
+            final String password = "wyjeiqiichplxurl";  // your password
 
             Properties props = new Properties();
             props.put("mail.smtp.auth", "true");
