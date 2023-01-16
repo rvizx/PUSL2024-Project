@@ -30,7 +30,6 @@ public class bookseats extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.setContentType("application/json");
         String[] bookedSeats = new String[0];
 
         try {
@@ -51,7 +50,6 @@ public class bookseats extends HttpServlet {
                 ResultSet rs = st.executeQuery(sql);
                 bookedSeats = new String[rs.getFetchSize()];
                 out.print(rs);
-
                 // append seat names to the array 
                 int i = 0;
                 while (rs.next()) {
@@ -81,15 +79,17 @@ public class bookseats extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+            //getting the seat names from the front-end and put it into an array
             String seats = request.getParameter("selectedSeats");
-            String[] seatNames = seats.split(","); //getting the seat names from the front-end and put it into an array
+            String[] seatNames = seats.split(",");
             String TicketAmount = String.valueOf(seatNames.length);
-            String price = String.valueOf(seatNames.length*800);
-            
+            String price = String.valueOf(seatNames.length * 800);
+
             HttpSession session = request.getSession();
             HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
             info.put("seats", seatNames);
             info.put("TicketAmount", TicketAmount);
+            info.put("price",price);
 
             // if no seats we're selected 
             if (seatNames == null || seatNames.length == 0) {
@@ -100,6 +100,48 @@ public class bookseats extends HttpServlet {
             PrintWriter out = response.getWriter();
             Connection con = null;
             Statement st = null;
+
+            // avoid booking collisions
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cienma", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
+                st = con.createStatement();
+
+                String date_time = (String) info.get("date_time");
+                String sql = "SELECT seat_status from seat WHERE date_time=" + date_time + " AND seat_no IN (?";
+                for (int i = 1; i < seatNames.length; i++) {
+                    sql += ",?";
+                }
+                sql += ")";
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setString(1, date_time);
+                for (int i = 0; i < seatNames.length; i++) {
+                    stmt.setString(i + 2, seatNames[i]);
+                }
+                ResultSet result = stmt.executeQuery();
+
+                boolean isReserved = false;
+                while (result.next()) {
+                    if (result.getString("seat_status").equals("reserved")) {
+                        isReserved = true;
+                        break;
+                    }
+                }                
+                
+            if (isReserved) {
+               response.sendRedirect("bookingseats.jsp");                               
+                } else {
+            }
+            
+
+            } catch (IOException | ClassNotFoundException | SQLException e) {
+                // An error occurred while connecting to the database or executing the query
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
+            }
+            
+            
+            
+            
 
             try {
                 Class.forName("com.mysql.jdbc.Driver");
