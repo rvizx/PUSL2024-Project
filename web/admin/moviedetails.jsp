@@ -233,7 +233,7 @@
 
                 </nav>
 
-                <div class="main-panel mt-5 w-[500px">        
+                <div class="main-panel mt-5">        
                     <div class="content-wrapper ">
                         <div class="row">
 

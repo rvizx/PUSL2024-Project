@@ -32,6 +32,8 @@
         <link rel="stylesheet" href="/admin/css/style.css">
         <link href="/admin/table.css" rel="stylesheet">
         <link rel="shortcut icon" href="/admin/images/film.png" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.css" rel="stylesheet" />
 
 
 
@@ -113,31 +115,31 @@
                 <ul class="nav">
 
 
-                    <center><img src="/admin/images/kindpng_2267500.png" height="40" width="40"></center>
+                    <center><img src="/admin/images/kindpng_2267500.png" height="60" width="60" class="mt-10"></center>
 
                     </li><br>
                     <li class="nav-item " >
-                        <a class="nav-link" href="/admin/adindex.jsp">
-                            Dashboard
+                        <a class="nav-link uppercase font-bold" href="/admin/adindex.jsp">
+                            Employee Dashboard
 
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link"   >
+                        <a class="nav-link uppercase font-bold"   >
                             Movies 
 
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item "> <a class="nav-link" href="addmovie.jsp">Add Movies</a></li>
-                                <li class="nav-item active"> <a class="nav-link" href="managemovies.jsp">Manage Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="moviedetails.jsp">Movie Details</a></li>
+                                <li class="nav-item "> <a class="nav-link uppercase font-bold" href="addmovie.jsp">Add Movies</a></li>
+                                <li class="nav-item active"> <a class="nav-link uppercase font-bold" href="managemovies.jsp">Manage Movies</a></li>
+                                <li class="nav-item"> <a class="nav-link uppercase font-bold" href="moviedetails.jsp">Movie Details</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="customerdetail.jsp">
+                        <a class="nav-link uppercase font-bold" href="customerdetail.jsp">
 
                             Customer Details
                         </a>
@@ -146,30 +148,30 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="paymentdetails.jsp">
+                        <a class="nav-link uppercase font-bold" href="paymentdetails.jsp">
 
                             Payment Details
                         </a>
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="show.jsp">
+                        <a class="nav-link uppercase font-bold" href="show.jsp">
 
                             Manage Shows
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="booking.jsp">
+                        <a class="nav-link uppercase font-bold" href="booking.jsp">
 
                             Booking Details
                         </a>
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="log.jsp">
-
-                            Logout
-                        </a>
+                        <form method="post" action="/empLogoutServlet">
+                        <input type="submit"
+                               class="inline-block w-full px-10 py-3 bg-gray-700 text-white text-center  text-m leading-tight uppercase font-bold  shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out uppercase"
+                               value="logout"></form>
                     </li>
 
                 </ul>
@@ -182,7 +184,7 @@
                     <div class="navbar-menu-wrapper ">
 
                         <div class="navbar-brand-wrapper ">
-                            <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" alt="logo"/></a>
+                           <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" class="mt-5 px-10" alt="logo"></a>
 
                         </div>
 
@@ -196,21 +198,21 @@
                 </nav>
          
                 <br>
-                <div class="main-panel">        
+                <div class="main-panel mt-10">        
                     <div class="content-wrapper">
                         <div class="row">
 
 
                         </div>
                        
-                        <h4 class="card-title">Search Movie Details</h4>
+                       <h4 class="card-title mb-8 font-bold uppercase text-xl">Search Movie Details</h4>
 
                         <form class="forms-sample" id="contact" method="post" action="/managemovie_emp">
 
                             <div class="form-group " >
                                 <label >Movie ID </label>
                                 <input  type="text" class=""  name="movieID" placeholder="Enter Movie ID" required>
-                                <button type="submit" class=" btn-primary ">Search</button>
+                                <button type="submit" class=" btn-primary bg-black px-10 py-2.5">Search</button>
 
                         </form>
 
@@ -286,8 +288,8 @@
                             <input type="text" class="form-control" value="<%=rs.getString("trailer_link")%>" name="moviedtrailer" placeholder="Movie Trailer link" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary ">Update</button>
-                        <button type="submit" class="btn btn-primary " style="background-color:red;">Delete</button>
+                        <button type="submit" class="btn btn-primary bg-black">Update</button>
+                        
                         <button class="btn ">Cancel</button>
                         <%
 
@@ -364,6 +366,7 @@
                 }
             }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 </body>
 
 </html>
