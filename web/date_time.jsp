@@ -187,22 +187,22 @@
                                     SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
                                     SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd EEE");
                                     Date date = inputFormat.parse(inputdate);
-                                    String outputDate = outputFormat.format(date);
+                                    String outputDate = outputFormat.format(date); 
                             %>                                                       
 
-                            <div class="flex items-center  mb-3">
+                            <div class="flex items-center  mb-5">
                                 <div class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
                                     <button type="button" class="rounded-l inline-block px-7 py-3 bg-gray-400 text-white font-medium text-m leading-snug uppercase   focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-not-allowed "disabled>
                                         <%=outputDate%>
                                     </button>
-                                    <div class="mb-3 xl:w-96">
+                                    <div class="mt-2 xl:w-96 ">
                                         <select class="form-select appearance-none
                                                 block
                                                 w-full
                                                 px-3
                                                 py-1.5
                                                 text-base
-                                                rounded
+                                             
                                                 font-normal
                                                 text-gray-700
                                                 bg-white bg-clip-padding bg-no-repeat
@@ -222,7 +222,7 @@
                                 </div>
                             </div>
 
-                            <% }%>
+                            <%} %>
 
 
 
@@ -245,7 +245,7 @@
                          </div> -->
 
                     </div>
-
+                            <input type="submit" class="text-white text-xl font-bold uppercase bg-[#DAA520] px-12 py-3 rounded" value="next">
                 </div>
                             
                 <div>
