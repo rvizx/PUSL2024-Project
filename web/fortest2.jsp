@@ -27,7 +27,7 @@
         </script>
     </head>
     <body>
-        <form  method="post" action="/fileupload" enctype="multipart/form-data">
+        <form  method="post" action="/fileupload2" enctype="multipart/form-data">
             <input type="text" name="num">
             <input type="file" name="file">
             <input type="submit" value="Upload">

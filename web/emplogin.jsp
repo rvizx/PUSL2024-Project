@@ -87,7 +87,7 @@
                   />
                 </div>
                 <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                  <form>
+                    <form method="post" action="/emplogin">
                     <div>
                         <h1 class="text-6xl text-white">STAFF LOGIN</h1><br>
                         <h3 class="text-white">PLEASE ENTER YOUR DETAILS.</h3>
@@ -124,11 +124,9 @@
                         
           
                     <div class="text-center lg:text-left">
-                      <button
-                        type="button"
-                        class="inline-block px-7 py-3 bg-[#DAA520] text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out">
-                        LOGIN
-                      </button>
+                       <input type="submit"
+                               class="inline-block mt-5 px-10 py-4 bg-gray-700 text-white font-medium text-m leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out uppercase"
+                               value="Login">
                     </div>
                   </form>
                 </div>

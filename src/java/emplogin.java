@@ -46,7 +46,7 @@ public class emplogin extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            String email = request.getParameter("email");
+            String email = request.getParameter("text");
             String password = request.getParameter("password");
 
             //response.sendRedirect("/date_time.jsp");
