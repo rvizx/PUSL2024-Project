@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,15 +31,25 @@ public class fileupload2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        PrintWriter out= response.getWriter();
 
         Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
         
-        String fileName = Paths.get(filePart.getSubmittedFileName()).toString(); //.getFileName().toString(); // MSIE fix.
+        String Number=request.getParameter("num");
+        
+        String fileName = "card_"+Number+".png";
         
         InputStream fileContent = filePart.getInputStream();
         
-        String path = getServletContext().getRealPath("/"+"TestImg"+File.separator+fileName);
+        String path = getServletContext().getRealPath("/assets/images/")+File.separator+fileName;
         
+        //out.println(fileName);
+        //out.println(path);
+        
+        
+        
+       
         try (FileOutputStream outputStream = new FileOutputStream(path)) {
             int read = 0;
             final byte[] bytes = new byte[1024];
@@ -49,7 +60,11 @@ public class fileupload2 extends HttpServlet {
             response.getWriter().write("File uploaded successfully");
             outputStream.flush();
         }
-    }
+    catch (FileNotFoundException e) {
+    System.out.println("File not found at the specified location, please check the path or permissions " + e);
 }
 
+     
+}
 
+}
