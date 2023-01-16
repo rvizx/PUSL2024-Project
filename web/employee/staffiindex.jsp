@@ -33,8 +33,10 @@
         <link rel="shortcut icon" href="/employee/images/film.png" />
         <link rel="stylesheet" href="/employee/css/style.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.css" rel="stylesheet" />
 
-        <style>
+<!--        <style>
             @media screen and (min-width: 1000px) {
                 .sid {
                     min-height: calc(130vh - 65px);
@@ -45,7 +47,7 @@
                 width: 900px;
             }
 
-        </style>
+        </style>-->
 
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>
         <script type="text/javascript">
@@ -95,12 +97,12 @@
                 <ul class="nav">
 
 
-                    <center><img src="/employee/images/kindpng_2267500.png" height="40" width="40"></center>
+                    <center><img src="images/kindpng_2267500.png" height="60" width="60" class="mt-10"></center>
 
                     </li><br>
                     <li class="nav-item active" >
-                        <a class="nav-link" href="/employee/staffiindex.jsp">
-                            Dashboard
+                        <a class="nav-link " href="/employee/staffiindex.jsp">
+                            Employee Dashboard
 
                         </a>
                     </li>
@@ -148,10 +150,10 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/emplogin.jsp">
-
-                            Logout
-                        </a>
+                        <form method="post" action="/empLogoutServlet">
+                        <input type="submit"
+                               class="inline-block w-full px-10 py-3 bg-gray-700 text-white text-center font-medium text-m leading-tight uppercase  shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out uppercase"
+                               value="logout"></form>
                     </li>
 
                 </ul>
@@ -163,7 +165,7 @@
                     <div class="navbar-menu-wrapper    ">
 
                         <div class="navbar-brand-wrapper ">
-                            <a class="navbar-brand brand-logo" href="/employee/staffiindex.jsp"><img src="/employee/images/abc logo.png" alt="logo"/></a>
+                            <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" class="mt-5 px-10" alt="logo"></a>
 
                         </div>
 
@@ -206,7 +208,7 @@
 
 
                             <div class="col-sm-8">
-                                <h2 style="color:red;">Admin<b> Alert !</b></h2>
+                                <h2 style="color:red;" class="mb-8 font-bold uppercase text-3xl">Admin Alert!</b></h2>
                                 <table class="table table-bordered">
                                     <tbody>
 
@@ -238,28 +240,14 @@
                     </div>     
 
 
-                    <div class="card">
-                        <div class="card-body">
-
-
-
-                            <br>
-                            <div class="card">
-                                <div id="chart_div3"></div></div>
-
-
-
-
-                        </div>
-
-                    </div>
+                    <img src="/admin/images/cinemahall_image.png">
 
                 </div>
 
 
 
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
                 </body>
 
                 </html>
