@@ -123,6 +123,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
               ps4.executeUpdate();
         }
           
+          response.sendRedirect("authorize_payment");
+          
            
        }
         

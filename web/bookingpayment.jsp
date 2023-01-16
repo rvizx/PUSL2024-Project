@@ -227,7 +227,7 @@
             <div class="row">
                 <div class="col-25">
                     <div class="container">
-                        <form action="#">
+                        <form action="/details" method="POST">
 
                             <div class="row">
                                 <div class="col-50 pb-5">

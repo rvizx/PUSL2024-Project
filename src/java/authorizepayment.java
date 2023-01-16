@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
  
 import com.paypal.base.rest.PayPalRESTException;
+import java.util.HashMap;
 
 /**
  *
@@ -26,17 +27,20 @@ public class authorizepayment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();  
         
+        //map
+        HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
+       String price = (String) info.get("price");
+       
         String product = request.getParameter("product");
-        String subtotal =request.getParameter("subtotal");
-        String shipping =request.getParameter("shipping");
-        String tax =request.getParameter("tax");
-        String total =request.getParameter("total");
+        String subtotal =price;
+        String shipping = "0";
+        String tax = "0" ;
+        String total = price;
          
-        OrderDetail orderDetail = new OrderDetail(product, subtotal, shipping, tax, total);
-        
+        OrderDetail orderDetail = new OrderDetail(product, subtotal, shipping, tax, total);        
       
- 
         try {
             PaymentServices paymentServices = new PaymentServices();
             String approvalLink = paymentServices.authorizePayment(orderDetail);

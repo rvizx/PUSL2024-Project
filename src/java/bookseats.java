@@ -155,6 +155,8 @@ public class bookseats extends HttpServlet {
 
                         int rowsUpdated = ps2.executeUpdate();
                         if (rowsUpdated == seatNames.length) {
+                            response.sendRedirect("bookingpayment.jsp");
+                            
 
                         } else {
 
@@ -167,26 +169,7 @@ public class bookseats extends HttpServlet {
                         // response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
                         out.print(e);
                     }
-                                        
-                    
-                    finally {
-                        // closing the database resources
-                        if (st != null) {
-                            try {
-                                st.close();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        if (con != null) {
-                            try {
-                                con.close();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-
+                                                           
                 }
 
             } catch (Exception e) {
@@ -197,7 +180,6 @@ public class bookseats extends HttpServlet {
             }
 
             session.setAttribute("info", info);
-            //response.sendRedirect("details.jsp");
 
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
