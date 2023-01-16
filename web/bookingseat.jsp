@@ -11,8 +11,8 @@
                                         String driverName = "com.mysql.jdbc.Driver";
                                         String connectionUrl = "jdbc:mysql://localhost:3306/";
                                         String dbName = "abc_cinema";
-                                        String userId = "root";
-                                        String password = "";
+                                        String userId = "pmauser";
+                                        String password = "123NxUok4IL4pW9GvkJF8gO1C6MyRFed";
 
                                         try {
                                             Class.forName(driverName);
@@ -531,7 +531,9 @@
             e.name === 'grid' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100'))
                 : (e.name = "grid", list.classList.remove('top-[80px]'), list.classList.remove(opacity - 100))
         }
-        function getSeats(seat) {
+   
+    /*
+    function getSeats(seat) {
         let seatIndex = selectedSeats.indexOf(seat);
         if(seatIndex !== -1) {
             selectedSeats.splice(seatIndex, 1);
@@ -540,13 +542,15 @@
         }
             console.log(selectedSeats);  //remove this later
         }
-    
+    */
+   
     /*
      * ticketamount
      * seat_no ={}
      * price
      */
-    
+   
+    /*
         function sendSelectedSeats() {
         let halfTicketAmount = document.getElementById("half-tickets").value;
         let fullTicketAmount = document.getElementById("full-tickets").value;
@@ -565,6 +569,8 @@
             console.error('Error:', error);
         });
     }
+     * 
+     */
     </script>
     <script src="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>

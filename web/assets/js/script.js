@@ -4,6 +4,13 @@ const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
 
+let seatNumbers = [];
+
+function addSeatNumber(seat_no) {
+  seatNumbers.push(seat_no);
+  console.log(seatNumbers);
+}
+
 populateUI();
 let ticketPrice = +movieSelect.value;
 
@@ -29,6 +36,10 @@ function updateSelectedCount() {
 
   count.innerText = selectedSeatsCount;
   total.innerText = selectedSeatsCount * ticketPrice;
+}
+
+function sendSelectedSeats() {
+  console.log(seatNumbers);
 }
 
 // get data from localstorage and populate ui
@@ -60,7 +71,7 @@ movieSelect.addEventListener('change', (e) => {
 container.addEventListener('click', (e) => {
   if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
     e.target.classList.toggle('selected');
-
+    addSeatNumber(e.target.getAttribute("data-seat_no"));
     updateSelectedCount();
   }
 });
