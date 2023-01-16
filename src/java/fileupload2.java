@@ -42,10 +42,10 @@ public class fileupload2 extends HttpServlet {
         
         InputStream fileContent = filePart.getInputStream();
         
-        String path = getServletContext().getRealPath("/assets/images/")+File.separator+fileName;
+        String path = getServletContext().getRealPath("/../../web/assets/images")+File.separator+fileName;
         
         //out.println(fileName);
-        //out.println(path);
+        out.println(path);
         
         
         
