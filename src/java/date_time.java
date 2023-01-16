@@ -28,9 +28,12 @@ public class date_time extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
 
-        String date_time = request.getParameter("date_time");
+        
+        String date = request.getParameter("date");
+        String time=request.getParameter("time");
+        String date_time=date+" "+time;
         out.print(date_time);
-
+/*
         try {
 
             //HTTP Session
@@ -50,7 +53,7 @@ public class date_time extends HttpServlet {
             session.setAttribute("info", info);
             rs.next();          
             int availableseats = rs.getInt(1);
-            out.print(availableseats);
+            out.print(availableseats); 
             
                 if (availableseats <= 0) {
                     String message = "There are no bookings available on the date you selected!!";
@@ -64,7 +67,7 @@ public class date_time extends HttpServlet {
         } catch (Exception e) {
 
             out.print(e);
-        }
-    }
-
+        } */
+    } 
+    
 }
