@@ -96,10 +96,10 @@
                 <br><br>
                 <div class="flex flex-wrap">
                     <div class="grow-0 shrink-0 basis-auto mb-12 lg:mb-0 w-full lg:w-5/12 px-3 lg:px-6">
-                        <form>
+                        <form name="feedback" action="/feedback" method="post">
                             <div class="form-group mb-6">
-                                <p class="text-xl font-bold my-3 text-3">${message}<p>
-                                    <input type="text" class="form-control block 
+                                <p class="text-xl  font-bold my-3 text-white">${message}<p>
+                                    <input name="name" type="text" class="form-control block 
                       w-full
                       px-3
                       py-1.5
@@ -116,7 +116,7 @@
                                     placeholder="NAME">
                             </div>
                             <div class="form-group mb-6">
-                                <input type="email" class="form-control block
+                                <input type="email" name="email" class="form-control block
                       w-full
                       px-3
                       py-1.5
@@ -133,7 +133,7 @@
                                     placeholder="EMAIL ADDRESS">
                             </div>
                             <div class="form-group mb-6">
-                                <textarea class="
+                                <input name="message" class="
                       form-control
                       block
                       w-full
@@ -152,7 +152,7 @@
                     " id="exampleFormControlTextarea13" rows="3" placeholder="FEEDBACK MESSAGE"></textarea>
                             </div>
 
-                            <button type="submit" class="
+                            <input value="Send" type="submit" class="
                     w-full
                     px-6
                     py-2.5
@@ -169,7 +169,7 @@
                     active:bg-[#F6C74E] active:shadow-lg
                     transition
                     duration-150
-                    ease-in-out">SEND</button>
+                    ease-in-out">
                         </form>
                     </div>
                     <div class="grow-0 shrink-0 basis-auto w-full lg:w-7/12">

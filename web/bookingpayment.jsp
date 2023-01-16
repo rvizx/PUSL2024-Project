@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <!doctype html>
 <html>
 
@@ -227,7 +228,7 @@
             <div class="row">
                 <div class="col-25">
                     <div class="container">
-                        <form action="#">
+                        <form action="/details" method="post">
 
                             <div class="row">
                                 <div class="col-50 pb-5">
@@ -235,7 +236,7 @@
                                     <!-- <label for="fname"></i> FIRST NAME</label> -->
                                     <input type="text" id="fname" name="firstname" placeholder="FULL NAME">
                                     <!-- <label for="email"></i> EMAIL</label> -->
-                                    <input type="text" id="email" name="email" placeholder="EMAIL">
+                                    <input type="email" id="email" name="email" placeholder="EMAIL">
                                     <!-- <label for="phone"></i> PHONE NUMBER</label> -->
                                     <input name="phone" type="text" id="phone" name="phone" placeholder="PHONE NUMBER"
                                         class="">
@@ -251,8 +252,8 @@
                                 </div>
                             </div>
 
-                            <a href="https://www.paypal.com/lk/home">
-                                <button type="button"
+                            
+                            <input type="submir" value="Check out with PayPal"
                                     class="w-full text-gray-900 bg-[#DAA520] hover:bg-[#F7BE38] focus:ring-4 focus:outline-none focus:ring-[#F7BE38]/50 font-medium rounded-lg text-l uppercase font-black px-10 py-3.5 text-center inline-flex items-center dark:focus:ring-[#F7BE38]/50 mr-2 mb-2">
                                     <svg class="w-4 h-4 mr-2 ml-[180px]" aria-hidden="true" focusable="false"
                                         data-prefix="fab" data-icon="paypal" role="img"
@@ -261,10 +262,13 @@
                                             d="M111.4 295.9c-3.5 19.2-17.4 108.7-21.5 134-.3 1.8-1 2.5-3 2.5H12.3c-7.6 0-13.1-6.6-12.1-13.9L58.8 46.6c1.5-9.6 10.1-16.9 20-16.9 152.3 0 165.1-3.7 204 11.4 60.1 23.3 65.6 79.5 44 140.3-21.5 62.6-72.5 89.5-140.1 90.3-43.4 .7-69.5-7-75.3 24.2zM357.1 152c-1.8-1.3-2.5-1.8-3 1.3-2 11.4-5.1 22.5-8.8 33.6-39.9 113.8-150.5 103.9-204.5 103.9-6.1 0-10.1 3.3-10.9 9.4-22.6 140.4-27.1 169.7-27.1 169.7-1 7.1 3.5 12.9 10.6 12.9h63.5c8.6 0 15.7-6.3 17.4-14.9 .7-5.4-1.1 6.1 14.4-91.3 4.6-22 14.3-19.7 29.3-19.7 71 0 126.4-28.8 142.9-112.3 6.5-34.8 4.6-71.4-23.8-92.6z">
                                         </path>
                                     </svg>
-                                    Check out with PayPal
-                                </button>
-                            </a>
-
+                                   
+                                    
+                            
+                                    <% HttpSession session1 = request.getSession();
+            HashMap<String, Object> info = (HashMap<String, Object>) session1.getAttribute("info");
+             String TicketAmount = (String) info.get("TicketAmount");
+%>
 
 
 
@@ -274,13 +278,13 @@
                 <div class="col-25">
                     <div class="container">
                         <h4 class="text-3xl font-bold mt-3 pb-5 text-white">PURCHASE SUMMARY</h4>
-                        <p class="text-white text-xl"><a href="#">FULL TICKETS (x2)</a> <span class="price">Rs.1500.00</span></p>
+                        <p class="text-white text-xl"><a href="#">FULL TICKETS (x2)</a> <span class="price"><%=TicketAmount%></span></p>
                         <p><a href="#"></p>
                         <p><a href="#"></span></p>
                             <br>
                         <hr>
                         <br>
-                        <p class="text-white font-bold text-xl" >AMOUNT PAYABLE<span class="price" style="color:rgb(255, 255, 255)"><b>Rs.1500.00</b></span></p><br>
+                        <p class="text-white font-bold text-xl" >AMOUNT PAYABLE<span class="price" style="color:rgb(255, 255, 255)"><b><%=TicketAmount%></b></span></p><br>
                         <hr class="my-1">
                         <hr>
                     </div>

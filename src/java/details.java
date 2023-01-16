@@ -37,9 +37,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         
    try
       {
-        String name=request.getParameter("name");
+        String name=request.getParameter("firstname");
         String email=request.getParameter("email");
-        String phone=request.getParameter("mobile"); 
+        String phone=request.getParameter("phone"); 
         HttpSession session = request.getSession();  
         
         //map
