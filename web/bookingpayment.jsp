@@ -233,9 +233,7 @@
                                 <div class="col-50 pb-5">
                                     <h3 class="text-3xl font-bold text-white mt-3 pb-3">YOUR DETAILS</h3>
                                     <!-- <label for="fname"></i> FIRST NAME</label> -->
-                                    <input type="text" id="fname" name="firstname" placeholder="FIRST NAME">
-                                    <!-- <label for="fname"></i> LAST NAME</label> -->
-                                    <input type="text" id="lname" name="lasttname" placeholder="LAST NAME">
+                                    <input type="text" id="fname" name="firstname" placeholder="FULL NAME">
                                     <!-- <label for="email"></i> EMAIL</label> -->
                                     <input type="text" id="email" name="email" placeholder="EMAIL">
                                     <!-- <label for="phone"></i> PHONE NUMBER</label> -->
@@ -277,7 +275,6 @@
                     <div class="container">
                         <h4 class="text-3xl font-bold mt-3 pb-5 text-white">PURCHASE SUMMARY</h4>
                         <p class="text-white text-xl"><a href="#">FULL TICKETS (x2)</a> <span class="price">Rs.1500.00</span></p>
-                        <p class="text-white text-xl"><a href="#">HALF TICKETS (x0)</a> <span class="price">-</p>
                         <p><a href="#"></p>
                         <p><a href="#"></span></p>
                             <br>
