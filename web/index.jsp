@@ -534,16 +534,7 @@
                     </a>
                     <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                         <li>
-                            <a href="privancy.html" class="mr-4 hover:underline md:mr-6 ">PRIVACY POLICY</a>
-                        </li>
-                        <li>
-                            <a href="term.html" class="mr-4 hover:underline md:mr-6">TERMS & CONDITIONS</a>
-                        </li>
-                        <li>
-                            <a href="feedback.html" class="mr-4 hover:underline md:mr-6 ">FEEDBACK</a>
-                        </li>
-                        <li>
-                            <a href="emplogin.html" class="hover:underline">STAFF</a>
+
                         </li>
                     </ul>
                 </div>
