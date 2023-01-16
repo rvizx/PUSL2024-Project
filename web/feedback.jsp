@@ -285,16 +285,16 @@
                 </a>
                 <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6 ">PRIVACY POLICY</a>
+                        <a href="privancy.jsp" class="mr-4 hover:underline md:mr-6 ">PRIVACY POLICY</a>
                     </li>
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6">TERMS & CONDITIONS</a>
+                        <a href="term.jsp" class="mr-4 hover:underline md:mr-6">TERMS & CONDITIONS</a>
                     </li>
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6 ">TERMS OF USE</a>
+                        <a href="feedback.jsp" class="mr-4 hover:underline md:mr-6 ">FEEDBACK</a>
                     </li>
                     <li>
-                        <a href="" class="hover:underline">CONTACT US</a>
+                        <a href="emplogin.jsp" class="hover:underline">STAFF</a>
                     </li>
                 </ul>
             </div>

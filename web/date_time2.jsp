@@ -76,7 +76,7 @@
             <nav class="p-5 bg-black shadow md:flex md:items-center md:justify-between">
                 <div class="flex justify-between item-center">
                     <span class="cursor-pointer">
-                        <a href="index.html">
+                        <a href="index.jsp">
                             <img class="h-10 inline" src="/assets/images/abc_cinema_logo.png" alt="">
                         </a>
                     </span>
@@ -88,15 +88,15 @@
                 <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-black w-full left-0 md:w-auto md:py-0 py-6 md:pl-0 pl-7
                     md:opacity-100 opacity-100 top-[-400px] transition-all ease-in duration-500">
                     <li class="mx-6 my-6 md:my-0">
-                        <a href="/Index.html"
+                        <a href="/index.jsp"
                            class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">HOME</a>
                     </li>
                     <li class="mx-6 my-6 md:my-0">
-                        <a href="/movies.html"
+                        <a href="/movies.jsp"
                            class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">MOVIES</a>
                     </li>
                     <li class="mx-6 my-6 md:my-0">
-                        <a href="/contactus.html"
+                        <a href="/contactus.jsp"
                            class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">FEEDBACK</a>
                     </li>
 
@@ -287,28 +287,28 @@
 
             <footer class="p-4 bg-black  shadow md:px-6 md:py-8 ">
                 <div class="sm:flex sm:items-center sm:justify-between">
-                    <a href="/src/index.html" class="flex items-center mb-4 sm:mb-0">
-                        <img src="/assets/images/abc_cinema_logo.png" class="h-8 mr-3" alt="Flowbite Logo"
-                             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
+                    <a href="index.jsp" class="flex items-center mb-4 sm:mb-0">
+                        <img src="/assets/images/abc_cinema_logo.png" class="h-8 mr-3" alt="Flowbite Logo" />
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
                     </a>
                     <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                         <li>
-                            <a href="#" class="mr-4 hover:underline md:mr-6 ">PRIVACY POLICY</a>
+                            <a href="privancy.jsp" class="mr-4 hover:underline md:mr-6 ">PRIVACY POLICY</a>
                         </li>
                         <li>
-                            <a href="#" class="mr-4 hover:underline md:mr-6">TERMS & CONDITIONS</a>
+                            <a href="term.jsp" class="mr-4 hover:underline md:mr-6">TERMS & CONDITIONS</a>
                         </li>
                         <li>
-                            <a href="#" class="mr-4 hover:underline md:mr-6 ">TERMS OF USE</a>
+                            <a href="feedback.jsp" class="mr-4 hover:underline md:mr-6 ">FEEDBACK</a>
                         </li>
                         <li>
-                            <a href="" class="hover:underline">CONTACT US</a>
+                            <a href="emplogin.jsp" class="hover:underline">STAFF</a>
                         </li>
                     </ul>
                 </div>
                 <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
                 <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="#"
-                                                                                               class="hover:underline"></a>COPYRIGHT © 2022 ABC CINEMA.ALL RIGHTS RESERVED.
+                        class="hover:underline"></a>COPYRIGHT © 2022 ABC CINEMA.ALL RIGHTS RESERVED.
                 </span>
             </footer>
 
