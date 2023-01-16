@@ -38,6 +38,8 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.css" rel="stylesheet" />
         <script>
             $(document).ready(function () {
                 $('[data-toggle="tooltip"]').tooltip();
@@ -99,7 +101,7 @@
                 <ul class="nav">
 
 
-                    <center><img src="/admin/images/kindpng_2267500.png" height="40" width="40"></center>
+                    <center><img src="/admin/images/kindpng_2267500.png" height="60" width="60" class="mt-10"></center>
 
                     </li><br>
                     <li class="nav-item " >
@@ -169,11 +171,11 @@
                             Approve Feedback
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/emplog.jsp">
-
-                            Logout
-                        </a>
+                    <<li class="nav-item">
+                        <form method="post" action="/empLogoutServlet">
+                        <input type="submit"
+                               class="inline-block w-full px-10 py-3 bg-gray-700 text-white text-center font-medium text-m leading-tight uppercase  shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out uppercase"
+                               value="logout"></form>
                     </li>
 
                 </ul>
@@ -185,7 +187,7 @@
                     <div class="navbar-menu-wrapper  ">
 
                         <div class="navbar-brand-wrapper ">
-                            <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" alt="logo"/></a>
+                            <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" class="mt-5 px-10" alt="logo"></a>
 
                         </div>
 
@@ -198,7 +200,7 @@
 
                 </nav>
                 <br>
-                <div class="main-panel">        
+                <div class="main-panel mt-10">        
                     <div class="content-wrapper">
                         <div class="row">
 
@@ -206,7 +208,7 @@
                         </div>
 
 
-                        <h4 class="card-title">Search employee details</h4>
+                        <h4 class="card-title mb-8 font-bold uppercase text-xl">Search employee details</h4>
 
                         <form class="forms-sample" id="contact" method="post" action="/manageemployees">
 
@@ -218,7 +220,7 @@
 
 
 
-                                <button type="submit" class=" btn-primary ">Search</button>
+                                <button type="submit" class=" btn-primary bg-black px-10 py-2.5">Search</button>
 
                         </form>
                         <%  String eid = (String) request.getAttribute("MID");
@@ -268,8 +270,8 @@
                         </div>
 
 
-                        <button type="submit" class="btn btn-primary ">Update</button>
-                        <button type="submit" class="btn btn-primary ">Delete</button>                    
+                        <button type="submit" class="btn btn-primary bg-black">Update</button>
+                        <button type="submit" class="btn btn-primary" style="background-color:red;">Delete</button>                    
                         <button class="btn ">Cancel</button>
                         <%                               }
 
@@ -343,6 +345,7 @@
                 }
             }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 </body>
 
 </html>

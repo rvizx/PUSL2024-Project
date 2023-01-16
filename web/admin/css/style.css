@@ -180,7 +180,7 @@ table {
   height: 100%;
   background: #000000;
   font-family: "Source Sans Pro", sans-serif;
-  width: 240px;
+  width: 400px;
 }
 
 .sidebar .nav {
@@ -249,14 +249,14 @@ table {
 
 
 /* Navbar */
-.navbar {
+/*.navbar {
   
   background: url(../images/nav.jpeg) center center no-repeat;
   background-size: cover;
   height: 100px;
   width: auto;
 
-}
+}*/
 
 
 
