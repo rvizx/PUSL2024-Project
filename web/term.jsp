@@ -1,5 +1,5 @@
-<!doctype .jsp>
-<.jsp>
+<!doctype html>
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -29,7 +29,7 @@
         <nav class="p-5 bg-black shadow md:flex md:items-center md:justify-between">
             <div class="flex justify-between item-center">
                 <span class="cursor-pointer">
-                    <a href="index..jsp">
+                    <a href="index.jsp">
                         <img class="h-10 inline" src="/assets/images/abc_cinema_logo.png" alt="">
                     </a>
                 </span>
@@ -41,7 +41,7 @@
             <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-black w-full left-0 md:w-auto md:py-0 py-6 md:pl-0 pl-7
     md:opacity-100 opacity-100 top-[-400px] transition-all ease-in duration-500">
                 <li class="mx-6 my-6 md:my-0">
-                    <a href="/index.jsp"
+                    <a href="/Index.jsp"
                         class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">HOME</a>
                 </li>
                 <li class="mx-6 my-6 md:my-0">
@@ -227,4 +227,4 @@
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </body>
 
-</.jsp>
+</html>
