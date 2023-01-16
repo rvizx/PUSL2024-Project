@@ -32,8 +32,7 @@ public class date_time extends HttpServlet {
         String date = request.getParameter("date");
         String time=request.getParameter("time");
         String date_time=date+" "+time;
-        out.print(date_time);
-/*
+        
         try {
 
             //HTTP Session
@@ -43,7 +42,7 @@ public class date_time extends HttpServlet {
             Connection con = null;
             Statement st = null;
             Class.forName("com.mysql.jdbc.Driver");
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
             st = con.createStatement();
             PreparedStatement ps = con.prepareStatement("SELECT COUNT(seat_no) FROM seat WHERE seat_status='available' AND date_time=?");
             ps.setString(1, date_time);
@@ -67,7 +66,7 @@ public class date_time extends HttpServlet {
         } catch (Exception e) {
 
             out.print(e);
-        } */
+        }
     } 
     
 }
