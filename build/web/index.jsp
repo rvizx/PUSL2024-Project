@@ -59,24 +59,6 @@
 
             connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
             statement = connection.createStatement();
-            String sql4 = "SELECT * FROM movie WHERE m_id=4";
-            resultSet = statement.executeQuery(sql4);
-            resultSet.next();
-            String m_name4 = resultSet.getString("m_name");
-            String m_language4 = resultSet.getString("m_language");
-            String genre4 = resultSet.getString("genre");
-
-            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
-            statement = connection.createStatement();
-            String sql5 = "SELECT * FROM movie WHERE m_id=5";
-            resultSet = statement.executeQuery(sql5);
-            resultSet.next();
-            String m_name5 = resultSet.getString("m_name");
-            String m_language5 = resultSet.getString("m_language");
-            String genre5 = resultSet.getString("genre");
-
-            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
-            statement = connection.createStatement();
             String sql7 = "SELECT * FROM movie WHERE m_id=7";
             resultSet = statement.executeQuery(sql7);
             resultSet.next();
@@ -384,47 +366,6 @@
                             </div>
                         </div>
                     </div>
-<!--                    <div class="flex justify-center">
-                        <div class="max-w-sm bg-white rounded-lg shadow-lg">
-                            <a href="#!">
-                                <img class="rounded-t-lg" src="/assets/images/card_4.png" alt="" />
-                            </a>
-                            <div class="p-6">
-                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name4%>
-                                </h5><br>
-                                <p class="mb-4 text-base text-gray-700">
-                                    <%=m_language4%> | <%=genre4%>
-                                </p>
-                                <form action="/movies" method="post">
-                                    <input type="hidden" name="data" value="4">
-                                    <input type="submit" class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out" value="Book Tickets">                                                                    
-                                    <button type="button"
-                                            class=" inline-block px-6 py-2.5  bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out">Trailer</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>-->
-<!--                    <div class="flex justify-center">
-                        <div class="max-w-sm bg-white rounded-lg shadow-lg">
-                            <a href="#!">
-                                <img class="rounded-t-lg" src="/assets/images/card_5.png" alt="" />
-                            </a>
-                            <div class="p-6">
-                                <h5 class="mb-2 text-xl font-medium text-gray-900"><%=m_name5%>
-                                </h5><br>
-                                <p class="mb-4 text-base text-gray-700">
-                                    <%=m_language5%> | <%=genre5%>
-                                </p>
-                                <form action="/movies" method="post">
-                                    <input type="hidden" name="data" value="5">
-                                    <input type="submit" class=" inline-block px-6 py-2.5 bg-black text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out" value="Book Tickets">                                                                    
-                                    <button type="button"
-                                            class=" inline-block px-6 py-2.5  bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-black active:shadow-lg transition duration-150 ease-in-out">Trailer</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>-->
-                    
 
 
                 </div>
@@ -552,27 +493,9 @@
                         class="hover:underline"></a>COPYRIGHT © 2022 ABC CINEMA.ALL RIGHTS RESERVED.
                 </span>
             </footer>
-
-
-
-
         </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <%=m_language5%> | <%=genre5%>
         <%
             } catch (Exception e) {
                 e.printStackTrace();
@@ -585,28 +508,13 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         <script>
-
-
             function toMovies() {
                 var buttonValue = document.querySelector('button').value;
                 alert(buttonValue);
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', '/movies?value=' + buttonValue, true);
                 xhr.send();
-
             }
 
             function Menu(e) {
@@ -614,8 +522,6 @@
                 e.name === 'grid' ? (e.name = "close", list.classList.add('top-[80px]'), list.classList.add('opacity-100'))
                         : (e.name = "grid", list.classList.remove('top-[80px]'), list.classList.remove(opacity - 100))
             }
-
-            //
 
 
         </script>

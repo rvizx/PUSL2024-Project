@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.4deb2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jan 15, 2023 at 04:31 AM
--- Server version: 10.6.11-MariaDB-1
+-- Host: 127.0.0.1
+-- Generation Time: Jan 15, 2023 at 03:05 PM
+-- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -20,17 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `abc_cinema`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `admin_message`
---
-
-CREATE TABLE `admin_message` (
-  `msg_id` int(11) NOT NULL,
-  `message` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -88,7 +77,8 @@ INSERT INTO `employee` (`emp_id`, `name`, `email`, `password`) VALUES
 (3, 'Jeff', 'jeffbezos@gmail.com', '27081e6ee295f54082c992439f176153'),
 (104, 'John', 'johnbayer@gmail.com', 'ef350e23b7e32416f10d5b9032534461'),
 (105, 'Saman', 'samanpeiris@gmail.com', 'e679d02cbdd4460405ac9ff70917511d'),
-(106, 'Peter', 'peterpan@gmail.com', 'a723081f761176d36e9798ba263ec73a');
+(106, 'Peter', 'peterpan@gmail.com', 'a723081f761176d36e9798ba263ec73a'),
+(107, 'Jeff', 'johnbayer@gmail.com', 'f95e7b7ff02cc8b3620abf4a41644fc3');
 
 --
 -- Triggers `employee`
@@ -344,8 +334,13 @@ CREATE TABLE `shows` (
 --
 
 INSERT INTO `shows` (`date_time`, `m_id`, `emp_id`) VALUES
+('2023-01-16 10:30:00', 2, 3),
 ('2023-01-23 09:02:06', 4, 3),
-('2023-02-13 09:02:00', 3, 2);
+('2023-01-27 18:00:00', 5, 3),
+('2023-02-06 10:30:00', 2, NULL),
+('2023-02-13 09:02:00', 3, 2),
+('2023-04-13 10:30:00', 2, NULL),
+('2024-01-01 21:00:00', 10, 2);
 
 -- --------------------------------------------------------
 
@@ -384,12 +379,6 @@ CREATE TABLE `ticket` (
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `admin_message`
---
-ALTER TABLE `admin_message`
-  ADD PRIMARY KEY (`msg_id`);
 
 --
 -- Indexes for table `booking`
@@ -468,12 +457,6 @@ ALTER TABLE `ticket`
 --
 
 --
--- AUTO_INCREMENT for table `admin_message`
---
-ALTER TABLE `admin_message`
-  MODIFY `msg_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
@@ -483,7 +466,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT for table `feedback`
