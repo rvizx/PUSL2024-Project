@@ -33,20 +33,23 @@ public class bookseats extends HttpServlet {
         String[] bookedSeats = new String[0];
 
         try {
+            
             PrintWriter out = response.getWriter();
             Connection con = null;
             Statement st = null;
-
+            HttpSession session = request.getSession();
+            HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
+            
+            
             try {
                 Class.forName("com.mysql.jdbc.Driver");
                 con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
                 st = con.createStatement();
 
-                HttpSession session = request.getSession();
-                HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
                 String date_time = (String) info.get("date_time");
+
                 //String sql = "SELECT seat_status FROM seats WHERE date_time = "+date_time;
-                String sql = "SELECT * FROM seats";
+                String sql = "SELECT * FROM seat";
                 ResultSet rs = st.executeQuery(sql);
                 bookedSeats = new String[rs.getFetchSize()];
                 out.print(rs);
@@ -89,7 +92,7 @@ public class bookseats extends HttpServlet {
             HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
             info.put("seats", seatNames);
             info.put("TicketAmount", TicketAmount);
-            info.put("price",price);
+            info.put("price", price);
 
             // if no seats we're selected 
             if (seatNames == null || seatNames.length == 0) {
@@ -104,15 +107,16 @@ public class bookseats extends HttpServlet {
             // avoid booking collisions
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cienma", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
                 st = con.createStatement();
 
                 String date_time = (String) info.get("date_time");
-                String sql = "SELECT seat_status from seat WHERE date_time=" + date_time + " AND seat_no IN (?";
-                for (int i = 1; i < seatNames.length; i++) {
+                String sql = "SELECT seat_status from seat WHERE date_time='"+date_time+"' AND seat_no IN (?";
+                for (int i = 0; i < seatNames.length; i++) {
                     sql += ",?";
                 }
                 sql += ")";
+                
                 PreparedStatement stmt = con.prepareStatement(sql);
                 stmt.setString(1, date_time);
                 for (int i = 0; i < seatNames.length; i++) {
@@ -126,102 +130,74 @@ public class bookseats extends HttpServlet {
                         isReserved = true;
                         break;
                     }
-                }                
+                }
+
                 
-            if (isReserved) {
-               response.sendRedirect("bookingseats.jsp");                               
-                } else {
-            }
-            
-
-            } catch (IOException | ClassNotFoundException | SQLException e) {
-                // An error occurred while connecting to the database or executing the query
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
-            }
-            
-            
-            
-            
-
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cienma", "root", "");
-                st = con.createStatement();
-
-                String date_time = (String) info.get("date_time");
-                String sql = "UPDATE seats SET booked = 1 WHERE date_time = " + date_time + "AND seat_no IN (?";
-                for (int i = 1; i < seatNames.length; i++) {
-                    sql += ",?";
-                }
-                sql += ")";
-                PreparedStatement ps = con.prepareStatement(sql);
-                for (int i = 1; i <= seatNames.length; i++) {
-                    ps.setString(i, seatNames[i - 1]);
-                }
-
-                int rowsUpdated = ps.executeUpdate();
-                if (rowsUpdated == seatNames.length) {
-                    response.setStatus(HttpServletResponse.SC_OK);
+                if (isReserved) {
+                    response.sendRedirect("bookingseat.jsp");
                 } else {
 
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "an error occured - all the seats were not booked!");
+                    try {
+                        Class.forName("com.mysql.jdbc.Driver");
+                        con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
+                        st = con.createStatement();
+
+                        String sql2 = "UPDATE seat SET seat_status ='reserved'  WHERE date_time = '"+ date_time +"' AND seat_no IN (?";
+                        for (int i = 1; i < seatNames.length; i++) {
+                            sql2 += ",?";
+                        }
+                        sql2 += ")";
+                        
+                        PreparedStatement ps2 = con.prepareStatement(sql2);
+                        for (int i = 1; i <= seatNames.length; i++) {
+                            ps2.setString(i, seatNames[i - 1]);
+                        }
+
+                        int rowsUpdated = ps2.executeUpdate();
+                        if (rowsUpdated == seatNames.length) {
+
+                        } else {
+
+                            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "an error occured - all the seats were not booked!");
+                        }
+
+                    }  catch (Exception e) {
+                        // An error occurred while connecting to the database or executing the query
+                        // e.printStackTrace();
+                        // response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
+                        out.print(e);
+                    }
+                                        
+                    
+                    finally {
+                        // closing the database resources
+                        if (st != null) {
+                            try {
+                                st.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        if (con != null) {
+                            try {
+                                con.close();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
                 }
 
             } catch (Exception e) {
                 // An error occurred while connecting to the database or executing the query
-                e.printStackTrace();
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
-            }
-
-            //update tickets
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cienma", "root", "");
-                st = con.createStatement();
-
-                String sql = "UPDATE seats SET booked = 1 WHERE seat_name IN (?";
-                for (int i = 1; i < seatNames.length; i++) {
-                    sql += ",?";
-                }
-                sql += ")";
-                PreparedStatement ps = con.prepareStatement(sql);
-
-                for (int i = 1; i <= seatNames.length; i++) {
-                    ps.setString(i, seatNames[i - 1]);
-                }
-
-                int rowsUpdated = ps.executeUpdate();
-                if (rowsUpdated == seatNames.length) {
-                    response.setStatus(HttpServletResponse.SC_OK);
-                } else {
-
-                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "an error occured - all the seats were not booked!");
-                }
-
-            } catch (ClassNotFoundException | SQLException e) {
-                // An error occurred while connecting to the database or executing the query
-                e.printStackTrace();
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
-            } finally {
-                // closing the database resources
-                if (st != null) {
-                    try {
-                        st.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (con != null) {
-                    try {
-                        con.close();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
+                // e.printStackTrace();
+                // response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
+                out.print(e);
             }
 
             session.setAttribute("info", info);
-            response.sendRedirect("details.jsp");
+            //response.sendRedirect("details.jsp");
 
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
