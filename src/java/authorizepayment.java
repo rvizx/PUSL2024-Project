@@ -31,7 +31,7 @@ public class authorizepayment extends HttpServlet {
         
         //map
         HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
-       String price = (String) info.get("price");
+        String price = (String) info.get("price");
        
         String product = request.getParameter("product");
         String subtotal =price;

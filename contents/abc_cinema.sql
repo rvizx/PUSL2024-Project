@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2023 at 03:05 PM
+-- Generation Time: Jan 16, 2023 at 11:20 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -50,9 +50,11 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`c_id`, `name`, `mobile`, `email`) VALUES
-(1000, 'john', '0761111112', 'john@temp.com'),
-(2002, 'Sam', '0743023917', 'samjones@gmail.com'),
-(2003, 'Peter', '0752067498', 'peterjhonson@gmail.com');
+(1000, 'Lakmal', '0761111112', 'lakmal@gmail.com'),
+(2002, 'Ruwan', '0743023917', 'ruwan@ymail.com'),
+(2003, 'Sakuni', '0752067498', 'sakunipeiris@gmail.com'),
+(2004, 'Amaya', '0719856296', 'amayarajapakha@gmail.com'),
+(2005, 'Saman', '0742391056', 'saman12@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -111,7 +113,10 @@ CREATE TABLE `feedback` (
 INSERT INTO `feedback` (`feedback_id`, `Name`, `email`, `message`) VALUES
 (5, 'Senith Edirisingha', 'senith@gmail.com', 'The temperature of the A/C is quite low. It\'d be great of you could increase it a bit more'),
 (6, 'Ben Addams', 'benaddams@gmail.com', 'The movie was great!'),
-(7, 'Jagatha Perera', 'jagathperera@gmail.com', 'Bad movie');
+(7, 'Jagatha Perera', 'jagathperera@gmail.com', 'Bad movie'),
+(9, 'Susil', 'susilprem@ymail.com', 'I watched Spider Man NWH , Jurassic world dominion, Doctor Strange MOM  and Black Panther 2 WAKANDA Forever in here. Overall good experience. Since this hall is right next to the road, you don\'t have much space to wait until movie starts if the theater is going to be full for a movie. But theater it self is good. Good video quality. They don\'t start the movie at the given time that is the *worst problem* in here!'),
+(10, 'Sunil', 'sunilshantha@ymail.com', 'The food was great in the canteen. Adding two cashiers will reduce the queue. '),
+(11, 'Surya', 'surya@ymail.com', 'Great place with nice environment');
 
 -- --------------------------------------------------------
 
@@ -181,7 +186,11 @@ CREATE TABLE `payment` (
 
 INSERT INTO `payment` (`pay_id`, `total_amount`, `c_id`) VALUES
 (1, 1000, 1000),
-(2, 1500, 2003);
+(2, 1500, 2003),
+(3, 800, 1000),
+(4, 1600, 2004),
+(5, 8000, 2002),
+(6, 16000, 2003);
 
 -- --------------------------------------------------------
 
@@ -340,6 +349,7 @@ INSERT INTO `shows` (`date_time`, `m_id`, `emp_id`) VALUES
 ('2023-02-06 10:30:00', 2, NULL),
 ('2023-02-13 09:02:00', 3, 2),
 ('2023-04-13 10:30:00', 2, NULL),
+('2023-08-16 10:30:00', 2, NULL),
 ('2024-01-01 21:00:00', 10, 2);
 
 -- --------------------------------------------------------
@@ -375,6 +385,13 @@ CREATE TABLE `ticket` (
   `c_id` int(11) DEFAULT NULL,
   `date_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ticket`
+--
+
+INSERT INTO `ticket` (`t_id`, `ticket_price`, `seat_no`, `c_id`, `date_time`) VALUES
+(0, 800, 'A01', 2004, '2023-01-16 10:30:00');
 
 --
 -- Indexes for dumped tables
@@ -460,7 +477,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2004;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2006;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -472,7 +489,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `movie`

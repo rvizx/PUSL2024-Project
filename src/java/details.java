@@ -36,6 +36,7 @@ public class details extends HttpServlet {
             throws ServletException, IOException {
 
         try {
+
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String phone = request.getParameter("mobile");
@@ -53,7 +54,7 @@ public class details extends HttpServlet {
             Statement st = null;
 
             Class.forName("com.mysql.jdbc.Driver");
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
             st = con.createStatement();
 
             PreparedStatement ps = con.prepareStatement("SELECT * FROM customer WHERE email = ?");
@@ -61,34 +62,24 @@ public class details extends HttpServlet {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                // A user with this email already exists - no need to add warnings at fron-end
-                String message = "process complete! (email already exists.)"; //remove this
-                request.setAttribute("message", message);
-                request.getRequestDispatcher("/details.jsp").forward(request, response);
+                //A user with this email already exists - no need to add warnings at fron-end
+                //String message = "process complete! (email already exists.)"; //remove this
+                //request.setAttribute("message", message);
+                //request.getRequestDispatcher("/details.jsp").forward(request, response);
 
             } else {
 
                 // insert the new user into the database
                 PreparedStatement ps1 = con.prepareStatement("INSERT INTO customer(name,mobile,email) VALUES(?,?,?)");
                 ps1.setString(1, name);
-                ps1.setString(3, phone);
-                ps1.setString(4, email);
+                ps1.setString(2, phone);
+                ps1.setString(3, email);
                 ps1.executeUpdate();
 
-                String message = "process comeplete"; //remove this
-                request.setAttribute("message", message);
-                request.getRequestDispatcher("/details.jsp").forward(request, response);
-
             }
-            response.sendRedirect("/payment.jsp");
+            //response.sendRedirect("/payment.jsp");
 
             //insert rest of the values to the database
-            //seat_numbers
-            PreparedStatement ps1 = con.prepareStatement("INSERT INTO seat(name,mobile,email) VALUES(?,?,?)");
-            ps1.setString(1, name);
-            ps1.setString(2, phone);
-            ps1.setString(3, email);
-            ps1.executeUpdate();
 
             //seat
             String[] seatNames = (String[]) info.get("seats");
@@ -99,59 +90,26 @@ public class details extends HttpServlet {
             ResultSet rs3 = ps3.executeQuery();
             rs3.next();
             String c_id = rs3.getString("c_id");
-
             String date_time = (String) info.get("date_time");
             String[] tickets = (String[]) info.get("TicketAmount");
 
             //tickets 
-                   try {
-                        Class.forName("com.mysql.jdbc.Driver");
-                        con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
-                        st = con.createStatement();
+            Class.forName("com.mysql.jdbc.Driver");
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
+            st = con.createStatement();
 
-                        String sql5 = "UPDATE ticket SET seat_no WHERE seat_no IN (?";
-                        for (int i = 1; i < seatNames.length; i++) {
-                            sql5 += ",?";
-                        }
-                        sql5+= ")";
-                        PreparedStatement ps5 = con.prepareStatement(sql5);
+            //// INSERT INTO ticket(seat_no,c_id,date_time,t_id)  VALUES(?,DEFAULT,?,DEFAULT)                        
+            
+            for (int i = 1; i < seatNames.length; i++) {
+                String sql = "INSERT INTO ticket(seat_no,c_id,date_time,t_id) VALUES (?, ?, ?, ?)";
+                PreparedStatement statement = con.prepareStatement(sql);
+                statement.setString(1, seatNames[i]);
+                statement.setString(2, c_id);
+                statement.setString(3,date_time);
+                statement.setString(4,"DEFAULT");
+                statement.executeUpdate();
+            }
 
-                        for (int i = 1; i <= seatNames.length; i++) {
-                            ps3.setString(i, seatNames[i - 1]);
-                        }
-
-                        int rowsUpdated = ps3.executeUpdate();
-                        if (rowsUpdated == seatNames.length) {
-                            response.setStatus(HttpServletResponse.SC_OK);
-                        } else {
-
-                            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "an error occured - all the seats were not booked!");
-                        }
-
-                    } catch (Exception e) {
-                        // An error occurred while connecting to the database or executing the query
-                        // e.printStackTrace();
-                        // response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
-                        out.print(e);
-                    } 
-
-                                        finally {
-                        // closing the database resources
-                        if (st != null) {
-                            try {
-                                st.close();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        if (con != null) {
-                            try {
-                                con.close();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
             response.sendRedirect("authorize_payment");
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
