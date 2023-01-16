@@ -8,19 +8,16 @@
     <head>
         <%
             HttpSession empsession = request.getSession(false);
-            String sessionmail=(String)empsession.getAttribute("email");
-            String Admin="A-";
-            
-            
-            
-            
+            String sessionmail = (String) empsession.getAttribute("email");
+            String Admin = "A-";
+
             if (sessionmail == null || !sessionmail.substring(0, 2).equals(Admin)) {
-                
+
                 String redmsg = "Please Login to your Admin account to continue!";
                 request.setAttribute("message", redmsg);
                 request.getRequestDispatcher("/emplogin.jsp").forward(request, response);
                 response.sendRedirect("/emplogin.jsp");
-            } 
+            }
         %>
 
         <title>ABC Cinema</title>
@@ -29,31 +26,46 @@
         <link rel="stylesheet" href="/admin/css/style.css">
         <link href="/admin/table.css" rel="stylesheet">
         <link rel="shortcut icon" href="images/film.png" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.css" rel="stylesheet" />
+        <!--        <style>
+                    table.table th:nth-child(4) {
+                        width: 140px;
+                    }
+                    table.table th:nth-child(1) {
+                        width: 65px;
+                    }
+                    table.table th:nth-child(8) {
+                        width: 80px;
+                    }
+                    table.table th:nth-child(7) {
+                        width: 120px;
+        
+                       
+                        }
+        
+                         .table-wrapper {
+                            width: 1600px;
+                            margin: 1px auto;
+                            background: #fff;
+                            padding: 1px;	
+                            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+                    }
+                    table.table th:nth-child(6) {
+                        width: 170px;
+                    }
+                </style>-->
+
         <style>
-            table.table th:nth-child(4) {
-                width: 140px;
-            }
-            table.table th:nth-child(1) {
-                width: 65px;
-            }
-            table.table th:nth-child(8) {
-                width: 80px;
-            }
-            table.table th:nth-child(7) {
-                width: 120px;
-
-               
+            @media screen and (min-width: 1000px) {
+                .sid {
+                    min-height: calc(290vh - 65px);
                 }
-
-                 .table-wrapper {
-                    width: 1600px;
-                    margin: 1px auto;
-                    background: #fff;
-                    padding: 1px;	
-                    box-shadow: 0 1px 1px rgba(0,0,0,.05);
             }
-            table.table th:nth-child(6) {
-                width: 170px;
+            .ccard-body {
+                padding-right: 1.25rem;
+                padding-top:0%;
+                padding-bottom: 0%;
             }
         </style>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -122,7 +134,7 @@
                 <ul class="nav">
 
 
-                    <center><img src="/admin/images/kindpng_2267500.png" height="40" width="40"></center>
+                    <center><img src="/admin/images/kindpng_2267500.png" height="60" width="60" class="mt-10"></center>
 
                     </li><br>
                     <li class="nav-item " >
@@ -193,10 +205,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/emplogin.jsp">
-
-                            Logout
-                        </a>
+                        <form method="post" action="/empLogoutServlet">
+                            <input type="submit"
+                                   class="inline-block w-full px-10 py-3 bg-gray-700 text-white text-center font-medium text-m leading-tight uppercase  shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out uppercase"
+                                   value="logout"></form>
                     </li>
 
                 </ul>
@@ -208,7 +220,7 @@
                     <div class="navbar-menu-wrapper  ">
 
                         <div class="navbar-brand-wrapper ">
-                            <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" alt="logo"/></a>
+                            <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" class="mt-5 px-10" alt="logo"/></a>
 
                         </div>
 
@@ -221,8 +233,8 @@
 
                 </nav>
 
-                <div class="main-panel">        
-                    <div class="content-wrapper">
+                <div class="main-panel mt-5 w-[500px">        
+                    <div class="content-wrapper ">
                         <div class="row">
 
 
@@ -232,10 +244,10 @@
                         <div class="container-lg">
                             <div class="table table-responsive">
 
-                                <div class="table-wrapper">
+                                <div class="table-wrapper w-full">
                                     <div class="table-title">
                                         <div class="row">
-                                            <div class="col-sm-8"><h2>Movie <b>Details</b></h2></div>
+                                            <div class="col-sm-8"><h2 class="mb-8 font-bold uppercase text-xl">Movie Details</h2></div>
                                             <div class="col-sm-4">
 
                                             </div>
@@ -272,7 +284,7 @@
                                                 <th>Description</th>
                                                 <th>Trailer</th>
                                                 <th>Status</th>
-                                         
+
                                             </tr>
 
                                             <%
@@ -371,6 +383,7 @@
                 }
             }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 </body>
 
 </html>

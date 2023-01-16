@@ -30,6 +30,8 @@
         <link rel="stylesheet" href="/admin/css/style.css">
         <link href="/admin/table.css" rel="stylesheet">
         <link rel="shortcut icon" href="/admin/images/film.png" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.css" rel="stylesheet" />
 
         <style>
             table.table th:nth-child(4) {
@@ -47,7 +49,7 @@
             <ul class="nav">
 
 
-                <center><img src="/admin/images/kindpng_2267500.png" height="40" width="40"></center>
+                <center><img src="images/kindpng_2267500.png" height="60" width="60" class="mt-10"></center>
 
                 </li><br>
                 <li class="nav-item " >
@@ -118,11 +120,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/emplogin.jsp">
-
-                        Logout
-                    </a>
-                </li>
+                        <form method="post" action="/empLogoutServlet">
+                        <input type="submit"
+                               class="inline-block w-full px-10 py-3 bg-gray-700 text-white text-center font-medium text-m leading-tight uppercase  shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out uppercase"
+                               value="logout"></form>
+                    </li>
 
             </ul>
         </nav>
@@ -133,7 +135,7 @@
                 <div class="navbar-menu-wrapper  ">
 
                     <div class="navbar-brand-wrapper ">
-                        <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" alt="logo"/></a>
+                        <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" class="mt-5 px-10" alt="logo"></a>
 
                     </div>
 
@@ -145,7 +147,7 @@
 
 
             </nav>
-            <div class="main-panel">        
+            <div class="main-panel mt-10">        
                 <div class="content-wrapper">
                     <div class="row">
 
@@ -159,7 +161,7 @@
                             <div class="table-wrapper">
                                 <div class="table-title">
                                     <div class="row">
-                                        <div class="col-sm-8"><h2>Booking <b>Details</b></h2></div>
+                                        <div class="col-sm-8"><h2 class="mb-8 font-bold uppercase text-xl">Booking Details</h2></div>
                                         <div class="col-sm-4">
 
                                         </div>
@@ -238,7 +240,7 @@
 </div>
 
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 
 </body>
 

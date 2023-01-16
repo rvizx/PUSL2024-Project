@@ -25,34 +25,33 @@
     <head>
         <%
             HttpSession empsession = request.getSession(false);
-            String sessionmail=(String)empsession.getAttribute("email");
-            String Admin="A-";
-            
-            
-            
-            
+            String sessionmail = (String) empsession.getAttribute("email");
+            String Admin = "A-";
+
             if (sessionmail == null || !sessionmail.substring(0, 2).equals(Admin)) {
-                
+
                 String redmsg = "Please Login to your Admin account to continue!";
                 request.setAttribute("message", redmsg);
                 request.getRequestDispatcher("/emplogin.jsp").forward(request, response);
                 response.sendRedirect("/emplogin.jsp");
-            } 
+            }
         %>
-        
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>ABC Cinema</title>
         <link rel="shortcut icon" href="/admin/images/film.png" />
         <link rel="stylesheet" href="/admin/css/style.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.css" rel="stylesheet" />
 
         <style>
-            @media screen and (min-width: 1000px) {
+/*            @media screen and (min-width: 1000px) {
                 .sid {
                     min-height: calc(130vh - 65px);
                 }
-            }
+            }*/
 
 
 
@@ -139,7 +138,7 @@
                 <ul class="nav">
 
 
-                    <center><img src="images/kindpng_2267500.png" height="40" width="40"></center>
+                    <center><img src="images/kindpng_2267500.png" height="60" width="60" class="mt-10"></center>
 
                     </li><br>
                     <li class="nav-item active" >
@@ -149,19 +148,23 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link"   >
-                            Movies 
 
-                        </a>
-                        <div  >
-                            <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin/addmovie.jsp">Add Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin/managemovie.jsp">Manage Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin/moviedetails.jsp">Movie Details</a></li>
-                            </ul>
-                        </div>
                     </li>
+
+
+                                        <li class="nav-item">
+                                            <a class="nav-link"   >
+                                                Movies 
+                    
+                                            </a>
+                                            <div  >
+                                                <ul class="nav  sub-menu">
+                                                    <li class="nav-item"> <a class="nav-link" href="/admin/addmovie.jsp">Add Movies</a></li>
+                                                    <li class="nav-item"> <a class="nav-link" href="/admin/managemovie.jsp">Manage Movies</a></li>
+                                                    <li class="nav-item"> <a class="nav-link" href="/admin/moviedetails.jsp">Movie Details</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/customerdetail.jsp">
 
@@ -177,20 +180,24 @@
                             Payment Details
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link"   >
 
-                            Employees
 
-                        </a>
-                        <div  >
-                            <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="/admin/addemployee.jsp">Add Employee</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin/empmanage.jsp">Manage Employee</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="/admin/staffdetails.jsp">Employee Details</a></li>
-                            </ul>
-                        </div>
-                    </li>
+
+
+                                        <li class="nav-item">
+                                            <a class="nav-link"   >
+                    
+                                                Employees
+                    
+                                            </a>
+                                            <div  >
+                                                <ul class="nav  sub-menu">
+                                                    <li class="nav-item"> <a class="nav-link" href="/admin/addemployee.jsp">Add Employee</a></li>
+                                                    <li class="nav-item"> <a class="nav-link" href="/admin/empmanage.jsp">Manage Employee</a></li>
+                                                    <li class="nav-item"> <a class="nav-link" href="/admin/staffdetails.jsp">Employee Details</a></li>
+                                                </ul>
+                                            </div>
+                                        </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/show.jsp">
 
@@ -210,9 +217,10 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <form name="nm" method="post" action="/empLogoutServlet">
-                            <input type="submit" value="Logout" class="btn-primary btn px-10">
-                        </form>
+                        <form method="post" action="/empLogoutServlet">
+                        <input type="submit"
+                               class="inline-block w-full px-10 py-3 bg-gray-700 text-white text-center font-medium text-m leading-tight uppercase  shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out uppercase"
+                               value="logout"></form>
                     </li>
 
                 </ul>
@@ -224,7 +232,7 @@
                     <div class="navbar-menu-wrapper    ">
 
                         <div class="navbar-brand-wrapper ">
-                            <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" alt="logo"/></a>
+                            <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" class="mt-5 px-10" alt="logo"></a>
                         </div>
 
 
@@ -238,20 +246,21 @@
                 <br>
                 <!-- partial -->
 
-                <div class="row">
-
-                    <div class="card">
-                        <div id="chart_div"></div></div>
-                    <div class="card">
-                        <div id="chart_div2"></div></div>
-                    <br>
-                    <div class="card">
-                        <div id="chart_div3"></div></div>
-
-
-
-
-                </div>
+                <!--                <div class="row">
+                
+                                    <div class="card">
+                                        <div id="chart_div"></div></div>
+                                    <div class="card">
+                                        <div id="chart_div2"></div></div>
+                                    <br>
+                                    <div class="card">
+                                        <div id="chart_div3"></div></div>
+                
+                
+                
+                
+                                </div>-->
+                <img src="/admin/images/cinemahall_image.png">
 
             </div>
 
@@ -259,7 +268,7 @@
 
 
 
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 
     </body>
 
