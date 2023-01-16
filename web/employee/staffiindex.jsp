@@ -101,27 +101,27 @@
 
                     </li><br>
                     <li class="nav-item active" >
-                        <a class="nav-link " href="/employee/staffiindex.jsp">
+                        <a class="nav-link uppercase font-bold" href="/employee/staffiindex.jsp">
                             Employee Dashboard
 
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link"   >
+                        <a class="nav-link uppercase font-bold"   >
                             Movies 
 
                         </a>
                         <div  >
                             <ul class="nav  sub-menu">
-                                <li class="nav-item"> <a class="nav-link" href="movie.jsp">Add Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="managemovie.jsp">Manage Movies</a></li>
-                                <li class="nav-item"> <a class="nav-link" href="movie details.jsp">Movie Details</a></li>
+                                <li class="nav-item"> <a class="nav-link uppercase font-bold" href="movie.jsp">Add Movies</a></li>
+                                <li class="nav-item"> <a class="nav-link uppercase font-bold" href="managemovie.jsp">Manage Movies</a></li>
+                                <li class="nav-item"> <a class="nav-link uppercase font-bold" href="movie details.jsp">Movie Details</a></li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/employee/user.jsp">
+                        <a class="nav-link uppercase font-bold" href="/employee/user.jsp">
 
                             Customer Details
                         </a>
@@ -130,20 +130,20 @@
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/employee/paymentdetails.jsp">
+                        <a class="nav-link uppercase font-bold" href="/employee/paymentdetails.jsp">
 
                             Payment Details
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/employee/show.jsp">
+                        <a class="nav-link uppercase font-bold" href="/employee/show.jsp">
 
                             Manage Shows
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="/employee/booking.jsp">
+                        <a class="nav-link uppercase font-bold" href="/employee/booking.jsp">
 
                             Booking Details
                         </a>
@@ -152,7 +152,7 @@
                     <li class="nav-item">
                         <form method="post" action="/empLogoutServlet">
                         <input type="submit"
-                               class="inline-block w-full px-10 py-3 bg-gray-700 text-white text-center font-medium text-m leading-tight uppercase  shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out uppercase"
+                               class="inline-block w-full px-10 py-3 bg-gray-700 text-white text-center  text-m leading-tight uppercase font-bold  shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out uppercase"
                                value="logout"></form>
                     </li>
 

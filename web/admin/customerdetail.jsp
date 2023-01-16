@@ -145,7 +145,6 @@
 
                         <div class="navbar-brand-wrapper ">
                              <a class="navbar-brand brand-logo" href="/admin/adindex.jsp"><img src="/admin/images/abc_logo.png" class="mt-5 px-10" alt="logo"></a>
-
                         </div>
 
 
