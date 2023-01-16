@@ -1,3 +1,8 @@
+<%--
+    Document   : date_time2
+    Created on : 16-Jan-2023, 04:17:41
+    Author     : sanid
+--%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.sql.Statement"%>
@@ -11,39 +16,37 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 
-<!DOCTYPE html>
-
-<%
-    String driverName = "com.mysql.jdbc.Driver";
-    String connectionUrl = "jdbc:mysql://localhost:3306/";
-    String dbName = "abc_cinema";
-    String userId = "root";
-    String password = "";
-
-    try {
-        Class.forName(driverName);
-    } catch (ClassNotFoundException e) {
-        e.printStackTrace();
-    }
-
-    HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
-    String m_id = (String) info.get("m_id");
-
-    try {
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-        connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
-        statement = connection.createStatement();
-        String sql = "SELECT * FROM movie WHERE m_id=" + m_id;
-        resultSet = statement.executeQuery(sql);
-        resultSet.next();
-        String m_name = resultSet.getString("m_name");
-
-
-%>
-
+<!doctype html>
 <html>
+    <%
+        String driverName = "com.mysql.jdbc.Driver";
+        String connectionUrl = "jdbc:mysql://localhost:3306/";
+        String dbName = "abc_cinema";
+        String userId = "root";
+        String password = "";
+
+        try {
+            Class.forName(driverName);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
+        String m_id = (String) info.get("m_id");
+
+        try {
+            Connection connection = null;
+            Statement statement = null;
+            ResultSet resultSet = null;
+            connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+            statement = connection.createStatement();
+            String sql = "SELECT * FROM movie WHERE m_id=" + m_id;
+            resultSet = statement.executeQuery(sql);
+            resultSet.next();
+            String m_name = resultSet.getString("m_name");
+
+
+    %>
 
     <head>
         <meta charset="UTF-8">
@@ -65,7 +68,10 @@
     </head>
 
     <body class=" bg-black">
+
         <div class="md:container md:mx-auto">
+
+
             <!--Nav Bar-->
             <nav class="p-5 bg-black shadow md:flex md:items-center md:justify-between">
                 <div class="flex justify-between item-center">
@@ -90,23 +96,30 @@
                            class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">MOVIES</a>
                     </li>
                     <li class="mx-6 my-6 md:my-0">
-                        <a href="/feedback.jsp"
+                        <a href="/contactus.jsp"
                            class="text-xl text-white font-[Inter] hover:text-[#DAA520] duration-500">FEEDBACK</a>
                     </li>
 
                     <li class="mx-6 my-6 md:my-0">
                         <div class="flex justify-center">
                             <div class="w-96">
-                              <div class="input-group relative flex flex-wrap items-stretch w-full ">
-                                <input type="search" class="form-control rounded relative uppercase flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300  transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
-                                <button class="btn inline-block rounded px-6 py-2.5 bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase  shadow-md hover:bg-[#F6C74E] hover:shadow-lg focus:bg-[#F6C74E]  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#F6C74E] active:shadow-lg transition duration-150 ease-in-out flex items-center" type="button" id="button-addon2">
-                                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                                    <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
-                                  </svg>
-                                </button>
-                              </div>
+                                <div class="input-group relative flex flex-wrap items-stretch w-full ">
+                                    <input type="search"
+                                           class="form-control rounded relative uppercase flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300  transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                           placeholder="Search" aria-label="Search" aria-describedby="button-addon2">
+                                    <button
+                                        class="btn inline-block rounded px-6 py-2.5 bg-[#DAA520] text-white font-medium text-xs leading-tight uppercase  shadow-md hover:bg-[#F6C74E] hover:shadow-lg focus:bg-[#F6C74E]  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#F6C74E] active:shadow-lg transition duration-150 ease-in-out flex items-center"
+                                        type="button" id="button-addon2">
+                                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search"
+                                             class="w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                        <path fill="currentColor"
+                                              d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                                        </path>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
-                          </div>
+                        </div>
                     </li>
                 </ul>
 
@@ -123,92 +136,89 @@
 
             </Section><br>
 
-            <div class="grid grid-cols-1">
-                <div class="flex justify-center">
-                    <label for="countries" class="block mb-2 text-sm font-medium text-white pr-3 ">
-                        <div class="mb-3 xl:w-96">
 
 
-                            <%                                connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
-                                statement = connection.createStatement();
-                                String movieId = m_id;
-                                String sql2 = "SELECT * FROM shows WHERE m_id='" + movieId + "'";
-                                resultSet = statement.executeQuery(sql2);
+            <%  connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
+                statement = connection.createStatement();
+                String movieId = m_id;
+                String sql2 = "SELECT * FROM shows WHERE m_id='" + movieId + "'";
+                resultSet = statement.executeQuery(sql2);
 
-                            %>
-
-                        </div>
-                </div>
-
-                <div class="flex justify-center">
-                    <label for="countries" class="block mb-2 text-sm font-medium text-white pr-3 "><ion-icon name="eye"
-                                                                                                             size="large"></ion-icon></label>
-                    <div class="mb-3 xl:w-96">
-                        <select class="form-select appearance-none
-                                block
-                                w-full
-                                px-3
-                                py-1.5
-                                text-base
-                                rounded
-                                font-normal
-                                text-gray-700
-                                bg-white bg-clip-padding bg-no-repeat
-                                border border-solid border-gray-300
-
-                                transition
-                                ease-in-out
-                                m-0
-                                focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                aria-label="Default select example">
-                            <option value="0">ALL EXPERIENCE</option>
-                            <option value="1" selected>2D CLASS</option>
-                            <option value="2">3D GOLD CLASS</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <br><br><br>
+            %>
 
 
-
-            <div class="grid grid-cols-2">
+            <div class="grid grid-cols-2 ">
                 <div>
-                    <div class="items-center justify-center">
+                    <div class="items-center justify-center px-12">
                         <h1 class="text-white text-5xl font-bold"><%=m_name%></h1><br>
-                        <div class="flex flex-row items-center  ">
+                        <div class="flex flex-row items-center pb-5 ">
                             <ion-icon name="location"></ion-icon>
-                            <h1 class="text-white text-2xl font-bold">Havelock City Mall</h1>
+                            <h1 class="text-white text-xl font-bold uppercase">Havelock City Mall - Havelock</h1>
                         </div><br>
                         <div>
-                            <h2 class="text-white text-xl"></h2>
 
 
+                            <h2 class="text-white text-xl font-bold mb-3">SELECT DATE</h2>
+                            <div class="flex items-center  mb-3">
+                                <div class="flex justify-center">
+                                    <label for="countries" class="block mb-2 text-sm font-medium text-white pr-3 "><ion-icon
+                                            name="calendar" size="large"></ion-icon></label>
+                                    <div class="mb-3 xl:w-96">
+                                        <form name="datetime" method="post" action="/date_time">
+                                            <select class="form-select appearance-none
+                                                    block
+                                                    w-full
+                                                    px-3
+                                                    py-2
+                                                    text-base
+                                                    rounded
+                                                    font-normal
+                                                    text-gray-700
+                                                    bg-white bg-clip-padding bg-no-repeat
+                                                    border border-solid border-gray-300
 
-                            <%
-                                while (resultSet.next()) {
-                                    // 20:30
-                                    String datetime = resultSet.getString("date_time");
-                                    String inputdate = datetime.substring(0, 10);
-                                    SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-                                    SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd EEE");
-                                    Date date = inputFormat.parse(inputdate);
-                                    String outputDate = outputFormat.format(date); 
-                            %>                                                       
+                                                    transition
+                                                    ease-in-out
+                                                    m-0
+                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                    aria-label="Default select example" name="date">
+                                                <%
 
-                            <div class="flex items-center  mb-5">
-                                <div class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
-                                    <button type="button" class="rounded-l inline-block px-7 py-3 bg-gray-400 text-white font-medium text-m leading-snug uppercase   focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-not-allowed "disabled>
-                                        <%=outputDate%>
-                                    </button>
-                                    <div class="mt-2 xl:w-96 ">
+                                                    while (resultSet.next()) {
+                                                        // 2023:02:14 20:30:00
+                                                        String datetime = resultSet.getString("date_time");
+                                                        String inputdate = datetime.substring(0, 10);
+                                                        String time = datetime.substring(12, 19);
+                                                        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                                        SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd EEE");
+                                                        Date date = inputFormat.parse(inputdate);
+                                                        String outputDate = outputFormat.format(date);
+
+                                                %>
+
+                                                <option value="<%=inputdate%>"><%=outputDate%></option>
+
+                                                <%}%>
+
+                                            </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><br>
+                        <div>
+                            <h2 class="text-white text-xl font-bold mb-3">SELECT TIME</h2>
+                            <div class="flex items-center  mb-3">
+                                <div class="flex justify-center">
+                                    <label for="countries" class="block mb-2 text-sm font-medium text-white pr-3 "><ion-icon
+                                            name="time" size="large"></ion-icon></label>
+                                    <div class="mb-3 xl:w-96">
                                         <select class="form-select appearance-none
                                                 block
                                                 w-full
                                                 px-3
-                                                py-1.5
+                                                py-2
                                                 text-base
-                                             
+                                                rounded
                                                 font-normal
                                                 text-gray-700
                                                 bg-white bg-clip-padding bg-no-repeat
@@ -218,55 +228,56 @@
                                                 ease-in-out
                                                 m-0
                                                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                                aria-label="Default select example">
-                                            <option value="0">ALL EXPERIENCE</option>
-                                            <option value="1" selected>2D CLASS</option>
-                                            <option value="2">3D GOLD CLASS</option>
-                                        </select>
-                                    </div>  
+                                                aria-label="Default select example" name="time">
 
+
+
+
+                                            <option  value="10:30">10:30 AM</option>
+                                            <option  value="13:00">01:00 PM</option>
+                                            <option  value="18:30">06:30 PM</option>
+                                            <option  value="09:00">09:00 PM</option>
+
+
+                                            <script>
+                                                function updateValue() {
+                                                    var select = document.getElementById("mySelect");
+                                                    var selectedValue = select.options[select.selectedIndex].value;
+                                                    console.log(selectedValue);
+                                                }
+                                            </script>
+
+                                        </select>
+
+                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <%} %>
-
-
-
-
-                        </div><br>
-                        <!-- <div>
-                             <h2 class="text-white text-xl">3D GOLD CLASS</h2>
-                             <div class="flex items-center  mb-3">
-                                 <div class="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
-                                     <button type="button"
-                                             class="rounded-l inline-block px-7 py-3 bg-gray-400 text-white font-medium text-m leading-snug uppercase   focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-not-allowed "
-                                             disabled>10.30
-                                         AM</button>
-                                     <button type="button"
-                                             class="rounded-r inline-block px-7 py-3 bg-gray-400 text-white font-medium text-m leading-snug uppercase   focus:outline-none focus:ring-0  transition duration-150 ease-in-out cursor-not-allowed "
-                                             disabled>01.00
-                                         PM</button>
-                                 </div>
-                             </div>
-                         </div> -->
-
+                        <input type="submit"
+                               class="inline-block mt-5 px-10 py-4 bg-gray-700 text-white font-medium text-m leading-tight uppercase rounded shadow-md hover:bg-[#DAA520] hover:shadow-lg focus:bg-[#DAA520] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#DAA520] active:shadow-lg transition duration-150 ease-in-out uppercase"
+                               value="next">
+                        </form>
                     </div>
-                            <input type="submit" class="text-white text-xl font-bold uppercase bg-[#DAA520] px-12 py-3 rounded" value="next">
+
                 </div>
-                            
-                <div>
+                <div class="px-12">
                     <img class="h-auto max-w-full" src="/assets/images/card_<%=m_id%>.png" alt="image description">
-                    
                 </div>
 
 
             </div>
 
 
+            <%
 
-                <
+                } catch (Exception e) {
+                }
+            %>
 
-                
+
+
+
 
 
 
@@ -308,11 +319,10 @@
 
 
 
-        <%
 
-            } catch (Exception e) {
-            }
-        %>
+
+
+
 
 
         <script>
