@@ -528,13 +528,22 @@
 
             <footer class="p-4 bg-black  shadow md:px-6 md:py-8 ">
                 <div class="sm:flex sm:items-center sm:justify-between">
-                    <a href="index.html" class="flex items-center mb-4 sm:mb-0">
-                        <img src="/assets/images/ABC Cinema LOGO.png" class="h-8 mr-3" alt="Flowbite Logo" />
+                    <a href="index.jsp" class="flex items-center mb-4 sm:mb-0">
+                        <img src="/assets/images/abc_cinema_logo.png" class="h-8 mr-3" alt="Flowbite Logo" />
                         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
                     </a>
                     <ul class="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
                         <li>
-
+                            <a href="privancy.jsp" class="mr-4 hover:underline md:mr-6 ">PRIVACY POLICY</a>
+                        </li>
+                        <li>
+                            <a href="term.jsp" class="mr-4 hover:underline md:mr-6">TERMS & CONDITIONS</a>
+                        </li>
+                        <li>
+                            <a href="feedback.jsp" class="mr-4 hover:underline md:mr-6 ">FEEDBACK</a>
+                        </li>
+                        <li>
+                            <a href="emplogin.jsp" class="hover:underline">STAFF</a>
                         </li>
                     </ul>
                 </div>
@@ -543,7 +552,6 @@
                         class="hover:underline"></a>COPYRIGHT © 2022 ABC CINEMA.ALL RIGHTS RESERVED.
                 </span>
             </footer>
-
 
 
 
