@@ -25,7 +25,7 @@ public class authorizepayment extends HttpServlet {
  
     
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();  
         
@@ -33,7 +33,8 @@ public class authorizepayment extends HttpServlet {
         HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
         String price = (String) info.get("price");
        
-        String product = request.getParameter("product");
+        //String product = request.getParameter("product");
+        String product = "";
         String subtotal =price;
         String shipping = "0";
         String tax = "0" ;

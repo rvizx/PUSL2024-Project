@@ -17,6 +17,9 @@ import javax.servlet.http.HttpSession;
 import java.lang.Thread;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.time.Instant;
 
 /**
  *
@@ -66,6 +69,7 @@ public class details extends HttpServlet {
                 //String message = "process complete! (email already exists.)"; //remove this
                 //request.setAttribute("message", message);
                 //request.getRequestDispatcher("/details.jsp").forward(request, response);
+               
 
             } else {
 
@@ -91,7 +95,7 @@ public class details extends HttpServlet {
             rs3.next();
             String c_id = rs3.getString("c_id");
             String date_time = (String) info.get("date_time");
-            String[] tickets = (String[]) info.get("TicketAmount");
+            String tickets = (String) info.get("TicketAmount");
 
             //tickets 
             Class.forName("com.mysql.jdbc.Driver");
@@ -101,16 +105,45 @@ public class details extends HttpServlet {
             //// INSERT INTO ticket(seat_no,c_id,date_time,t_id)  VALUES(?,DEFAULT,?,DEFAULT)                        
             
             for (int i = 1; i < seatNames.length; i++) {
-                String sql = "INSERT INTO ticket(seat_no,c_id,date_time,t_id) VALUES (?, ?, ?, ?)";
+                String sql = "INSERT INTO ticket(seat_no,c_id,date_time) VALUES (?, ?, ?)";
                 PreparedStatement statement = con.prepareStatement(sql);
                 statement.setString(1, seatNames[i]);
                 statement.setString(2, c_id);
                 statement.setString(3,date_time);
-                statement.setString(4,"DEFAULT");
                 statement.executeUpdate();
             }
+                                    
+            
+        // generate md5 hash of current time to make it unique
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        byte[] currentTimeBytes = Long.toString(Instant.now().toEpochMilli()).getBytes();
+        byte[] emailBytes = email.getBytes();
+        byte[] combinedBytes = new byte[currentTimeBytes.length + emailBytes.length];
+        System.arraycopy(currentTimeBytes, 0, combinedBytes, 0, currentTimeBytes.length);
+        System.arraycopy(emailBytes, 0, combinedBytes, currentTimeBytes.length, emailBytes.length);
+        byte[] hashBytes = md5.digest(combinedBytes);
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hashBytes) {
+            sb.append(String.format("%02x", b & 0xff));
+        }
+        String hash = sb.toString();            
+            
+                        
+            PreparedStatement ps4=con.prepareStatement("SELECT ticket.t_id FROM ticket JOIN customer ON ticket.c_id = customer.c_id WHERE customer.email = ? LIMIT 1");
+            ps4.setString(1, email);
+            ResultSet rs4=ps4.executeQuery();
+                         
+            rs4.next();
+            String t_id = rs4.getString("t_id");
 
+            PreparedStatement ps5 = con.prepareStatement("INSERT INTO booking(booking_id,t_id) VALUES(?,?)");
+                ps5.setString(1, hash);
+                ps5.setInt(2, Integer.parseInt(t_id));
+                ps5.executeUpdate();  
+                              
+            info.put("bid", hash);                
             response.sendRedirect("authorize_payment");
+
         } catch (Exception e) {
             PrintWriter out = response.getWriter();
             out.print(e);

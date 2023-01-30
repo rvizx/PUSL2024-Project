@@ -432,15 +432,17 @@
                         </div><br>
                         <div class="flex flex-row items-center justify-center ">
 
-                            <div class="flex items-center  mb-3 ">
+                            <div class="flex items-center mb-3 ">
                                 <div class="">
                                     <a href="/date_time.jsp">
                                         <button type="button"
-                                                class="px-10 py-3 m-4 text-base font-medium text-center text-white bg-[#545454] rounded-lg hover:bg-[#747474] dark:bg-[#545454] dark:hover:bg-[#747474] ">BACK</button>
+                                                class="px-10 py-3 m-4 text-base font-medium text-center text-white bg-[#545454] rounded-lg hover:bg-[#747474] dark:bg-[#545454] dark:hover:bg-[#747474] ">
+                                                BACK
+                                        </button>
                                     </a>
                                     <form action="/bookseats" method="post" onsubmit="document.getElementById('selectedSeats').value = seatNumbers.join(',');">
                                         <input type="hidden" name="selectedSeats" id="selectedSeats" value="">
-                                        <input type="submit" value="Submit" class="px-10 py-3 text-base font-medium text-center text-white bg-[#DAA520] rounded-lg hover:bg-[#F6C74E]  dark:bg-[#DAA520] dark:hover:bg-[#F6C74E]">
+                                        <input type="submit" value="Submit" class="px-10 py-3 m-4 text-base font-medium text-center text-white bg-[#DAA520] rounded-lg hover:bg-[#F6C74E]  dark:bg-[#DAA520] dark:hover:bg-[#F6C74E]">
                                     </form>
 
                                 </div>
@@ -448,7 +450,7 @@
                         </div><br>
 
 
-                        < </p>
+                    </p>
 
                     </div>
 

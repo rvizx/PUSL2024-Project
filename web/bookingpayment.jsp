@@ -265,9 +265,10 @@
                                    
                                     
                             
-                                    <% HttpSession session1 = request.getSession();
-            HashMap<String, Object> info = (HashMap<String, Object>) session1.getAttribute("info");
-             String TicketAmount = (String) info.get("TicketAmount");
+                                    <% 
+                                    HttpSession session1 = request.getSession();
+                                    HashMap<String, Object> info = (HashMap<String, Object>) session1.getAttribute("info");
+                                    int TicketPrice = Integer.parseInt((String) info.get("TicketAmount")) * 800;
 %>
 
 
@@ -278,13 +279,13 @@
                 <div class="col-25">
                     <div class="container">
                         <h4 class="text-3xl font-bold mt-3 pb-5 text-white">PURCHASE SUMMARY</h4>
-                        <p class="text-white text-xl"><a href="#">FULL TICKETS (x2)</a> <span class="price"><%=TicketAmount%></span></p>
+                        <p class="text-white text-xl"><a href="#">FULL TICKETS (x2)</a> <span class="price"><%=TicketPrice%></span></p>
                         <p><a href="#"></p>
                         <p><a href="#"></span></p>
                             <br>
                         <hr>
                         <br>
-                        <p class="text-white font-bold text-xl" >AMOUNT PAYABLE<span class="price" style="color:rgb(255, 255, 255)"><b><%=TicketAmount%></b></span></p><br>
+                        <p class="text-white font-bold text-xl" >AMOUNT PAYABLE<span class="price" style="color:rgb(255, 255, 255)"><b><%=TicketPrice%></b></span></p><br>
                         <hr class="my-1">
                         <hr>
                     </div>
@@ -336,7 +337,7 @@
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400"><a href="#"
-                    class="hover:underline"></a>COPYRIGHT © 2022 ABC CINEMA.ALL RIGHTS RESERVED.
+                    class="hover:underline"></a>COPYRIGHT ï¿½ 2022 ABC CINEMA.ALL RIGHTS RESERVED.
             </span>
         </footer>
 
