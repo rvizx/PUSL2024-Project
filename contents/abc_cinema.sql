@@ -23,28 +23,6 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `booking`
---
-
-CREATE TABLE `booking` (
-  `booking_id` varchar(700) NOT NULL,
-  `t_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `booking`
---
-
-INSERT INTO `booking` (`booking_id`, `t_id`) VALUES
-('4de83ab2aa9b4627cd5f691b4fc6bfc9', 100),
-('a7bbcef33ea27737cf5bd6ed94416134', 100),
-('17551db39a9f5c65547ae781ece59b91', 101),
-('1c45c600d36f1f231be05a10f5e6919f', 129),
-('1945e26aa1ef9be30d11c4259f210729', 130),
-('6b46a6944caaedfa4b026a17c02f40ea', 130);
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `customer`
@@ -495,6 +473,30 @@ ALTER TABLE `shows`
 --
 ALTER TABLE `staff`
   ADD PRIMARY KEY (`emp_id`);
+
+
+--
+-- Table structure for table `booking`
+--
+
+CREATE TABLE `booking` (
+  `booking_id` varchar(700) NOT NULL,
+  `t_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`booking_id`, `t_id`) VALUES
+('4de83ab2aa9b4627cd5f691b4fc6bfc9', 100),
+('a7bbcef33ea27737cf5bd6ed94416134', 100),
+('17551db39a9f5c65547ae781ece59b91', 101),
+('1c45c600d36f1f231be05a10f5e6919f', 129),
+('1945e26aa1ef9be30d11c4259f210729', 130),
+('6b46a6944caaedfa4b026a17c02f40ea', 130);
+
+-- --------------------------------------------------------
 
 --
 -- Indexes for table `ticket`
