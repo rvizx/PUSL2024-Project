@@ -1,0 +1,1240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.1.4deb3
+- https://www.phpmyadmin.net
+-
+- Host: localhost:3306
+- Generation Time: Jan 31, 2023 at 10:55 AM
+- Server version: 10.6.11-MariaDB-2
+- PHP Version: 8.2.1
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="abc_cinema" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="booking">
+                CREATE TABLE `booking` (
+                  `booking_id` varchar(700) NOT NULL,
+                  `t_id` int(11) NOT NULL,
+                  PRIMARY KEY (`booking_id`),
+                  KEY `booking_ibfk_1` (`t_id`) USING BTREE,
+                  CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `ticket` (`t_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="customer">
+                CREATE TABLE `customer` (
+                  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `name` varchar(256) NOT NULL,
+                  `mobile` varchar(10) NOT NULL,
+                  `email` varchar(256) NOT NULL,
+                  PRIMARY KEY (`c_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=2007 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="employee">
+                CREATE TABLE `employee` (
+                  `emp_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `name` varchar(256) NOT NULL,
+                  `email` varchar(256) NOT NULL,
+                  `password` varchar(256) NOT NULL,
+                  PRIMARY KEY (`emp_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:trigger name="update_staff_emp_id">
+                CREATE TRIGGER `update_staff_emp_id` AFTER INSERT ON `employee`
+                 FOR EACH ROW BEGIN
+                    UPDATE staff SET emp_id = NEW.emp_id 
+                    WHERE emp_id = NEW.emp_id;
+                END
+            </pma:trigger>
+            <pma:table name="feedback">
+                CREATE TABLE `feedback` (
+                  `feedback_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `Name` varchar(50) DEFAULT NULL,
+                  `email` varchar(50) DEFAULT NULL,
+                  `message` varchar(10000) DEFAULT NULL,
+                  PRIMARY KEY (`feedback_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="manager">
+                CREATE TABLE `manager` (
+                  `emp_id` int(11) NOT NULL,
+                  PRIMARY KEY (`emp_id`),
+                  CONSTRAINT `manager_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="movie">
+                CREATE TABLE `movie` (
+                  `m_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `m_name` varchar(256) NOT NULL,
+                  `m_language` varchar(256) NOT NULL,
+                  `genre` varchar(256) NOT NULL,
+                  `runtime` time NOT NULL,
+                  `description` varchar(500) NOT NULL,
+                  `trailer_link` varchar(500) NOT NULL,
+                  `m_status` tinyint(1) NOT NULL,
+                  PRIMARY KEY (`m_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="payment">
+                CREATE TABLE `payment` (
+                  `pay_id` int(11) NOT NULL,
+                  `total_amount` int(11) DEFAULT NULL,
+                  `c_id` int(11) DEFAULT NULL,
+                  PRIMARY KEY (`pay_id`),
+                  KEY `c_id` (`c_id`),
+                  CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customer` (`c_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="seat">
+                CREATE TABLE `seat` (
+                  `seat_no` varchar(5) NOT NULL,
+                  `seat_status` varchar(15) DEFAULT NULL,
+                  `date_time` datetime NOT NULL DEFAULT &#039;2023-01-16 10:30:00&#039;,
+                  PRIMARY KEY (`seat_no`,`date_time`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="shows">
+                CREATE TABLE `shows` (
+                  `date_time` datetime NOT NULL DEFAULT &#039;2023-01-16 10:30:00&#039;,
+                  `m_id` int(11) NOT NULL,
+                  `emp_id` int(11) DEFAULT NULL,
+                  PRIMARY KEY (`date_time`),
+                  KEY `m_id` (`m_id`),
+                  KEY `emp_id` (`emp_id`),
+                  CONSTRAINT `shows_ibfk_1` FOREIGN KEY (`m_id`) REFERENCES `movie` (`m_id`),
+                  CONSTRAINT `shows_ibfk_2` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="staff">
+                CREATE TABLE `staff` (
+                  `emp_id` int(11) NOT NULL DEFAULT 100,
+                  PRIMARY KEY (`emp_id`),
+                  CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+            <pma:table name="ticket">
+                CREATE TABLE `ticket` (
+                  `t_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `ticket_price` int(11) NOT NULL DEFAULT 1200,
+                  `seat_no` varchar(5) DEFAULT NULL,
+                  `c_id` int(11) DEFAULT NULL,
+                  `date_time` datetime DEFAULT NULL,
+                  PRIMARY KEY (`t_id`),
+                  KEY `fk_ticket_seat` (`seat_no`,`date_time`),
+                  KEY `c_id` (`c_id`),
+                  CONSTRAINT `fk_ticket_seat` FOREIGN KEY (`seat_no`, `date_time`) REFERENCES `seat` (`seat_no`, `date_time`),
+                  CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customer` (`c_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'abc_cinema'
+    -->
+    <database name="abc_cinema">
+        <!-- Table booking -->
+        <table name="booking">
+            <column name="booking_id">4de83ab2aa9b4627cd5f691b4fc6bfc9</column>
+            <column name="t_id">100</column>
+        </table>
+        <table name="booking">
+            <column name="booking_id">a7bbcef33ea27737cf5bd6ed94416134</column>
+            <column name="t_id">100</column>
+        </table>
+        <table name="booking">
+            <column name="booking_id">17551db39a9f5c65547ae781ece59b91</column>
+            <column name="t_id">101</column>
+        </table>
+        <table name="booking">
+            <column name="booking_id">1c45c600d36f1f231be05a10f5e6919f</column>
+            <column name="t_id">129</column>
+        </table>
+        <table name="booking">
+            <column name="booking_id">1945e26aa1ef9be30d11c4259f210729</column>
+            <column name="t_id">130</column>
+        </table>
+        <table name="booking">
+            <column name="booking_id">34925b27f2e842a01b8af8efcb3f4ede</column>
+            <column name="t_id">130</column>
+        </table>
+        <table name="booking">
+            <column name="booking_id">6b46a6944caaedfa4b026a17c02f40ea</column>
+            <column name="t_id">130</column>
+        </table>
+        <!-- Table customer -->
+        <table name="customer">
+            <column name="c_id">1000</column>
+            <column name="name">john</column>
+            <column name="mobile">0761111112</column>
+            <column name="email">john@temp.com</column>
+        </table>
+        <table name="customer">
+            <column name="c_id">2002</column>
+            <column name="name">Sam</column>
+            <column name="mobile">0743023917</column>
+            <column name="email">samjones@gmail.com</column>
+        </table>
+        <table name="customer">
+            <column name="c_id">2003</column>
+            <column name="name">Peter</column>
+            <column name="mobile">0752067498</column>
+            <column name="email">peterjhonson@gmail.com</column>
+        </table>
+        <table name="customer">
+            <column name="c_id">2004</column>
+            <column name="name">rviz</column>
+            <column name="mobile">765751533</column>
+            <column name="email">rviz@pm.me</column>
+        </table>
+        <table name="customer">
+            <column name="c_id">2005</column>
+            <column name="name">Ravindu Wickramasinghe</column>
+            <column name="mobile">0765751511</column>
+            <column name="email">ravindu.wickramasinghe@outlook.com</column>
+        </table>
+        <table name="customer">
+            <column name="c_id">2006</column>
+            <column name="name">Sanidu</column>
+            <column name="mobile">0763333333</column>
+            <column name="email">saniduanupama12@gmail.com</column>
+        </table>
+        <!-- Table employee -->
+        <table name="employee">
+            <column name="emp_id">1</column>
+            <column name="name">Glen</column>
+            <column name="email">glenaddams@gmail.com</column>
+            <column name="password">3a2c8e8c4b2402af9ba46c67133fbfba</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">2</column>
+            <column name="name">Max</column>
+            <column name="email">maxpayne@gmail.com</column>
+            <column name="password">e375cd3995cd42118077cd582306e2ac</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">3</column>
+            <column name="name">Jeff</column>
+            <column name="email">jeffbezos@gmail.com</column>
+            <column name="password">27081e6ee295f54082c992439f176153</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">104</column>
+            <column name="name">John</column>
+            <column name="email">johnbayer@gmail.com</column>
+            <column name="password">ef350e23b7e32416f10d5b9032534461</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">105</column>
+            <column name="name">Saman</column>
+            <column name="email">samanpeiris@gmail.com</column>
+            <column name="password">e679d02cbdd4460405ac9ff70917511d</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">106</column>
+            <column name="name">Peter</column>
+            <column name="email">peterpan@gmail.com</column>
+            <column name="password">a723081f761176d36e9798ba263ec73a</column>
+        </table>
+        <table name="employee">
+            <column name="emp_id">107</column>
+            <column name="name">Jeff</column>
+            <column name="email">johnbayer@gmail.com</column>
+            <column name="password">f95e7b7ff02cc8b3620abf4a41644fc3</column>
+        </table>
+        <!-- Table feedback -->
+        <table name="feedback">
+            <column name="feedback_id">5</column>
+            <column name="Name">Senith Edirisingha</column>
+            <column name="email">senith@gmail.com</column>
+            <column name="message">The temperature of the A/C is quite low. It&#039;d be great of you could increase it a bit more</column>
+        </table>
+        <table name="feedback">
+            <column name="feedback_id">6</column>
+            <column name="Name">Ben Addams</column>
+            <column name="email">benaddams@gmail.com</column>
+            <column name="message">The movie was great!</column>
+        </table>
+        <table name="feedback">
+            <column name="feedback_id">7</column>
+            <column name="Name">Jagatha Perera</column>
+            <column name="email">jagathperera@gmail.com</column>
+            <column name="message">Bad movie</column>
+        </table>
+        <!-- Table manager -->
+        <table name="manager">
+            <column name="emp_id">1</column>
+        </table>
+        <!-- Table movie -->
+        <table name="movie">
+            <column name="m_id">1</column>
+            <column name="m_name">BLACK PANTHER: WAKANDA FOREVER</column>
+            <column name="m_language">English</column>
+            <column name="genre">Action</column>
+            <column name="runtime">01:40:00</column>
+            <column name="description">BLACK PANTHER: WAKANDA FOREVERBLACK PANTHER: WAKANDA FOREVERBLACK PANTHER: WAKANDA FOREVERBLACK PANTHER: WAKANDA FOREVERBLACK PANTHER: WAKANDA FOREVERBLACK PANTHER: WAKANDA FOREVER</column>
+            <column name="trailer_link">https://www.youtube.com/watch?v=xgZLXyqbYOc</column>
+            <column name="m_status">0</column>
+        </table>
+        <table name="movie">
+            <column name="m_id">2</column>
+            <column name="m_name">BLACK ADAM</column>
+            <column name="m_language">English</column>
+            <column name="genre">Action</column>
+            <column name="runtime">01:40:00</column>
+            <column name="description">BLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAMBLACK ADAM</column>
+            <column name="trailer_link">https://www.youtube.com/watch?v=xgZLXyqbYOc</column>
+            <column name="m_status">0</column>
+        </table>
+        <table name="movie">
+            <column name="m_id">3</column>
+            <column name="m_name">TOP GUN: MAVERTICK</column>
+            <column name="m_language">ENGLISH</column>
+            <column name="genre">ACTION | DRAMA</column>
+            <column name="runtime">01:40:00</column>
+            <column name="description">TOP GUN: MAVERTICKTOP GUN: MAVERTICKTOP GUN: MAVERTICKTOP GUN: MAVERTICKTOP GUN: MAVERTICKTOP GUN: MAVERTICK</column>
+            <column name="trailer_link">https://www.youtube.com/watch?v=xgZLXyqbYOc</column>
+            <column name="m_status">0</column>
+        </table>
+        <table name="movie">
+            <column name="m_id">4</column>
+            <column name="m_name">JURASSIC WORLD:DOMINION</column>
+            <column name="m_language">English</column>
+            <column name="genre">Action | Adventure</column>
+            <column name="runtime">03:12:00</column>
+            <column name="description">TOP GUN:MAVERICKTOP GUN:MAVERICKTOP GUN:MAVERICKTOP GUN:MAVERICKTOP GUN:MAVERICKTOP GUN:MAVERICKTOP GUN:MAVERICK</column>
+            <column name="trailer_link">https://www.youtube.com/watch?v=d9MyW72ELq0</column>
+            <column name="m_status">1</column>
+        </table>
+        <table name="movie">
+            <column name="m_id">5</column>
+            <column name="m_name">K.G.F CHAPTER 2</column>
+            <column name="m_language">Tamil</column>
+            <column name="genre">Action</column>
+            <column name="runtime">02:34:00</column>
+            <column name="description">K.G.F CHAPTER 2K.G.F CHAPTER 2K.G.F CHAPTER 2K.G.F CHAPTER 2K.G.F CHAPTER 2K.G.F CHAPTER 2</column>
+            <column name="trailer_link">https://www.youtube.com/video?K.G.F CHAPTER 2</column>
+            <column name="m_status">1</column>
+        </table>
+        <table name="movie">
+            <column name="m_id">6</column>
+            <column name="m_name">AVATAR:THE WAY OF WATER</column>
+            <column name="m_language">TAMIL</column>
+            <column name="genre">ACTION</column>
+            <column name="runtime">01:56:00</column>
+            <column name="description">AVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATER</column>
+            <column name="trailer_link">AVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATERAVATAR:THE WAY OF WATER</column>
+            <column name="m_status">1</column>
+        </table>
+        <table name="movie">
+            <column name="m_id">7</column>
+            <column name="m_name">AVATAR: THE WAY OF WATER</column>
+            <column name="m_language">ENGLISH</column>
+            <column name="genre">ACTION</column>
+            <column name="runtime">03:12:00</column>
+            <column name="description">AVATAR: THE WAY OF WATERAVATAR: THE WAY OF WATERAVATAR: THE WAY OF WATER</column>
+            <column name="trailer_link">AVATAR: THE WAY OF WATERAVATAR: THE WAY OF WATER</column>
+            <column name="m_status">0</column>
+        </table>
+        <table name="movie">
+            <column name="m_id">8</column>
+            <column name="m_name">DEVOTION</column>
+            <column name="m_language">ENGLISH</column>
+            <column name="genre">ACTION</column>
+            <column name="runtime">02:34:00</column>
+            <column name="description">DEVOTION DEVOTION DEVOTION DEVOTION </column>
+            <column name="trailer_link">DEVOTION DEVOTIONDEVOTION DEVOTION </column>
+            <column name="m_status">0</column>
+        </table>
+        <table name="movie">
+            <column name="m_id">9</column>
+            <column name="m_name">PUSS IN BOOTS:THE LAST WISH</column>
+            <column name="m_language">ENGLISH</column>
+            <column name="genre">ACTION | DRAMA</column>
+            <column name="runtime">01:40:00</column>
+            <column name="description">PUSS IN BOOTS:THE LAST WISH</column>
+            <column name="trailer_link">PUSS IN BOOTS:THE LAST WISH</column>
+            <column name="m_status">0</column>
+        </table>
+        <table name="movie">
+            <column name="m_id">10</column>
+            <column name="m_name">SHOTGUN WEDDING</column>
+            <column name="m_language">ENGLISH</column>
+            <column name="genre">ACTION</column>
+            <column name="runtime">01:40:00</column>
+            <column name="description">SHOTGUN WEDDINGSHOTGUN WEDDING</column>
+            <column name="trailer_link">SHOTGUN WEDDINGSHOTGUN WEDDING</column>
+            <column name="m_status">0</column>
+        </table>
+        <!-- Table payment -->
+        <table name="payment">
+            <column name="pay_id">1</column>
+            <column name="total_amount">1000</column>
+            <column name="c_id">1000</column>
+        </table>
+        <table name="payment">
+            <column name="pay_id">2</column>
+            <column name="total_amount">1500</column>
+            <column name="c_id">2003</column>
+        </table>
+        <!-- Table seat -->
+        <table name="seat">
+            <column name="seat_no">A01</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">A02</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">A03</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">A04</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">A05</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">A06</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">A07</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">A08</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B01</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B02</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B03</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B04</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B05</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B06</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B07</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B08</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B09</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B10</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B11</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">B12</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C01</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C02</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C03</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C04</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C05</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C06</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C07</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C08</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C09</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C10</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C11</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">C12</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D01</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D02</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D03</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D04</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D05</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D06</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D07</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D08</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D09</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D10</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D11</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">D12</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E01</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E02</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E03</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E04</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E05</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E06</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E07</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E08</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E09</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E10</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E11</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">E12</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F01</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F02</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F03</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F04</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F05</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F06</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F07</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F08</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F09</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F10</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F11</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">F12</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G01</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G02</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G03</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G04</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G05</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G06</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G07</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G08</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G09</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G10</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G11</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">G12</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H01</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H02</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H03</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H04</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H05</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H06</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H07</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H08</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H09</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H10</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H11</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">H12</column>
+            <column name="seat_status">reserved</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I01</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I02</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I03</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I04</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I05</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I06</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I07</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I08</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I09</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I10</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I11</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">I12</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J01</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J02</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J03</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J04</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J05</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J06</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J07</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J08</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J09</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J10</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J11</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="seat">
+            <column name="seat_no">J12</column>
+            <column name="seat_status">available</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <!-- Table shows -->
+        <table name="shows">
+            <column name="date_time">2023-01-16 10:30:00</column>
+            <column name="m_id">2</column>
+            <column name="emp_id">3</column>
+        </table>
+        <table name="shows">
+            <column name="date_time">2023-01-23 09:02:06</column>
+            <column name="m_id">4</column>
+            <column name="emp_id">3</column>
+        </table>
+        <table name="shows">
+            <column name="date_time">2023-01-27 18:00:00</column>
+            <column name="m_id">5</column>
+            <column name="emp_id">3</column>
+        </table>
+        <table name="shows">
+            <column name="date_time">2023-02-06 10:30:00</column>
+            <column name="m_id">2</column>
+            <column name="emp_id">NULL</column>
+        </table>
+        <table name="shows">
+            <column name="date_time">2023-02-13 09:02:00</column>
+            <column name="m_id">3</column>
+            <column name="emp_id">2</column>
+        </table>
+        <table name="shows">
+            <column name="date_time">2023-04-13 10:30:00</column>
+            <column name="m_id">2</column>
+            <column name="emp_id">NULL</column>
+        </table>
+        <table name="shows">
+            <column name="date_time">2024-01-01 21:00:00</column>
+            <column name="m_id">10</column>
+            <column name="emp_id">2</column>
+        </table>
+        <!-- Table staff -->
+        <table name="staff">
+            <column name="emp_id">2</column>
+        </table>
+        <table name="staff">
+            <column name="emp_id">3</column>
+        </table>
+        <table name="staff">
+            <column name="emp_id">104</column>
+        </table>
+        <table name="staff">
+            <column name="emp_id">105</column>
+        </table>
+        <!-- Table ticket -->
+        <table name="ticket">
+            <column name="t_id">100</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B02</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">101</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B02</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">102</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B03</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">103</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B02</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">104</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B03</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">105</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B02</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">106</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B03</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">107</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B02</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">108</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B03</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">109</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B02</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">110</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B03</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">111</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B02</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">112</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B03</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">113</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B02</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">114</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B03</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">115</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B02</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">116</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B03</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">117</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B05</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">118</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B06</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">119</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B05</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">120</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B06</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">121</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B08</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">122</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B10</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">123</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B10</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">124</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B10</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">125</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B10</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">126</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">B10</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">127</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">E09</column>
+            <column name="c_id">2005</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">128</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">E12</column>
+            <column name="c_id">2004</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">130</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">F11</column>
+            <column name="c_id">2006</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">131</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">G10</column>
+            <column name="c_id">2006</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+        <table name="ticket">
+            <column name="t_id">132</column>
+            <column name="ticket_price">1200</column>
+            <column name="seat_no">G05</column>
+            <column name="c_id">2006</column>
+            <column name="date_time">2023-01-16 10:30:00</column>
+        </table>
+    </database>
+</pma_xml_export>
