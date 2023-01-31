@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.4deb3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 16, 2023 at 11:20 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Host: localhost:3306
+-- Generation Time: Jan 31, 2023 at 09:30 AM
+-- Server version: 10.6.11-MariaDB-2
+-- PHP Version: 8.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,9 +28,21 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `booking` (
-  `booking_id` varchar(30) NOT NULL,
+  `booking_id` varchar(700) NOT NULL,
   `t_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking`
+--
+
+INSERT INTO `booking` (`booking_id`, `t_id`) VALUES
+('4de83ab2aa9b4627cd5f691b4fc6bfc9', 100),
+('a7bbcef33ea27737cf5bd6ed94416134', 100),
+('17551db39a9f5c65547ae781ece59b91', 101),
+('1c45c600d36f1f231be05a10f5e6919f', 129),
+('1945e26aa1ef9be30d11c4259f210729', 130),
+('6b46a6944caaedfa4b026a17c02f40ea', 130);
 
 -- --------------------------------------------------------
 
@@ -50,11 +62,12 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`c_id`, `name`, `mobile`, `email`) VALUES
-(1000, 'Lakmal', '0761111112', 'lakmal@gmail.com'),
-(2002, 'Ruwan', '0743023917', 'ruwan@ymail.com'),
-(2003, 'Sakuni', '0752067498', 'sakunipeiris@gmail.com'),
-(2004, 'Amaya', '0719856296', 'amayarajapakha@gmail.com'),
-(2005, 'Saman', '0742391056', 'saman12@hotmail.com');
+(1000, 'john', '0761111112', 'john@temp.com'),
+(2002, 'Sam', '0743023917', 'samjones@gmail.com'),
+(2003, 'Peter', '0752067498', 'peterjhonson@gmail.com'),
+(2004, 'rviz', '765751533', 'rviz@pm.me'),
+(2005, 'Ravindu Wickramasinghe', '0765751511', 'ravindu.wickramasinghe@outlook.com'),
+(2006, 'Sanidu', '0763333333', 'saniduanupama12@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -113,10 +126,7 @@ CREATE TABLE `feedback` (
 INSERT INTO `feedback` (`feedback_id`, `Name`, `email`, `message`) VALUES
 (5, 'Senith Edirisingha', 'senith@gmail.com', 'The temperature of the A/C is quite low. It\'d be great of you could increase it a bit more'),
 (6, 'Ben Addams', 'benaddams@gmail.com', 'The movie was great!'),
-(7, 'Jagatha Perera', 'jagathperera@gmail.com', 'Bad movie'),
-(9, 'Susil', 'susilprem@ymail.com', 'I watched Spider Man NWH , Jurassic world dominion, Doctor Strange MOM  and Black Panther 2 WAKANDA Forever in here. Overall good experience. Since this hall is right next to the road, you don\'t have much space to wait until movie starts if the theater is going to be full for a movie. But theater it self is good. Good video quality. They don\'t start the movie at the given time that is the *worst problem* in here!'),
-(10, 'Sunil', 'sunilshantha@ymail.com', 'The food was great in the canteen. Adding two cashiers will reduce the queue. '),
-(11, 'Surya', 'surya@ymail.com', 'Great place with nice environment');
+(7, 'Jagatha Perera', 'jagathperera@gmail.com', 'Bad movie');
 
 -- --------------------------------------------------------
 
@@ -186,11 +196,7 @@ CREATE TABLE `payment` (
 
 INSERT INTO `payment` (`pay_id`, `total_amount`, `c_id`) VALUES
 (1, 1000, 1000),
-(2, 1500, 2003),
-(3, 800, 1000),
-(4, 1600, 2004),
-(5, 8000, 2002),
-(6, 16000, 2003);
+(2, 1500, 2003);
 
 -- --------------------------------------------------------
 
@@ -217,16 +223,16 @@ INSERT INTO `seat` (`seat_no`, `seat_status`, `date_time`) VALUES
 ('A06', 'available', '2023-01-16 10:30:00'),
 ('A07', 'available', '2023-01-16 10:30:00'),
 ('A08', 'available', '2023-01-16 10:30:00'),
-('B01', 'available', '2023-01-16 10:30:00'),
-('B02', 'available', '2023-01-16 10:30:00'),
-('B03', 'available', '2023-01-16 10:30:00'),
-('B04', 'available', '2023-01-16 10:30:00'),
-('B05', 'available', '2023-01-16 10:30:00'),
-('B06', 'available', '2023-01-16 10:30:00'),
-('B07', 'available', '2023-01-16 10:30:00'),
-('B08', 'available', '2023-01-16 10:30:00'),
-('B09', 'available', '2023-01-16 10:30:00'),
-('B10', 'available', '2023-01-16 10:30:00'),
+('B01', 'reserved', '2023-01-16 10:30:00'),
+('B02', 'reserved', '2023-01-16 10:30:00'),
+('B03', 'reserved', '2023-01-16 10:30:00'),
+('B04', 'reserved', '2023-01-16 10:30:00'),
+('B05', 'reserved', '2023-01-16 10:30:00'),
+('B06', 'reserved', '2023-01-16 10:30:00'),
+('B07', 'reserved', '2023-01-16 10:30:00'),
+('B08', 'reserved', '2023-01-16 10:30:00'),
+('B09', 'reserved', '2023-01-16 10:30:00'),
+('B10', 'reserved', '2023-01-16 10:30:00'),
 ('B11', 'available', '2023-01-16 10:30:00'),
 ('B12', 'available', '2023-01-16 10:30:00'),
 ('C01', 'available', '2023-01-16 10:30:00'),
@@ -254,17 +260,17 @@ INSERT INTO `seat` (`seat_no`, `seat_status`, `date_time`) VALUES
 ('D11', 'available', '2023-01-16 10:30:00'),
 ('D12', 'available', '2023-01-16 10:30:00'),
 ('E01', 'available', '2023-01-16 10:30:00'),
-('E02', 'available', '2023-01-16 10:30:00'),
-('E03', 'available', '2023-01-16 10:30:00'),
+('E02', 'reserved', '2023-01-16 10:30:00'),
+('E03', 'reserved', '2023-01-16 10:30:00'),
 ('E04', 'available', '2023-01-16 10:30:00'),
 ('E05', 'available', '2023-01-16 10:30:00'),
 ('E06', 'available', '2023-01-16 10:30:00'),
 ('E07', 'available', '2023-01-16 10:30:00'),
-('E08', 'available', '2023-01-16 10:30:00'),
-('E09', 'available', '2023-01-16 10:30:00'),
+('E08', 'reserved', '2023-01-16 10:30:00'),
+('E09', 'reserved', '2023-01-16 10:30:00'),
 ('E10', 'available', '2023-01-16 10:30:00'),
-('E11', 'available', '2023-01-16 10:30:00'),
-('E12', 'available', '2023-01-16 10:30:00'),
+('E11', 'reserved', '2023-01-16 10:30:00'),
+('E12', 'reserved', '2023-01-16 10:30:00'),
 ('F01', 'available', '2023-01-16 10:30:00'),
 ('F02', 'available', '2023-01-16 10:30:00'),
 ('F03', 'available', '2023-01-16 10:30:00'),
@@ -274,8 +280,8 @@ INSERT INTO `seat` (`seat_no`, `seat_status`, `date_time`) VALUES
 ('F07', 'available', '2023-01-16 10:30:00'),
 ('F08', 'available', '2023-01-16 10:30:00'),
 ('F09', 'available', '2023-01-16 10:30:00'),
-('F10', 'available', '2023-01-16 10:30:00'),
-('F11', 'available', '2023-01-16 10:30:00'),
+('F10', 'reserved', '2023-01-16 10:30:00'),
+('F11', 'reserved', '2023-01-16 10:30:00'),
 ('F12', 'available', '2023-01-16 10:30:00'),
 ('G01', 'available', '2023-01-16 10:30:00'),
 ('G02', 'available', '2023-01-16 10:30:00'),
@@ -285,8 +291,8 @@ INSERT INTO `seat` (`seat_no`, `seat_status`, `date_time`) VALUES
 ('G06', 'available', '2023-01-16 10:30:00'),
 ('G07', 'available', '2023-01-16 10:30:00'),
 ('G08', 'available', '2023-01-16 10:30:00'),
-('G09', 'available', '2023-01-16 10:30:00'),
-('G10', 'available', '2023-01-16 10:30:00'),
+('G09', 'reserved', '2023-01-16 10:30:00'),
+('G10', 'reserved', '2023-01-16 10:30:00'),
 ('G11', 'available', '2023-01-16 10:30:00'),
 ('G12', 'available', '2023-01-16 10:30:00'),
 ('H01', 'available', '2023-01-16 10:30:00'),
@@ -349,7 +355,6 @@ INSERT INTO `shows` (`date_time`, `m_id`, `emp_id`) VALUES
 ('2023-02-06 10:30:00', 2, NULL),
 ('2023-02-13 09:02:00', 3, 2),
 ('2023-04-13 10:30:00', 2, NULL),
-('2023-08-16 10:30:00', 2, NULL),
 ('2024-01-01 21:00:00', 10, 2);
 
 -- --------------------------------------------------------
@@ -391,7 +396,37 @@ CREATE TABLE `ticket` (
 --
 
 INSERT INTO `ticket` (`t_id`, `ticket_price`, `seat_no`, `c_id`, `date_time`) VALUES
-(0, 800, 'A01', 2004, '2023-01-16 10:30:00');
+(100, 1200, 'B02', 2004, '2023-01-16 10:30:00'),
+(101, 1200, 'B02', 2005, '2023-01-16 10:30:00'),
+(102, 1200, 'B03', 2005, '2023-01-16 10:30:00'),
+(103, 1200, 'B02', 2005, '2023-01-16 10:30:00'),
+(104, 1200, 'B03', 2005, '2023-01-16 10:30:00'),
+(105, 1200, 'B02', 2005, '2023-01-16 10:30:00'),
+(106, 1200, 'B03', 2005, '2023-01-16 10:30:00'),
+(107, 1200, 'B02', 2005, '2023-01-16 10:30:00'),
+(108, 1200, 'B03', 2005, '2023-01-16 10:30:00'),
+(109, 1200, 'B02', 2005, '2023-01-16 10:30:00'),
+(110, 1200, 'B03', 2005, '2023-01-16 10:30:00'),
+(111, 1200, 'B02', 2005, '2023-01-16 10:30:00'),
+(112, 1200, 'B03', 2005, '2023-01-16 10:30:00'),
+(113, 1200, 'B02', 2005, '2023-01-16 10:30:00'),
+(114, 1200, 'B03', 2005, '2023-01-16 10:30:00'),
+(115, 1200, 'B02', 2005, '2023-01-16 10:30:00'),
+(116, 1200, 'B03', 2005, '2023-01-16 10:30:00'),
+(117, 1200, 'B05', 2004, '2023-01-16 10:30:00'),
+(118, 1200, 'B06', 2004, '2023-01-16 10:30:00'),
+(119, 1200, 'B05', 2004, '2023-01-16 10:30:00'),
+(120, 1200, 'B06', 2004, '2023-01-16 10:30:00'),
+(121, 1200, 'B08', 2004, '2023-01-16 10:30:00'),
+(122, 1200, 'B10', 2004, '2023-01-16 10:30:00'),
+(123, 1200, 'B10', 2004, '2023-01-16 10:30:00'),
+(124, 1200, 'B10', 2004, '2023-01-16 10:30:00'),
+(125, 1200, 'B10', 2004, '2023-01-16 10:30:00'),
+(126, 1200, 'B10', 2004, '2023-01-16 10:30:00'),
+(127, 1200, 'E09', 2005, '2023-01-16 10:30:00'),
+(128, 1200, 'E12', 2004, '2023-01-16 10:30:00'),
+(130, 1200, 'F11', 2006, '2023-01-16 10:30:00'),
+(131, 1200, 'G10', 2006, '2023-01-16 10:30:00');
 
 --
 -- Indexes for dumped tables
@@ -402,7 +437,7 @@ INSERT INTO `ticket` (`t_id`, `ticket_price`, `seat_no`, `c_id`, `date_time`) VA
 --
 ALTER TABLE `booking`
   ADD PRIMARY KEY (`booking_id`),
-  ADD KEY `booking_ibfk_1` (`t_id`);
+  ADD KEY `booking_ibfk_1` (`t_id`) USING BTREE;
 
 --
 -- Indexes for table `customer`
@@ -477,7 +512,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2006;
+  MODIFY `c_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2007;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -489,13 +524,19 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `movie`
 --
 ALTER TABLE `movie`
   MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `ticket`
+--
+ALTER TABLE `ticket`
+  MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- Constraints for dumped tables

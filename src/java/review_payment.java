@@ -84,7 +84,7 @@ public class review_payment extends HttpServlet {
 
             String domain = "localhost";
             String port = "8080";
-            String reset_link = "http://" + domain + ":" + port + "/cancel?" + bid;
+            String reset_link = "http://" + domain + ":" + port + "/cancel?bid=" + bid;
 
             String email = (String) info.get("email");
             if (email == null) {
@@ -130,24 +130,20 @@ public class review_payment extends HttpServlet {
                 message.setRecipients(Message.RecipientType.TO,
                         InternetAddress.parse(email));
                 message.setSubject("ABC Cienma - Ticket Booking");
-                message.setText("<!DOCTYPE html>"
-                        + "<html>"
-                        + "<head>"
-                        + "<title>Confirmation of your booking at ABC Cinema</title>"
-                        + "</head>"
-                        + "<body>"
-                        + "<p>Dear Customer,</p>"
-                        + "<p>. You have successfully booked " + TicketAmount + " seat(s) for <strong>" + m_name + "</strong> on <strong>" + date_time + "</strong>.</p>"
-                        + "<p>We are really looking forward to welcoming you to ABC Cinema and hope you have an enjoyable experience.</p>"
-                        + "<p>In case you need to cancel your booking, please click on the following button:</p>"
-                        + "<p><a href='" + reset_link + "' style='padding: 8px 12px; background-color: #ff0000; color: #fff; text-decoration: none;'>Cancel Booking</a></p>"
-                        + "<p>Please note that once you click the button, your booking will be cancelled, and the seats will be released for others to book.</p>"
-                        + "<p>Please let us know if you have any questions.</p>"
-                        + "<p>Best regards,</p>"
-                        + "<p>[Your name]</p>"
-                        + "<p>ABC Cinema</p>"
-                        + "</body>"
-                        + "</html>");
+                message.setText(""
+                        + "Confirmation of your booking at ABC Cinema\n"
+                        + ""
+                        + ""
+                        + "Dear Customer,\n"
+                        + "\nYou have successfully booked " + TicketAmount + " seat(s) for " + m_name + " on " + date_time + ""
+                        + "We are really looking forward to welcoming you to ABC Cinema and hope you have an enjoyable experience."
+                        + "In case you need to cancel your booking, please click on the following link:"
+                        +  reset_link
+                        + "\n . Please note that once you click the button, your booking will be cancelled, and the seats will be released for others to book."
+                        + "Please let us know if you have any questions."
+                        + "\nBest regards,"
+                        + "\nABC Cinema"
+                        + "");
 
                 Transport.send(message);
                

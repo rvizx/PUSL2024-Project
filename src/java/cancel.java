@@ -1,4 +1,3 @@
-
 import java.sql.PreparedStatement;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,12 +31,6 @@ public class cancel extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
         try {
             String booking_id = request.getParameter("bid");
             HttpSession session = request.getSession();
@@ -47,38 +40,51 @@ public class cancel extends HttpServlet {
             Statement st = null;
 
             Class.forName("com.mysql.jdbc.Driver");
-            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
             st = con.createStatement();
 
             PreparedStatement ps = con.prepareStatement("SELECT * FROM booking where booking_id = ?");
             ps.setString(1, booking_id);
             ResultSet rs = ps.executeQuery();
 
-            PreparedStatement ps2 = con.prepareStatement("SELECT movie.m_name FROM movie JOIN shows ON shows.m_id = movie.m_id JOIN ticket ON ticket.t_id = boooking.t_id;  WHERE booking.booking_id=?; ");
+            PreparedStatement ps2 = con.prepareStatement("SELECT movie.m_name  FROM movie JOIN shows ON movie.m_id = shows.m_id JOIN ticket ON ticket.date_time = shows.date_time JOIN booking ON booking.t_id = ticket.t_id WHERE booking.booking_id = ?");
             ps2.setString(1, booking_id);
             ResultSet rs2 = ps2.executeQuery();
             rs2.next();
             String movie = rs2.getString("m_name");
 
-            PreparedStatement ps3 = con.prepareStatement("SELECT ticket.date_time FROM ticket JOIN booking ON ticket.t_id = booking.t_id WHERE booking.booking_id=?");
+            PreparedStatement ps3 = con.prepareStatement("SELECT ticket.date_time FROM ticket JOIN booking ON booking.t_id = ticket.t_id WHERE booking.booking_id = ?");
             ps3.setString(1, booking_id);
             ResultSet rs3 = ps3.executeQuery();
             rs3.next();
-            String date_time = rs3.getString("m_name");
+            String date_time = rs3.getString("date_time");
 
-            PreparedStatement ps5 = con.prepareStatement("SELECT customer.email FROM customer JOIN ticket ON ticket.c_id = customer.c_id JOIN booking ON ticket.t_id = booking.t_id WHERE booking.booking_id=?");
+            PreparedStatement ps5 = con.prepareStatement("SELECT customer.email FROM customer JOIN ticket ON ticket.c_id = customer.c_id JOIN booking ON ticket.t_id = booking.t_id WHERE booking.booking_id = ?");
             ps5.setString(1, booking_id);
             ResultSet rs5 = ps5.executeQuery();
             rs5.next();
             String email = rs5.getString("email");
+            
+             PreparedStatement ps8 = con.prepareStatement("UPDATE seat SET seat_status = 'available' WHERE seat_no IN (SELECT seat_no FROM ticket WHERE t_id = (SELECT t_id FROM booking WHERE booking_id = ?)) AND date_time = ?;");
+             ps8.executeUpdate();
 
             //if the booking id-exists
             if (rs.next()) {
-                PreparedStatement ps4 = con.prepareStatement("DROP * FROM ticket JOIN booking ON ticket.t_id = booking.t_id WHERE booking.booking_id=?");
-                ResultSet rs4 = ps4.executeQuery();
-                if (rs4.next()) {
+                
+                PreparedStatement ps6 = con.prepareStatement("SET FOREIGN_KEY_CHECKS=0");
+                ps6.executeUpdate();
+                
+                PreparedStatement ps4 = con.prepareStatement("DELETE FROM ticket WHERE t_id IN (SELECT t.t_id FROM ticket t  JOIN booking b ON t.t_id = b.t_id  WHERE b.booking_id = ? AND t.date_time = ?)");
+                
+                PreparedStatement ps7 = con.prepareStatement("SET FOREIGN_KEY_CHECKS=1");
+                ps6.executeUpdate();
+                
+                ps4.setString(1, booking_id);
+                ps4.setString(2, date_time);
+                int rowsDeleted = ps4.executeUpdate();
+                if (rowsDeleted > 0){
 
-                    final String username = "abccinema.colombo@gmail.com";
+                    final String username = "abccinema.colombo@gmail.com";  
                     final String password = "wyjeiqiichplxurl";
 
                     Properties props = new Properties();
@@ -102,24 +108,20 @@ public class cancel extends HttpServlet {
                                 InternetAddress.parse(email));
                         message.setSubject("ABC Cienma - Ticket Booking");
 
-                        String template = "<!DOCTYPE html>"
-                                + "<html>"
-                                + "<head>"
-                                + "<title>Booking Cancellation at ABC Cinema</title>"
-                                + "</head>"
-                                + "<body>"
-                                + "<p>Dear Customer,</p>"
-                                + "<p>This is to inform you that your booking for <strong>" + movie + "</strong> on <strong>" + date_time + "</strong> has been cancelled sucessfully.</p>"
-                                + "<p>We apologize for any inconvenience that may have caused.</p>"
-                                + "<p>If you have any questions or concerns, please don't hesitate to contact us.</p>"
-                                + "<p>Best regards,</p>"
-                                + "<p>ABC Cinema</p>"
-                                + "</body>"
-                                + "</html>";
+                        String template = ""
+                                + "mchn meka awoth message ekk dahm a  "
+                                + "Booking Cancellation at ABC Cinema"
+                                + "Dear Customer,"
+                                + "This is to inform you that your booking for " + movie + " on " + date_time + "has been cancelled sucessfully."
+                                + "We apologize for any inconvenience that may have caused."
+                                + "If you have any questions or concerns, please don't hesitate to contact us."
+                                + "Best regards,"
+                                + "ABC Cinema"
+                                + "";
                         message.setText(template);
                         Transport.send(message);
-                    } catch (MessagingException e) {
-                        throw new RuntimeException(e);
+                    } catch (Exception e) {
+                                   out.print(e);
                     }
 
                 }
@@ -128,6 +130,7 @@ public class cancel extends HttpServlet {
 
                 //if the booking id doesn't exists                
                 String message = "An error occured!";
+                out.print(message);
                 request.setAttribute("message", message);
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
             }
