@@ -164,18 +164,12 @@ public class bookseats extends HttpServlet {
                         }
 
                     }  catch (Exception e) {
-                        // An error occurred while connecting to the database or executing the query
-                        // e.printStackTrace();
-                        // response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
                         out.print(e);
                     }
                                                            
                 }
 
             } catch (Exception e) {
-                // An error occurred while connecting to the database or executing the query
-                // e.printStackTrace();
-                // response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred while booking the seats");
                 out.print(e);
             }
 

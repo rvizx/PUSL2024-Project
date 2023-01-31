@@ -1,5 +1,4 @@
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,11 +21,13 @@ import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
 import java.io.IOException;
-import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
 
 import com.paypal.api.payments.*;
 import com.paypal.base.rest.PayPalRESTException;
@@ -65,11 +65,7 @@ public class review_payment extends HttpServlet {
 
             String url = "review.jsp?paymentId=" + paymentId + "&PayerID=" + payerId;
 
-           
-
-            
             // send mail
-            
             PrintWriter out = response.getWriter();
             HttpSession httpsession = request.getSession();
             HashMap<String, Object> info = (HashMap<String, Object>) httpsession.getAttribute("info");
@@ -84,7 +80,7 @@ public class review_payment extends HttpServlet {
 
             String domain = "localhost";
             String port = "8080";
-            String reset_link = "http://" + domain + ":" + port + "/cancel?bid=" + bid;
+            
 
             String email = (String) info.get("email");
             if (email == null) {
@@ -109,6 +105,23 @@ public class review_payment extends HttpServlet {
             });
 
             try {
+
+                Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+                while (interfaces.hasMoreElements()) {
+                    NetworkInterface ni = interfaces.nextElement();
+                    if ("wlan0".equals(ni.getName())) {
+                        Enumeration<InetAddress> addresses = ni.getInetAddresses();
+                        while (addresses.hasMoreElements()) {
+                            InetAddress address = addresses.nextElement();
+                            if (!address.isLinkLocalAddress() && !address.isLoopbackAddress() && address.getAddress().length == 4) {
+                               domain = address.getHostAddress();
+                            }
+                        }
+                    }
+                }
+                
+                String reset_link = "http://" + domain + ":" + port + "/cancel?bid=" + bid;
+
                 String driverName = "com.mysql.jdbc.Driver";
                 String connectionUrl = "jdbc:mysql://localhost:3306/";
                 String dbName = "abc_cinema";
@@ -138,7 +151,7 @@ public class review_payment extends HttpServlet {
                         + "\nYou have successfully booked " + TicketAmount + " seat(s) for " + m_name + " on " + date_time + ""
                         + "We are really looking forward to welcoming you to ABC Cinema and hope you have an enjoyable experience."
                         + "In case you need to cancel your booking, please click on the following link:"
-                        +  reset_link
+                        + reset_link
                         + "\n . Please note that once you click the button, your booking will be cancelled, and the seats will be released for others to book."
                         + "Please let us know if you have any questions."
                         + "\nBest regards,"
@@ -146,15 +159,14 @@ public class review_payment extends HttpServlet {
                         + "");
 
                 Transport.send(message);
-               
-                
+
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             } catch (SQLException ex) {
                 Logger.getLogger(review_payment.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-             request.getRequestDispatcher(url).forward(request, response);
+
+            request.getRequestDispatcher(url).forward(request, response);
 
         } catch (PayPalRESTException ex) {
             request.setAttribute("errorMessage", ex.getMessage());
