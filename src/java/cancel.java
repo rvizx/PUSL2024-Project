@@ -109,14 +109,13 @@ public class cancel extends HttpServlet {
                         message.setSubject("ABC Cienma - Ticket Booking");
 
                         String template = ""
-                                + "mchn meka awoth message ekk dahm a  "
-                                + "Booking Cancellation at ABC Cinema"
-                                + "Dear Customer,"
-                                + "This is to inform you that your booking for " + movie + " on " + date_time + "has been cancelled sucessfully."
+                                + "Booking Cancellation at ABC Cinema\n"
+                                + "Dear Customer,\n"
+                                + "This is to inform you that your booking for " + movie + " on " + date_time + "has been cancelled sucessfully.\n"
                                 + "We apologize for any inconvenience that may have caused."
-                                + "If you have any questions or concerns, please don't hesitate to contact us."
-                                + "Best regards,"
-                                + "ABC Cinema"
+                                + "If you have any questions or concerns, please don't hesitate to contact us.\n"
+                                + "Best regards,\n"
+                                + "ABC Cinema\n"
                                 + "";
                         message.setText(template);
                         Transport.send(message);
