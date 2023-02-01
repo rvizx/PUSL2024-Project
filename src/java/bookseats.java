@@ -27,6 +27,7 @@ import java.util.HashMap;
 @WebServlet(urlPatterns = {"/bookseats"})
 public class bookseats extends HttpServlet {
 
+/*
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,12 +44,12 @@ public class bookseats extends HttpServlet {
             
             try {
                 Class.forName("com.mysql.jdbc.Driver");
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
+                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
                 st = con.createStatement();
 
                 String date_time = (String) info.get("date_time");
 
-                //String sql = "SELECT seat_status FROM seats WHERE date_time = "+date_time;
+                //String sql = "SELECT seat_status FROM seat WHERE date_time = "+date_time;
                 String sql = "SELECT * FROM seat";
                 ResultSet rs = st.executeQuery(sql);
                 bookedSeats = new String[rs.getFetchSize()];
@@ -75,7 +76,7 @@ public class bookseats extends HttpServlet {
         }
 
     }
-
+*/
     // add booked seats to the database
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -163,7 +164,7 @@ public class bookseats extends HttpServlet {
                             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "an error occured - all the seats were not booked!");
                         }
 
-                    }  catch (Exception e) {
+                    }  catch (Exception e) {                        
                         out.print(e);
                     }
                                                            

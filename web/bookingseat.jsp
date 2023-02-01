@@ -19,8 +19,6 @@
     } catch (ClassNotFoundException e) {
         e.printStackTrace();
     }
-
-
 %>
 
 <html>
@@ -437,7 +435,7 @@
                                     <a href="/date_time.jsp">
                                         <button type="button"
                                                 class="px-10 py-3 m-4 text-base font-medium text-center text-white bg-[#545454] rounded-lg hover:bg-[#747474] dark:bg-[#545454] dark:hover:bg-[#747474] ">
-                                                BACK
+                                            BACK
                                         </button>
                                     </a>
                                     <form action="/bookseats" method="post" onsubmit="document.getElementById('selectedSeats').value = seatNumbers.join(',');">
@@ -448,25 +446,13 @@
                                 </div>
                             </div>
                         </div><br>
-
-
-                    </p>
-
+                        </p>
                     </div>
-
                 </div>
 
 
 
-
-
-
             </section>
-
-
-
-
-
 
 
 
@@ -525,45 +511,10 @@
                         : (e.name = "grid", list.classList.remove('top-[80px]'), list.classList.remove(opacity - 100))
             }
 
-            /*
-             function getSeats(seat) {
-             let seatIndex = selectedSeats.indexOf(seat);
-             if(seatIndex !== -1) {
-             selectedSeats.splice(seatIndex, 1);
-             } else {
-             selectedSeats.push(seat);
-             }
-             console.log(selectedSeats);  //remove this later
-             }
-             */
+            setInterval(function () {
+                location.reload();
+            }, 20000);
 
-            /*
-             * ticketamount
-             * seat_no ={}
-             * price
-             */
-
-            /*
-             function sendSelectedSeats() {
-             let halfTicketAmount = document.getElementById("half-tickets").value;
-             let fullTicketAmount = document.getElementById("full-tickets").value;
-             fetch('/bookseats', {
-             method: 'POST',
-             headers: {
-             'Content-Type': 'application/json'
-             },
-             body: JSON.stringify({selectedSeats: selectedSeats, halfTicketAmount: halfTicketAmount, fullTicketAmount: fullTicketAmount})
-             })
-             .then(response => response.json())
-             .then(data => {
-             console.log('Success:', data);
-             })
-             .catch((error) => {
-             console.error('Error:', error);
-             });
-             }
-             * 
-             */
         </script>
         <script src="https://unpkg.com/flowbite@1.6.0/dist/flowbite.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>

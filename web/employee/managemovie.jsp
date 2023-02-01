@@ -233,7 +233,7 @@
                     Statement st = null;
 
                     Class.forName("com.mysql.jdbc.Driver");
-                    con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "root", "");
+                    con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
                     st = con.createStatement();
 
                     PreparedStatement ps = con.prepareStatement("SELECT * FROM movie WHERE m_id=?");

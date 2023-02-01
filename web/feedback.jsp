@@ -96,10 +96,10 @@
                 <br><br>
                 <div class="flex flex-wrap">
                     <div class="grow-0 shrink-0 basis-auto mb-12 lg:mb-0 w-full lg:w-5/12 px-3 lg:px-6">
-                        <form>
+                        <form method="post" action="/feedback">
                             <div class="form-group mb-6">
                                 <p class="text-xl font-bold my-3 text-3">${message}<p>
-                                    <input type="text" class="form-control block 
+                                    <input type="text" name="name" class="form-control block 
                       w-full
                       px-3
                       py-1.5
@@ -116,7 +116,7 @@
                                     placeholder="NAME">
                             </div>
                             <div class="form-group mb-6">
-                                <input type="email" class="form-control block
+                                <input type="email" name="email" class="form-control block
                       w-full
                       px-3
                       py-1.5
@@ -133,7 +133,7 @@
                                     placeholder="EMAIL ADDRESS">
                             </div>
                             <div class="form-group mb-6">
-                                <textarea class="
+                                <textarea type="text" name="message" class="
                       form-control
                       block
                       w-full
@@ -149,7 +149,7 @@
                       ease-in-out
                       m-0
                       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
-                    " id="exampleFormControlTextarea13" rows="3" placeholder="FEEDBACK MESSAGE"></textarea>
+                      " id="exampleFormControlTextarea13" rows="3" placeholder="FEEDBACK MESSAGE"></textarea>
                             </div>
 
                             <button type="submit" class="

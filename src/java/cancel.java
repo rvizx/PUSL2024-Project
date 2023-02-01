@@ -66,6 +66,8 @@ public class cancel extends HttpServlet {
             String email = rs5.getString("email");
             
              PreparedStatement ps8 = con.prepareStatement("UPDATE seat SET seat_status = 'available' WHERE seat_no IN (SELECT seat_no FROM ticket WHERE t_id = (SELECT t_id FROM booking WHERE booking_id = ?)) AND date_time = ?;");
+             ps8.setString(1, booking_id);
+             ps8.setString(2, booking_id);
              ps8.executeUpdate();
 
             //if the booking id-exists
@@ -101,7 +103,6 @@ public class cancel extends HttpServlet {
                     });
 
                     try {
-
                         Message message = new MimeMessage(mailsession);
                         message.setFrom(new InternetAddress(username));
                         message.setRecipients(Message.RecipientType.TO,
@@ -109,16 +110,17 @@ public class cancel extends HttpServlet {
                         message.setSubject("ABC Cienma - Ticket Booking");
 
                         String template = ""
-                                + "Booking Cancellation at ABC Cinema\n"
-                                + "Dear Customer,\n"
+                                + "Booking Cancellation at ABC Cinema\n\n"
+                                + "Dear Customer,\n\n"
                                 + "This is to inform you that your booking for " + movie + " on " + date_time + "has been cancelled sucessfully.\n"
                                 + "We apologize for any inconvenience that may have caused."
-                                + "If you have any questions or concerns, please don't hesitate to contact us.\n"
+                                + "If you have any questions or concerns, please don't hesitate to contact us.\n\n"
                                 + "Best regards,\n"
                                 + "ABC Cinema\n"
                                 + "";
                         message.setText(template);
                         Transport.send(message);
+                        request.getRequestDispatcher("/index.jsp").forward(request, response);
                     } catch (Exception e) {
                                    out.print(e);
                     }
@@ -131,11 +133,10 @@ public class cancel extends HttpServlet {
                 String message = "An error occured!";
                 out.print(message);
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("/index.jsp").forward(request, response);
+                
             }
         } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.print(e);
+
         }
 
     }

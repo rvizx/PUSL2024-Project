@@ -1,12 +1,8 @@
-
-
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
@@ -51,7 +47,7 @@ public class feedback extends HttpServlet {
             st=con.createStatement();
             
             // insert the feedback message into the database
-            PreparedStatement ps1=con.prepareStatement("INSERT INTO feedback(name,email,message) VALUES(?,?,?)");
+            PreparedStatement ps1=con.prepareStatement("INSERT INTO feedback(Name,email,message) VALUES(?,?,?)");
             ps1.setString(1, name);
             ps1.setString(2, email);
             ps1.setString(3, feedback);
