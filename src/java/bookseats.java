@@ -27,56 +27,6 @@ import java.util.HashMap;
 @WebServlet(urlPatterns = {"/bookseats"})
 public class bookseats extends HttpServlet {
 
-/*
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String[] bookedSeats = new String[0];
-
-        try {
-            
-            PrintWriter out = response.getWriter();
-            Connection con = null;
-            Statement st = null;
-            HttpSession session = request.getSession();
-            HashMap<String, Object> info = (HashMap<String, Object>) session.getAttribute("info");
-            
-            
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/abc_cinema", "pmauser", "123NxUok4IL4pW9GvkJF8gO1C6MyRFed");
-                st = con.createStatement();
-
-                String date_time = (String) info.get("date_time");
-
-                //String sql = "SELECT seat_status FROM seat WHERE date_time = "+date_time;
-                String sql = "SELECT * FROM seat";
-                ResultSet rs = st.executeQuery(sql);
-                bookedSeats = new String[rs.getFetchSize()];
-                out.print(rs);
-                // append seat names to the array 
-                int i = 0;
-                while (rs.next()) {
-                    bookedSeats[i] = rs.getString("seat_status");
-                    out.print(bookedSeats[i]);
-                    i++;
-                }
-
-            } catch (ClassNotFoundException | SQLException e) {
-                e.printStackTrace();
-                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred!");
-            }
-
-            request.setAttribute("bookedSeats", bookedSeats);
-            request.getRequestDispatcher("/bookingseat.jsp").forward(request, response);
-
-        } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.print(e);
-        }
-
-    }
-*/
     // add booked seats to the database
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
