@@ -2,7 +2,7 @@
 PUSL2024 Project - Cinema Website
 
 
-![alt text](https://github.com/rvizx/PUSL-2024/blob/main/contents/ss.png?raw=true)
+![alt text](https://github.com/rvizx/PUSL2024-Project/blob/main/contents/ss.png?raw=true)
 UI design : https://www.figma.com/file/SMZDF8reG5YenwjwOCnSQO/Uni-project?node-id=1039%3A2149
 
 
