@@ -6,12 +6,20 @@ PUSL2024 Project - Cinema Website
 UI design : https://www.figma.com/file/SMZDF8reG5YenwjwOCnSQO/Uni-project?node-id=1039%3A2149
 
 
-### How to contribute ?
-1. fork this project
-2. create a branch `git checkout -b feature`
-3. commit changes `git commit -m "added some features"`
-4. push to the branch `git push origin feature`
-5. open a pull request
+### Features
+- Online reservations
+- Avoid booking collisions
+- Visualization of customer feedback for management
+- Email notification of reservation and cancelling options
+- Payment handling - Paypal
+- Email Verification when sign up
+- Admins can manage movies from the backend
+- Password Hashing MD5A
 
-read more at [git guides](https://github.com/git-guides/)
+
+### Contributors
+- Sanidu Anupama
+- Ravindu Wickramasinhge
+- Senith Edirisinghe
+- Kasuni Jayaweera
 
